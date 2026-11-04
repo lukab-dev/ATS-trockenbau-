@@ -5,18 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ATS Trockenbau Augsburg</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="ATS Trockenbau in Augsburg: Trennwände, abgehängte Decken, Dachausbau, Brand- und Schallschutz sowie Spachtelarbeiten bis Q4 und Kernsanierung. Für Privat und Gewerbe in Augsburg und im Umkreis von 100 km.">
+<meta name="description" content="ATS Trockenbau in Augsburg: Trennwände, abgehängte Decken, Dachausbau, Brand- und Schallschutz, Spachtelarbeiten bis Q4 und Kernsanierung. Für Privat und Gewerbe in Augsburg und im Umkreis von 100 km.">
 <!-- Testbetrieb: Seite nicht indexieren. Vor Livegang entfernen. -->
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#0d0d0c">
+<meta name="theme-color" content="#0c0c0b">
 <link rel="icon" href="assets/favicon-64.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/style.css">
+<script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
 
-<div class="testbar"><div class="wrap">Testversion – Kontaktdaten und Rechtstexte werden vor dem Livegang vervollständigt.</div></div>
+<div class="testbar on-dark"><div class="wrap">Testversion – Kontaktdaten und Rechtstexte werden vor dem Livegang vervollständigt.</div></div>
 
 <header class="site-header on-dark">
   <div class="wrap">
@@ -24,319 +25,374 @@
       <img src="assets/logo/ats-logo-gold.png" width="520" height="238" alt="ATS Trockenbau">
     </a>
     <nav class="nav" aria-label="Hauptnavigation">
-      <div class="nav-links">
-        <a href="#leistungen">Leistungen</a>
-        <a href="#kernsanierung">Kernsanierung</a>
-        <a href="#qualitaet">Oberflächen</a>
-        <a href="#ablauf">Ablauf</a>
-        <a href="#gebiet">Einsatzgebiet</a>
-      </div>
-      <a class="btn btn--small" href="#kontakt">Anfrage</a>
+      <div class="nav-links"><span class="nav-indicator" aria-hidden="true"></span><a href="#leistungen">Leistungen</a><a href="#kernsanierung">Kernsanierung</a><a href="#qualitaet">Oberflächen</a><a href="#ablauf">Ablauf</a><a href="#gebiet">Einsatzgebiet</a><a href="#faq">FAQ</a></div>
+      <a class="btn btn--small" href="#kontakt">Anfragen</a>
+      <button class="menu-btn" type="button" aria-label="Menü" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
     </nav>
   </div>
 </header>
 
+<div class="menu on-dark" id="menu" inert>
+  <ul><li><a href="#leistungen" style="--i:0">Leistungen</a></li><li><a href="#kernsanierung" style="--i:1">Kernsanierung</a></li><li><a href="#qualitaet" style="--i:2">Oberflächen</a></li><li><a href="#ablauf" style="--i:3">Ablauf</a></li><li><a href="#gebiet" style="--i:4">Einsatzgebiet</a></li><li><a href="#faq" style="--i:5">FAQ</a></li><li><a href="#kontakt" style="--i:6">Kontakt</a></li></ul>
+  <div class="menu-foot">
+    <a class="btn" href="#kontakt">Projekt anfragen</a>
+    <span>info@atstrockenbau.com</span>
+  </div>
+</div>
+
 <main id="top">
 
-  <section class="hero on-dark">
+  <section class="hero on-dark" id="start">
     <div class="wrap">
       <div class="hero-copy">
-        <span class="label">Trockenbau · Kernsanierung · Augsburg</span>
-        <h1>Trockenbau und Kernsanierung. <span class="gold">Sauber gebaut.</span></h1>
-        <p class="lead">ATS Trockenbau baut Wände, Decken und Dachgeschosse und saniert Wohnungen und Häuser vom Rohbau bis zur fertigen Oberfläche. In Augsburg und im Umkreis von 100 km. Für Eigentümer, Hausverwaltungen und Gewerbe, mit festem Angebot und klarem Zeitplan.</p>
-        <div class="hero-actions">
-          <a class="btn" href="#kontakt">Kostenlose Besichtigung anfragen</a>
-          <a class="btn btn--ghost" href="#leistungen">Leistungen ansehen</a>
+        <p class="eyebrow fade" style="--i:0">ATS Trockenbau · Augsburg</p>
+        <h1 class="h-xl"><span class="line"><span style="--i:0">Trockenbau,</span></span><span class="line"><span class="grad" style="--i:1">der sitzt.</span></span></h1>
+        <p class="lead fade" style="--i:1">Wände, Decken, Dachausbau und Kernsanierung. Für Privat und Gewerbe in Augsburg und 100 km Umkreis.</p>
+        <div class="hero-actions fade" style="--i:2">
+          <a class="btn" href="#kontakt">Besichtigung anfragen</a>
+          <a class="more" href="#ablauf">So arbeiten wir</a>
         </div>
-        <ul class="hero-facts">
-          <li>Festpreisangebot nach Aufmaß</li>
-          <li>Brand- und Schallschutz nach DIN 4102</li>
-          <li>Besenrein übergeben</li>
+        <ul class="hero-facts fade" style="--i:3">
+          <li>Festpreis nach Aufmaß</li>
+          <li>Saubere Baustelle</li>
+          <li>Oberflächen bis Q4</li>
         </ul>
       </div>
+      <div class="hero-mark">
+        <img src="assets/logo/ats-ant-gold.png" width="600" height="366" alt="">
+      </div>
+    </div>
+  </section>
 
-      <figure class="detail" aria-labelledby="detail-cap">
-        <div class="detail-head">
-          <span class="label">Horizontalschnitt · M 1:5</span>
-          <span class="label">Beispielaufbau</span>
+  <section class="build on-dark" aria-labelledby="build-title">
+    <div class="build-stage">
+      <div class="wrap">
+        <div class="build-copy">
+          <p class="eyebrow">So entsteht eine Wand</p>
+          <h2 id="build-title">In fünf Schritten zur fertigen Fläche.</h2>
+          <ol class="story">
+              <li class="story-item is-active"><span class="story-num">01</span><h3>Ständerwerk</h3><div class="story-text"><p>UW-Profile an Boden und Decke, CW-Ständer im Raster von 62,5 cm. Das Gerüst entscheidet, wie gerade die Wand wird.</p></div></li>
+              <li class="story-item"><span class="story-num">02</span><h3>Dämmung</h3><div class="story-text"><p>Mineralwolle zwischen den Ständern bringt Schallschutz und, je nach Aufbau, Brandschutz.</p></div></li>
+              <li class="story-item"><span class="story-num">03</span><h3>Beplankung</h3><div class="story-text"><p>Gipsplatten 12,5 mm, einfach oder doppelt verschraubt. Im Bad mit imprägnierten Platten.</p></div></li>
+              <li class="story-item"><span class="story-num">04</span><h3>Spachteln</h3><div class="story-text"><p>Fugen und Schraubköpfe werden gespachtelt und geschliffen, in der Qualitätsstufe, die Sie brauchen.</p></div></li>
+              <li class="story-item"><span class="story-num">05</span><h3>Fertig</h3><div class="story-text"><p>Eine glatte Fläche, bereit für Farbe, Tapete oder Fliesen. Übergabe besenrein.</p></div></li>
+          </ol>
+          <div class="build-progress" aria-hidden="true"><i></i></div>
         </div>
-        <svg viewBox="0 0 560 290" role="img" aria-label="Schnitt einer doppelt beplankten Metallständerwand: je Seite zwei Feuerschutzplatten 12,5 mm, CW-Profil 75 mm mit Mineralwolle, Gesamtdicke 125 mm">
-          <!-- Maß Hohlraum -->
-          <path class="dim" d="M170 22 H350 M170 16 V28 M350 16 V28"/>
-          <text class="dim-text" x="260" y="14" text-anchor="middle">75</text>
-          <!-- Platten links -->
-          <rect class="board-f" x="110" y="40" width="30" height="190"/>
-          <rect class="board-f" x="140" y="40" width="30" height="190"/>
-          <!-- Platten rechts -->
-          <rect class="board-f" x="350" y="40" width="30" height="190"/>
-          <rect class="board-f" x="380" y="40" width="30" height="190"/>
-          <!-- Mineralwolle -->
-          <path class="wool" d="M178 48 C210 52, 210 60, 178 64 S210 76, 178 80 S210 92, 178 96 M342 48 C310 52, 310 60, 342 64 S310 76, 342 80 S310 92, 342 96 M200 48 C240 54, 240 62, 200 68 S240 82, 200 88 M320 48 C280 54, 280 62, 320 68 S280 82, 320 88"/>
-          <path class="wool" d="M178 176 C210 180, 210 188, 178 192 S210 204, 178 208 S210 220, 178 224 M342 176 C310 180, 310 188, 342 192 S310 204, 342 208 S310 220, 342 224 M200 180 C240 186, 240 194, 200 200 S240 214, 200 220 M320 180 C280 186, 280 194, 320 200 S280 214, 320 220"/>
-          <!-- CW-Profil -->
-          <path class="profile" d="M186 112 H172 V156 H348 V112 H334"/>
-          <!-- Maß gesamt -->
-          <path class="dim" d="M110 256 H410 M110 250 V262 M410 250 V262"/>
-          <text class="dim-text" x="260" y="280" text-anchor="middle">125 mm</text>
-          <!-- Beschriftung -->
-          <path class="lead-line" d="M125 66 H104"/>
-          <text class="t-strong" x="100" y="62" text-anchor="end">2 × GKF</text>
-          <text x="100" y="76" text-anchor="end">12,5 mm</text>
-          <path class="lead-line" d="M395 66 H430"/>
-          <text class="t-strong" x="436" y="62">2 × GKF</text>
-          <text x="436" y="76">12,5 mm</text>
-          <path class="lead-line" d="M348 140 H430"/>
-          <text class="t-strong" x="436" y="136">CW-Profil 75</text>
-          <text x="436" y="150">Stahl 0,6 mm</text>
-          <path class="lead-line" d="M300 200 H430"/>
-          <text class="t-strong" x="436" y="196">Mineralwolle</text>
-          <text x="436" y="210">60 mm</text>
-        </svg>
-        <figcaption id="detail-cap" class="detail-caption">Doppelt beplankte Ständerwand: bis F90 Feuerwiderstand und rund 50 dB Schalldämmung, je nach Plattensystem. Wir wählen den Aufbau passend zu Raum und Anforderung.</figcaption>
+        <div class="build-visual">
+          <svg class="wall" viewBox="0 0 600 440" role="img" aria-label="Zeichnung einer Trockenbauwand, die Schritt für Schritt entsteht: Ständerwerk, Dämmung, Beplankung, Spachteln, fertige Fläche">
+  <defs>
+    <pattern id="hatch" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="10" height="10" fill="var(--il-concrete)"/><line x1="0" y1="0" x2="0" y2="10" stroke="var(--il-hatch)" stroke-width="2"/></pattern>
+    <linearGradient id="steel" x1="0" x2="1"><stop offset="0" stop-color="var(--il-steel-2)"/><stop offset=".45" stop-color="var(--il-steel-1)"/><stop offset="1" stop-color="var(--il-steel-2)"/></linearGradient>
+    <linearGradient id="steel-h" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="var(--il-steel-1)"/><stop offset="1" stop-color="var(--il-steel-2)"/></linearGradient>
+    <pattern id="wool" width="28" height="18" patternUnits="userSpaceOnUse"><rect width="28" height="18" fill="var(--il-wool)"/><path d="M0 9 C7 2, 14 16, 21 9 S28 4, 28 9" fill="none" stroke="var(--il-wool-line)" stroke-width="1.2" opacity=".8"/></pattern>
+  </defs>
+  <rect x="0" y="0" width="600" height="34" fill="url(#hatch)"/>
+  <rect x="0" y="396" width="600" height="44" fill="url(#hatch)"/>
+  <g>
+    <rect class="wool" x="60" y="48" width="115" height="334" fill="url(#wool)" style="--i:0"/>
+    <rect class="wool" x="185" y="48" width="115" height="334" fill="url(#wool)" style="--i:1"/>
+    <rect class="wool" x="310" y="48" width="115" height="334" fill="url(#wool)" style="--i:2"/>
+    <rect class="wool" x="435" y="48" width="115" height="334" fill="url(#wool)" style="--i:3"/>
+  </g>
+  <g>
+    <rect class="fr fr-h" x="40" y="34" width="530" height="10" fill="url(#steel-h)" style="--i:0"/>
+    <rect class="fr fr-h" x="40" y="386" width="530" height="10" fill="url(#steel-h)" style="--i:0"/>
+    <rect class="fr" x="50" y="44" width="10" height="342" fill="url(#steel)" style="--i:1"/><rect class="fr" x="175" y="44" width="10" height="342" fill="url(#steel)" style="--i:2"/><rect class="fr" x="300" y="44" width="10" height="342" fill="url(#steel)" style="--i:3"/><rect class="fr" x="425" y="44" width="10" height="342" fill="url(#steel)" style="--i:4"/><rect class="fr" x="550" y="44" width="10" height="342" fill="url(#steel)" style="--i:5"/>
+  </g>
+  <g class="dim">
+    <path d="M55 80 H180 M55 74 V86 M180 74 V86" stroke="#dcbc5e" stroke-width="1" fill="none"/>
+    <text class="lbl" x="117.5" y="70" text-anchor="middle">62,5 cm</text>
+  </g>
+  <g>
+    <rect class="board" x="50" y="44" width="130" height="342" fill="var(--il-board)" stroke="var(--il-board-edge)" style="--i:0"/>
+    <rect class="board" x="180" y="44" width="125" height="342" fill="var(--il-board)" stroke="var(--il-board-edge)" style="--i:1"/>
+    <polygon class="board" points="305,44 470,44 410,386 305,386" fill="var(--il-board)" stroke="var(--il-board-edge)" style="--i:2"/>
+  </g>
+  <g><circle class="screw" cx="55" cy="66" r="2.4" fill="var(--il-screw)" style="--i:0"/><circle class="screw" cx="55" cy="126" r="2.4" fill="var(--il-screw)" style="--i:1"/><circle class="screw" cx="55" cy="186" r="2.4" fill="var(--il-screw)" style="--i:2"/><circle class="screw" cx="55" cy="246" r="2.4" fill="var(--il-screw)" style="--i:3"/><circle class="screw" cx="55" cy="306" r="2.4" fill="var(--il-screw)" style="--i:4"/><circle class="screw" cx="55" cy="366" r="2.4" fill="var(--il-screw)" style="--i:5"/><circle class="screw" cx="180" cy="66" r="2.4" fill="var(--il-screw)" style="--i:6"/><circle class="screw" cx="180" cy="126" r="2.4" fill="var(--il-screw)" style="--i:7"/><circle class="screw" cx="180" cy="186" r="2.4" fill="var(--il-screw)" style="--i:8"/><circle class="screw" cx="180" cy="246" r="2.4" fill="var(--il-screw)" style="--i:9"/><circle class="screw" cx="180" cy="306" r="2.4" fill="var(--il-screw)" style="--i:10"/><circle class="screw" cx="180" cy="366" r="2.4" fill="var(--il-screw)" style="--i:11"/><circle class="screw" cx="305" cy="66" r="2.4" fill="var(--il-screw)" style="--i:12"/><circle class="screw" cx="305" cy="126" r="2.4" fill="var(--il-screw)" style="--i:13"/><circle class="screw" cx="305" cy="186" r="2.4" fill="var(--il-screw)" style="--i:14"/><circle class="screw" cx="305" cy="246" r="2.4" fill="var(--il-screw)" style="--i:15"/><circle class="screw" cx="305" cy="306" r="2.4" fill="var(--il-screw)" style="--i:16"/><circle class="screw" cx="305" cy="366" r="2.4" fill="var(--il-screw)" style="--i:17"/><circle class="screw" cx="430" cy="66" r="2.4" fill="var(--il-screw)" style="--i:18"/><circle class="screw" cx="430" cy="126" r="2.4" fill="var(--il-screw)" style="--i:19"/><circle class="screw" cx="430" cy="186" r="2.4" fill="var(--il-screw)" style="--i:20"/></g>
+  <rect class="band" x="168" y="44" width="24" height="342" fill="var(--il-paint)" opacity=".7"/>
+  <rect class="band" x="293" y="44" width="24" height="342" fill="var(--il-paint)" opacity=".7"/>
+  <line class="joint" x1="180" y1="44" x2="180" y2="386" stroke="#c6a142" stroke-width="3"/>
+  <line class="joint" x1="305" y1="44" x2="305" y2="386" stroke="#c6a142" stroke-width="3"/>
+  <polygon class="paint" points="50,44 470,44 410,386 50,386" fill="var(--il-paint)"/>
+  <g class="finish">
+    <rect x="112" y="206" width="26" height="26" rx="4" fill="#ffffff" stroke="#d4d0c6"/>
+    <rect x="120" y="213" width="10" height="12" rx="2" fill="#ece9e2" stroke="#d4d0c6"/>
+    <rect x="70" y="340" width="74" height="26" rx="13" fill="#c6a142"/>
+    <text class="q4" x="107" y="358" text-anchor="middle">Q4</text>
+  </g>
+</svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="leistungen">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Leistungen</p>
+        <h2 class="h-l">Alles, was trocken gebaut wird.</h2>
+        <p class="lead">Vom einzelnen Durchbruch im Altbau bis zum kompletten Büroausbau. Mit geprüften Systemen der bekannten Plattenhersteller.</p>
+      </div>
+    </div>
+    <div class="reveal" data-rail>
+      <div class="rail" tabindex="0" aria-label="Leistungen, seitlich scrollbar">
+          <article class="card on-dark">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 3.5l7 7-2.6 2.6-7-7z"/><path d="M12.2 7.8L3.6 16.4a2.1 2.1 0 0 0 3 3l8.6-8.6"/></svg>
+            <h3>Kernsanierung</h3>
+            <p>Rückbau bis auf den Rohbau und kompletter Neuaufbau von Wänden, Decken und Oberflächen.</p>
+            <a class="more" href="#kernsanierung">Mehr erfahren</a>
+          </article>
+          <article class="card">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="1.5"/><path d="M9 3v18M15 3v18"/></svg>
+            <h3>Trenn- und Ständerwände</h3>
+            <p>Neue Raumaufteilung ohne Nassarbeiten. Einfach oder doppelt beplankt, mit Türzargen und Revisionsöffnungen.</p>
+            <span class="spec">CW 50 · 75 · 100</span>
+          </article>
+          <article class="card">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4h20M6 4v5M12 4v5M18 4v5M3 9h18"/><path d="M12 13v2.5M8.5 20h7l-1-3h-5z"/></svg>
+            <h3>Abgehängte Decken</h3>
+            <p>Glatte Decken unter Altbau- oder Betondecken, mit Platz für Leitungen, Lüftung und Einbauleuchten.</p>
+            <span class="spec">CD-Profil · Direktabhänger · Nonius</span>
+          </article>
+          <article class="card">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20h18M4.5 20L12 5.5 19.5 20"/><path d="M9 20v-5h6v5"/></svg>
+            <h3>Dachgeschossausbau</h3>
+            <p>Dämmung, Dampfbremse und Verkleidung von Schrägen und Kehlbalken. Aus dem Speicher wird Wohnraum.</p>
+            <span class="spec">Luftdicht nach DIN 4108-7</span>
+          </article>
+          <article class="card">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21c-3.9 0-6.5-2.6-6.5-6.1 0-3.7 3.1-5.6 3.8-9.4 2 1.6 2.8 3.5 2.8 5.3 1-.8 1.6-2 1.7-3.3 2.4 2 3 4.7 3 7.4 0 3.5-2.4 6.1-4.8 6.1z"/></svg>
+            <h3>Brandschutz</h3>
+            <p>Wände, Decken, Schachtwände und Stahlträgerbekleidungen mit nachgewiesener Feuerwiderstandsdauer.</p>
+            <span class="spec">F30 · F60 · F90</span>
+          </article>
+          <article class="card">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h1.5M7 8.5v7M11 5v14M15 8v8M19 10.5v3M21 12h.5"/></svg>
+            <h3>Schall- und Akustikdecken</h3>
+            <p>Ruhe zwischen Räumen und bessere Sprachverständlichkeit in Büro, Praxis und Gastronomie.</p>
+            <span class="spec">Lochplatten · Mineralfaser</span>
+          </article>
+          <article class="card">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="18" rx="1.5"/><path d="M14 3v8a3 3 0 0 0 3 3h4M14 21v-3.5"/></svg>
+            <h3>Vorsatzschalen und Installationswände</h3>
+            <p>Leitungen verschwinden hinter der Wand, alte Mauern werden gerade. Ideal für Bad und Küche.</p>
+            <span class="spec">GKBI imprägniert für Feuchträume</span>
+          </article>
+          <article class="card">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 15.5l7.5-7.5 5 5-7.5 7.5H3.5z"/><path d="M14 6l3-3 4 4-3 3"/></svg>
+            <h3>Spachtel- und Oberflächenarbeiten</h3>
+            <p>Fugen, Kanten und Flächen streichfertig, von der Grundverspachtelung bis Q4.</p>
+            <span class="spec">Q1 · Q2 · Q3 · Q4</span>
+          </article>
+          <article class="card">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4L2 8.5l10 4.5 10-4.5z"/><path d="M2 12.5l10 4.5 10-4.5M2 16.5l10 4.5 10-4.5"/></svg>
+            <h3>Trockenestrich</h3>
+            <p>Schnell belegbarer Boden ohne Trocknungszeit. Gut für Holzbalkendecken im Altbau.</p>
+            <span class="spec">Estrichelemente · Ausgleichsschüttung</span>
+          </article>
+      </div>
+      <div class="wrap">
+        <div class="rail-controls">
+          <button class="rail-btn" type="button" data-prev aria-label="Vorherige Leistungen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button class="rail-btn" type="button" data-next aria-label="Weitere Leistungen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="kernsanierung">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Kernsanierung</p>
+        <h2 class="h-l">Vom Rohbau zum Zuhause.</h2>
+        <p class="lead">Bei einer Kernsanierung bleibt nur der Rohbau stehen. Danach bauen wir Raum für Raum neu auf, mit einem Ansprechpartner für den gesamten Innenausbau.</p>
+      </div>
+      <div class="phases stagger">
+        <div class="phase">
+          <span class="phase-num grad">01</span>
+          <h3>Raus</h3>
+          <ul><li>Alte Wände, Decken und Verkleidungen zurückbauen</li><li>Böden entfernen bis auf den Rohbau</li><li>Schutt fachgerecht entsorgen</li></ul>
+        </div>
+        <div class="phase">
+          <span class="phase-num grad">02</span>
+          <h3>Neu</h3>
+          <ul><li>Ständerwände nach neuem Grundriss</li><li>Installationsebenen für Bad und Küche</li><li>Dämmung, Brand- und Schallschutz</li><li>Decken und Dachschrägen</li></ul>
+        </div>
+        <div class="phase">
+          <span class="phase-num grad">03</span>
+          <h3>Fertig</h3>
+          <ul><li>Spachteln in Q2 bis Q4</li><li>Streichfertige Flächen</li><li>Übergabe besenrein</li></ul>
+        </div>
+      </div>
+      <div class="renov-foot reveal">
+        <ul class="chips" aria-label="Geeignet für"><li>Eigentumswohnung</li><li>Einfamilienhaus</li><li>Altbau</li><li>Mietobjekt</li><li>Büro und Praxis</li></ul>
+        <a class="btn" href="#kontakt">Kernsanierung anfragen</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="qualitaet">
+    <div class="wrap q-layout">
+      <div class="q-copy reveal">
+        <div class="section-head" style="margin-bottom:0">
+          <p class="eyebrow">Oberflächen</p>
+          <h2 class="h-l">Wie glatt soll es werden?</h2>
+          <p class="lead">Die Stufen Q1 bis Q4 legen fest, wie eben eine Gipsplattenwand gespachtelt wird. Wählen Sie eine Stufe und sehen Sie den Unterschied im Streiflicht.</p>
+        </div>
+        <div class="seg" role="tablist" aria-label="Qualitätsstufe">
+          <span class="seg-thumb" aria-hidden="true"></span>
+          <button type="button" role="tab" id="q-tab-0" aria-controls="q-pane-0" aria-selected="false" tabindex="-1">Q1</button><button type="button" role="tab" id="q-tab-1" aria-controls="q-pane-1" aria-selected="true" tabindex="0">Q2</button><button type="button" role="tab" id="q-tab-2" aria-controls="q-pane-2" aria-selected="false" tabindex="-1">Q3</button><button type="button" role="tab" id="q-tab-3" aria-controls="q-pane-3" aria-selected="false" tabindex="-1">Q4</button>
+        </div>
+        <div class="q-info">
+            <div class="q-pane" id="q-pane-0" role="tabpanel" aria-labelledby="q-tab-0">
+              <h3>Q1 · Grundverspachtelung</h3>
+              <p>Fugen gefüllt, Schraubköpfe überspachtelt. Fugen und Schrauben bleiben im Licht sichtbar.</p>
+              <p class="fit"><b>Geeignet für:</b> Fliesen, weitere Verkleidung</p>
+            </div>
+            <div class="q-pane is-active" id="q-pane-1" role="tabpanel" aria-labelledby="q-tab-1">
+              <h3>Q2 · Standard</h3>
+              <p>Fugen nachgespachtelt und stufenlos an die Plattenfläche angeglichen.</p>
+              <p class="fit"><b>Geeignet für:</b> Raufaser, grobe Tapeten, matte Farbe</p>
+            </div>
+            <div class="q-pane" id="q-pane-2" role="tabpanel" aria-labelledby="q-tab-2">
+              <h3>Q3 · Sonderverspachtelung</h3>
+              <p>Fugen breit ausgespachtelt, die ganze Fläche scharf abgezogen.</p>
+              <p class="fit"><b>Geeignet für:</b> Feine Tapeten, feine matte Anstriche</p>
+            </div>
+            <div class="q-pane" id="q-pane-3" role="tabpanel" aria-labelledby="q-tab-3">
+              <h3>Q4 · Vollflächig</h3>
+              <p>Die gesamte Fläche wird überzogen und geglättet. Keine Spuren, auch nicht im Streiflicht.</p>
+              <p class="fit"><b>Geeignet für:</b> Glanzlack, Metalltapete, große Fensterflächen</p>
+            </div>
+        </div>
+      </div>
+      <figure class="reveal" style="margin:0">
+        <div class="q-visual">
+          <span class="q-tag">STREIFLICHT</span>
+          <svg class="q-svg" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <filter id="lit0" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.022 0.03" numOctaves="4" seed="7"/><feDiffuseLighting lighting-color="#f3f0e8" surfaceScale="5.0" diffuseConstant="1.05"><feDistantLight azimuth="180" elevation="28"/></feDiffuseLighting></filter>
+      <rect width="400" height="300" fill="#e8e5dd"/>
+      <rect width="400" height="300" filter="url(#lit0)"/>
+      <g opacity="0.95"><rect x="118" y="0" width="44" height="300" fill="#f7f5ef" opacity=".55"/><rect x="268" y="0" width="44" height="300" fill="#f7f5ef" opacity=".55"/><line x1="140" y1="0" x2="140" y2="300" stroke="#c8c2b5" stroke-width="1.5"/><line x1="290" y1="0" x2="290" y2="300" stroke="#c8c2b5" stroke-width="1.5"/></g>
+      <circle cx="140" cy="40" r="3.2" fill="#d2cdc1"/><circle cx="140" cy="100" r="3.2" fill="#d2cdc1"/><circle cx="140" cy="160" r="3.2" fill="#d2cdc1"/><circle cx="140" cy="220" r="3.2" fill="#d2cdc1"/><circle cx="140" cy="280" r="3.2" fill="#d2cdc1"/><circle cx="290" cy="40" r="3.2" fill="#d2cdc1"/><circle cx="290" cy="100" r="3.2" fill="#d2cdc1"/><circle cx="290" cy="160" r="3.2" fill="#d2cdc1"/><circle cx="290" cy="220" r="3.2" fill="#d2cdc1"/><circle cx="290" cy="280" r="3.2" fill="#d2cdc1"/>
+    </svg><svg class="q-svg is-active" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <filter id="lit1" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.022 0.03" numOctaves="4" seed="8"/><feDiffuseLighting lighting-color="#f3f0e8" surfaceScale="2.6" diffuseConstant="1.05"><feDistantLight azimuth="180" elevation="28"/></feDiffuseLighting></filter>
+      <rect width="400" height="300" fill="#e8e5dd"/>
+      <rect width="400" height="300" filter="url(#lit1)"/>
+      <g opacity="0.45"><rect x="118" y="0" width="44" height="300" fill="#f7f5ef" opacity=".55"/><rect x="268" y="0" width="44" height="300" fill="#f7f5ef" opacity=".55"/><line x1="140" y1="0" x2="140" y2="300" stroke="#c8c2b5" stroke-width="1.5"/><line x1="290" y1="0" x2="290" y2="300" stroke="#c8c2b5" stroke-width="1.5"/></g>
+      
+    </svg><svg class="q-svg" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <filter id="lit2" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.022 0.03" numOctaves="4" seed="9"/><feDiffuseLighting lighting-color="#f3f0e8" surfaceScale="1.2" diffuseConstant="1.05"><feDistantLight azimuth="180" elevation="28"/></feDiffuseLighting></filter>
+      <rect width="400" height="300" fill="#e8e5dd"/>
+      <rect width="400" height="300" filter="url(#lit2)"/>
+      <g opacity="0.18"><rect x="118" y="0" width="44" height="300" fill="#f7f5ef" opacity=".55"/><rect x="268" y="0" width="44" height="300" fill="#f7f5ef" opacity=".55"/><line x1="140" y1="0" x2="140" y2="300" stroke="#c8c2b5" stroke-width="1.5"/><line x1="290" y1="0" x2="290" y2="300" stroke="#c8c2b5" stroke-width="1.5"/></g>
+      
+    </svg><svg class="q-svg" viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <filter id="lit3" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="0.022 0.03" numOctaves="4" seed="10"/><feDiffuseLighting lighting-color="#f3f0e8" surfaceScale="0.35" diffuseConstant="1.05"><feDistantLight azimuth="180" elevation="28"/></feDiffuseLighting></filter>
+      <rect width="400" height="300" fill="#e8e5dd"/>
+      <rect width="400" height="300" filter="url(#lit3)"/>
+      <g opacity="0"><rect x="118" y="0" width="44" height="300" fill="#f7f5ef" opacity=".55"/><rect x="268" y="0" width="44" height="300" fill="#f7f5ef" opacity=".55"/><line x1="140" y1="0" x2="140" y2="300" stroke="#c8c2b5" stroke-width="1.5"/><line x1="290" y1="0" x2="290" y2="300" stroke="#c8c2b5" stroke-width="1.5"/></g>
+      
+    </svg>
+        </div>
+        <figcaption class="q-caption">Simulation bei seitlichem Licht. Grundlage: Merkblatt Nr. 2 der Industriegruppe Gipsplatten.</figcaption>
       </figure>
     </div>
   </section>
 
-  <section class="section section--board" id="leistungen">
+  <section class="section section--alt" id="ablauf">
     <div class="wrap">
-      <div class="section-head">
-        <span class="label">Leistungen</span>
-        <h2>Alles, was im Innenausbau trocken gebaut wird</h2>
-        <p>Vom einzelnen Durchbruch im Altbau bis zum kompletten Büroausbau. Wir arbeiten mit geprüften Systemen der bekannten Plattenhersteller.</p>
+      <div class="section-head reveal">
+        <p class="eyebrow">Ablauf</p>
+        <h2 class="h-l">Von der Anfrage bis zur Abnahme.</h2>
       </div>
-      <div class="services">
-        <article class="service service--feature">
-          <h3>Kernsanierung</h3>
-          <p>Rückbau bis auf den Rohbau und kompletter Neuaufbau von Wänden, Decken und Oberflächen. <a href="#kernsanierung">Mehr dazu</a></p>
-          <span class="spec">Wohnung · Haus · Gewerbe</span>
-        </article>
-        <article class="service">
-          <h3>Trenn- und Ständerwände</h3>
-          <p>Neue Raumaufteilung ohne Nassarbeiten. Einfach oder doppelt beplankt, auf Wunsch mit Türzargen und Revisionsöffnungen.</p>
-          <span class="spec">CW 50 · 75 · 100</span>
-        </article>
-        <article class="service">
-          <h3>Abgehängte Decken</h3>
-          <p>Glatte Decken unter Altbaudecken oder Beton, mit Platz für Leitungen, Lüftung und Einbauleuchten.</p>
-          <span class="spec">CD-Profil · Direktabhänger · Nonius</span>
-        </article>
-        <article class="service">
-          <h3>Dachgeschossausbau</h3>
-          <p>Dämmung, Dampfbremse und Verkleidung von Schrägen und Kehlbalken. Aus dem Speicher wird Wohnraum.</p>
-          <span class="spec">Luftdicht nach DIN 4108-7</span>
-        </article>
-        <article class="service">
-          <h3>Brandschutz</h3>
-          <p>Wände, Decken, Schachtwände und Stahlträgerbekleidungen mit nachgewiesener Feuerwiderstandsdauer.</p>
-          <span class="spec">F30 · F60 · F90</span>
-        </article>
-        <article class="service">
-          <h3>Schall- und Akustikdecken</h3>
-          <p>Ruhe zwischen Räumen und bessere Sprachverständlichkeit in Büro, Praxis und Gastronomie.</p>
-          <span class="spec">Lochplatten · Mineralfaser</span>
-        </article>
-        <article class="service">
-          <h3>Vorsatzschalen und Installationswände</h3>
-          <p>Leitungen verschwinden hinter der Wand, alte Mauern werden gerade. Ideal für Bad- und Küchensanierungen.</p>
-          <span class="spec">GKBI imprägniert für Feuchträume</span>
-        </article>
-        <article class="service">
-          <h3>Spachtel- und Oberflächenarbeiten</h3>
-          <p>Fugen, Kanten und Flächen streichfertig, von der Grundverspachtelung bis zur vollflächigen Q4-Oberfläche.</p>
-          <span class="spec">Q1 bis Q4</span>
-        </article>
-        <article class="service">
-          <h3>Trockenestrich</h3>
-          <p>Schnell belegbarer Fußboden ohne Trocknungszeit. Gut für Holzbalkendecken im Altbau.</p>
-          <span class="spec">Estrichelemente · Ausgleichsschüttung</span>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="kernsanierung">
-    <div class="wrap renov">
-      <div class="renov-copy">
-        <div class="section-head">
-          <span class="label">Kernsanierung</span>
-          <h2>Altbau entkernen, neu aufbauen</h2>
-          <p>Bei einer Kernsanierung bleibt nur der Rohbau stehen. Danach bauen wir Raum für Raum neu auf, mit geraden Wänden, neuen Decken und gedämmten Flächen.</p>
-        </div>
-        <p>Sie haben einen Ansprechpartner für den gesamten Innenausbau. Wir stimmen die Termine mit Elektro und Sanitär ab, damit Leitungen rechtzeitig in Wänden und Decken liegen.</p>
-        <ul class="renov-tags" aria-label="Geeignet für">
-          <li>Eigentumswohnung</li>
-          <li>Einfamilienhaus</li>
-          <li>Altbau</li>
-          <li>Mietobjekt</li>
-          <li>Büro und Praxis</li>
-        </ul>
-        <div><a class="btn" href="#kontakt">Kernsanierung anfragen</a></div>
-      </div>
-      <ul class="scope" aria-label="Leistungsumfang Kernsanierung">
-        <li><div><strong>Rückbau und Entsorgung</strong><span>Alte Wände, Decken, Verkleidungen und Böden raus, Schutt fachgerecht entsorgt.</span></div></li>
-        <li><div><strong>Neue Raumaufteilung</strong><span>Ständerwände nach Ihrem Grundriss, Durchbrüche geschlossen oder neu gesetzt.</span></div></li>
-        <li><div><strong>Installationsebenen</strong><span>Vorsatzschalen und Schächte für Leitungen, Bad und Küche.</span></div></li>
-        <li><div><strong>Dämmung, Brand- und Schallschutz</strong><span>Mineralwolle, Dampfbremse und Plattensysteme nach Anforderung.</span></div></li>
-        <li><div><strong>Decken und Dachschrägen</strong><span>Abgehängt, gedämmt und bereit für Einbauleuchten.</span></div></li>
-        <li><div><strong>Oberflächen streichfertig</strong><span>Verspachtelt in Q2 bis Q4, übergeben besenrein.</span></div></li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="section section--board" id="qualitaet">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="label">Oberflächengüte</span>
-        <h2>Welche Spachtelstufe Ihre Wand braucht</h2>
-        <p>Die Qualitätsstufen Q1 bis Q4 legen fest, wie glatt eine Gipsplattenfläche wird. Wir sagen Ihnen vorab, welche Stufe zu Ihrem Anstrich oder Belag passt.</p>
-      </div>
-      <div class="qgrid">
-        <div class="q">
-          <div class="q-level">Q1<span>Grundverspachtelung</span></div>
-          <p>Fugen gefüllt, Befestigungsmittel überspachtelt. Ausreichend unter Fliesen oder als Untergrund für weitere Bekleidung.</p>
-          <div class="bar" aria-hidden="true"><i style="width:25%"></i></div>
-        </div>
-        <div class="q">
-          <div class="q-level">Q2<span>Standard</span></div>
-          <p>Fugen nachgespachtelt und stufenlos angeglichen. Für Raufaser, grobe Strukturtapeten und matte Anstriche.</p>
-          <div class="bar" aria-hidden="true"><i style="width:50%"></i></div>
-        </div>
-        <div class="q">
-          <div class="q-level">Q3<span>Sonderverspachtelung</span></div>
-          <p>Breites Ausspachteln der Fugen und scharfes Abziehen der Fläche. Für feine Tapeten und matte, feine Anstriche.</p>
-          <div class="bar" aria-hidden="true"><i style="width:75%"></i></div>
-        </div>
-        <div class="q">
-          <div class="q-level">Q4<span>Vollflächig</span></div>
-          <p>Gesamte Fläche überzogen und geglättet. Für Glanzlack, Metalltapeten und Streiflicht durch große Fenster.</p>
-          <div class="bar" aria-hidden="true"><i style="width:100%"></i></div>
-        </div>
-      </div>
-      <p class="note">Grundlage ist das Merkblatt Nr. 2 der Industriegruppe Gipsplatten. Die gewünschte Stufe steht immer im Angebot, damit es bei der Abnahme keine Überraschungen gibt.</p>
-    </div>
-  </section>
-
-  <section class="section" id="ablauf">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="label">Ablauf</span>
-        <h2>Von der Anfrage bis zur Abnahme</h2>
-      </div>
-      <ol class="steps">
-        <li><h3>Anfrage</h3><p>Sie schildern Ihr Vorhaben per Formular oder Telefon, gern mit Fotos oder Grundriss.</p></li>
-        <li><h3>Besichtigung</h3><p>Wir kommen vor Ort, nehmen Maß und klären Details wie Brand- oder Schallschutz.</p></li>
-        <li><h3>Angebot</h3><p>Sie erhalten ein schriftliches Festpreisangebot mit Leistungsbeschreibung und Termin.</p></li>
-        <li><h3>Ausführung</h3><p>Sauber, termingerecht und mit Schutz von Boden und Möbeln. Abfall nehmen wir mit.</p></li>
-        <li><h3>Abnahme</h3><p>Gemeinsame Begehung, Übergabe besenrein. Rechnung erst nach Abnahme.</p></li>
+      <ol class="timeline stagger">
+          <li><span class="t-num">01</span><h3>Anfrage</h3><p>Sie beschreiben Ihr Vorhaben per Formular oder Telefon, gern mit Fotos oder Grundriss.</p></li>
+          <li><span class="t-num">02</span><h3>Besichtigung</h3><p>Wir kommen vor Ort, nehmen Maß und klären Details wie Brand- oder Schallschutz.</p></li>
+          <li><span class="t-num">03</span><h3>Angebot</h3><p>Sie erhalten ein schriftliches Festpreisangebot mit Leistungsbeschreibung und Termin.</p></li>
+          <li><span class="t-num">04</span><h3>Ausführung</h3><p>Sauber und termingerecht, mit Schutz von Boden und Möbeln. Abfall nehmen wir mit.</p></li>
+          <li><span class="t-num">05</span><h3>Abnahme</h3><p>Gemeinsame Begehung und Übergabe besenrein. Die Rechnung kommt nach der Abnahme.</p></li>
       </ol>
     </div>
   </section>
 
-  <section class="section section--board" id="gebiet">
+  <section class="section" id="gebiet">
     <div class="wrap area">
-      <div class="area-copy">
-        <span class="label">Einsatzgebiet</span>
-        <div class="section-head" style="margin-bottom:0">
-          <h2>Augsburg und 100 km Umkreis</h2>
+      <div class="area-copy reveal">
+        <div class="section-head">
+          <p class="eyebrow">Einsatzgebiet</p>
+          <h2 class="h-l">Augsburg und 100 km Umkreis.</h2>
+          <p class="lead">Von Augsburg aus arbeiten wir in ganz Schwaben und weiten Teilen Oberbayerns, bis Ulm, München, Ingolstadt und ins Allgäu.</p>
         </div>
-        <p>Von Augsburg aus arbeiten wir in ganz Schwaben und weiten Teilen Oberbayerns. Das reicht bis Ulm, München, Ingolstadt und ins Allgäu.</p>
-        <ul class="places">
-          <li class="is-home">Augsburg</li>
-          <li>Friedberg</li>
-          <li>Königsbrunn</li>
-          <li>München</li>
-          <li>Dachau</li>
-          <li>Fürstenfeldbruck</li>
-          <li>Starnberg</li>
-          <li>Freising</li>
-          <li>Ingolstadt</li>
-          <li>Neuburg a. d. Donau</li>
-          <li>Schrobenhausen</li>
-          <li>Donauwörth</li>
-          <li>Dillingen</li>
-          <li>Günzburg</li>
-          <li>Ulm / Neu-Ulm</li>
-          <li>Landsberg am Lech</li>
-          <li>Mindelheim</li>
-          <li>Kaufbeuren</li>
-          <li>Memmingen</li>
-          <li>Kempten</li>
-          <li>Weilheim</li>
-        </ul>
+        <ul class="chips"><li class="is-home">Augsburg</li><li>Friedberg</li><li>Königsbrunn</li><li>München</li><li>Dachau</li><li>Fürstenfeldbruck</li><li>Starnberg</li><li>Freising</li><li>Ingolstadt</li><li>Neuburg a. d. Donau</li><li>Schrobenhausen</li><li>Donauwörth</li><li>Dillingen</li><li>Günzburg</li><li>Ulm / Neu-Ulm</li><li>Landsberg am Lech</li><li>Mindelheim</li><li>Kaufbeuren</li><li>Memmingen</li><li>Kempten</li><li>Weilheim</li></ul>
       </div>
-      <figure class="radius-map">
+      <figure class="map">
         <svg viewBox="0 0 400 345" role="img" aria-label="Schematische Karte: Orte im Umkreis von 50 und 100 Kilometern um Augsburg">
-          <circle class="ring" cx="200" cy="180" r="75"/>
           <circle class="ring-out" cx="200" cy="180" r="150"/>
+          <circle class="ring" cx="200" cy="180" r="75"/>
           <text x="200" y="99" text-anchor="middle">50 km</text>
           <text x="200" y="24" text-anchor="middle">100 km</text>
-          <circle class="dot" cx="257" cy="116" r="3.5"/><text x="265" y="120">Ingolstadt</text>
-          <circle class="dot" cx="187" cy="122" r="3.5"/><text x="180" y="126" text-anchor="end">Donauwörth</text>
-          <circle class="dot" cx="155" cy="146" r="3.5"/><text x="148" y="150" text-anchor="end">Dillingen</text>
-          <circle class="dot" cx="240" cy="148" r="3.5"/><text x="248" y="152">Schrobenhausen</text>
-          <circle class="dot" cx="100" cy="176" r="3.5"/><text x="93" y="180" text-anchor="end">Ulm</text>
-          <circle class="dot" cx="294" cy="176" r="3.5"/><text x="302" y="180">Freising</text>
-          <circle class="dot" cx="259" cy="198" r="3.5"/><text x="266" y="202">Dachau</text>
-          <circle class="dot" cx="275" cy="218" r="3.5"/><text x="282" y="222">München</text>
-          <circle class="dot" cx="197" cy="234" r="3.5"/><text x="190" y="238" text-anchor="end">Landsberg</text>
-          <circle class="dot" cx="249" cy="241" r="3.5"/><text x="257" y="245">Starnberg</text>
-          <circle class="dot" cx="120" cy="243" r="3.5"/><text x="113" y="247" text-anchor="end">Memmingen</text>
-          <circle class="dot" cx="169" cy="261" r="3.5"/><text x="162" y="265" text-anchor="end">Kaufbeuren</text>
-          <circle class="dot" cx="227" cy="268" r="3.5"/><text x="235" y="272">Weilheim</text>
-          <circle class="dot" cx="134" cy="287" r="3.5"/><text x="127" y="291" text-anchor="end">Kempten</text>
+          <g><circle class="dot d2" cx="257" cy="116" r="3.5"/><text x="265" y="120">Ingolstadt</text></g><g><circle class="dot d2" cx="187" cy="122" r="3.5"/><text x="180" y="126" text-anchor="end">Donauwörth</text></g><g><circle class="dot d2" cx="155" cy="146" r="3.5"/><text x="148" y="150" text-anchor="end">Dillingen</text></g><g><circle class="dot d1" cx="240" cy="148" r="3.5"/><text x="248" y="152">Schrobenhausen</text></g><g><circle class="dot d3" cx="100" cy="176" r="3.5"/><text x="93" y="180" text-anchor="end">Ulm</text></g><g><circle class="dot d3" cx="294" cy="176" r="3.5"/><text x="302" y="180">Freising</text></g><g><circle class="dot d1" cx="259" cy="198" r="3.5"/><text x="267" y="202">Dachau</text></g><g><circle class="dot d2" cx="275" cy="218" r="3.5"/><text x="283" y="222">München</text></g><g><circle class="dot d1" cx="197" cy="234" r="3.5"/><text x="190" y="238" text-anchor="end">Landsberg</text></g><g><circle class="dot d2" cx="249" cy="241" r="3.5"/><text x="257" y="245">Starnberg</text></g><g><circle class="dot d3" cx="120" cy="243" r="3.5"/><text x="113" y="247" text-anchor="end">Memmingen</text></g><g><circle class="dot d2" cx="169" cy="261" r="3.5"/><text x="162" y="265" text-anchor="end">Kaufbeuren</text></g><g><circle class="dot d3" cx="227" cy="268" r="3.5"/><text x="235" y="272">Weilheim</text></g><g><circle class="dot d3" cx="134" cy="287" r="3.5"/><text x="127" y="291" text-anchor="end">Kempten</text></g>
+          <circle class="pulse" cx="200" cy="180" r="7"/>
           <circle class="home" cx="200" cy="180" r="7"/>
-          <text class="home-text" x="200" y="203" text-anchor="middle">Augsburg</text>
+          <text class="home-text" x="200" y="204" text-anchor="middle">Augsburg</text>
         </svg>
       </figure>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="faq">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Häufige Fragen</p>
+        <h2 class="h-l">Gut zu wissen.</h2>
+      </div>
+      <div class="faq reveal">
+          <details><summary>Was kostet Trockenbau pro Quadratmeter?</summary><div class="answer"><p>Das hängt vom Aufbau, der Fläche und der gewünschten Oberfläche ab. Nach der Besichtigung bekommen Sie ein schriftliches Angebot zum Festpreis, ohne versteckte Posten.</p></div></details>
+          <details><summary>Wie lange dauert eine neue Trennwand?</summary><div class="answer"><p>Eine einzelne Wand steht oft in wenigen Tagen, inklusive Spachteln. Den genauen Zeitplan finden Sie in unserem Angebot.</p></div></details>
+          <details><summary>Wie viel Schmutz entsteht dabei?</summary><div class="answer"><p>Trockenbau ist deutlich sauberer als Mauern und Putzen. Wir decken Böden und Möbel ab und übergeben die Baustelle besenrein.</p></div></details>
+          <details><summary>Brauche ich eine Genehmigung für eine Trennwand?</summary><div class="answer"><p>Für nichttragende Innenwände in der Regel nicht. In Mietwohnungen braucht es die Zustimmung des Vermieters. Bei Brandschutzanforderungen stimmen wir den Aufbau vorab mit Ihnen ab.</p></div></details>
+          <details><summary>Arbeiten Sie auch für Firmen und Hausverwaltungen?</summary><div class="answer"><p>Ja. Wir arbeiten für Eigentümer, Hausverwaltungen und Gewerbe, zum Beispiel beim Ausbau von Büros und Praxen.</p></div></details>
+          <details><summary>Wie schnell können Sie anfangen?</summary><div class="answer"><p>Das hängt von unserer Auslastung ab. Fragen Sie möglichst früh an, dann planen wir Ihren Termin verbindlich ein.</p></div></details>
+      </div>
     </div>
   </section>
 
   <section class="section contact on-dark" id="kontakt">
     <div class="wrap">
-      <div class="section-head">
-        <span class="label">Kontakt</span>
-        <h2>Projekt anfragen</h2>
-        <p>Beschreiben Sie kurz, was gebaut werden soll. Wir melden uns innerhalb von zwei Werktagen und vereinbaren einen Termin zur Besichtigung.</p>
+      <div class="section-head reveal">
+        <p class="eyebrow">Kontakt</p>
+        <h2 class="h-l">Erzählen Sie uns von Ihrem Projekt.</h2>
+        <p class="lead">Wir melden uns innerhalb von zwei Werktagen und vereinbaren einen Termin zur Besichtigung.</p>
       </div>
       <div class="contact-grid">
-        <div class="contact-data">
-          <dl>
-            <div><dt>Telefon</dt><dd><span class="ph">[Telefonnummer]</span></dd></div>
+        <div class="contact-info reveal">
+          <dl class="contact-list">
             <div><dt>E-Mail</dt><dd><a href="mailto:info@atstrockenbau.com">info@atstrockenbau.com</a></dd></div>
+            <div><dt>Telefon</dt><dd><span class="ph">[Telefonnummer]</span></dd></div>
             <div><dt>Anschrift</dt><dd>ATS Trockenbau<br><span class="ph">[Straße Nr.]</span><br><span class="ph">[PLZ]</span> Augsburg</dd></div>
-            <div><dt>Erreichbarkeit</dt><dd class="hours">Mo–Fr <span class="ph">[07:00–17:00 Uhr]</span></dd></div>
+            <div><dt>Erreichbar</dt><dd class="hours">Mo–Fr <span class="ph">[07:00–17:00 Uhr]</span></dd></div>
           </dl>
         </div>
-
-        <form class="form" id="anfrage" novalidate data-mail="info@atstrockenbau.com">
+        <form class="form reveal" id="anfrage" novalidate data-mail="info@atstrockenbau.com">
+          <fieldset class="choice">
+            <legend>Worum geht es?</legend>
+            <div class="choice-opts"><label><input type="radio" name="projekt" id="f-type-0" value="Kernsanierung" checked><span>Kernsanierung</span></label><label><input type="radio" name="projekt" id="f-type-1" value="Trennwand"><span>Trennwand</span></label><label><input type="radio" name="projekt" id="f-type-2" value="Decke"><span>Decke</span></label><label><input type="radio" name="projekt" id="f-type-3" value="Dachausbau"><span>Dachausbau</span></label><label><input type="radio" name="projekt" id="f-type-4" value="Brand- oder Schallschutz"><span>Brand- oder Schallschutz</span></label><label><input type="radio" name="projekt" id="f-type-5" value="Spachteln"><span>Spachteln</span></label><label><input type="radio" name="projekt" id="f-type-6" value="Sonstiges"><span>Sonstiges</span></label></div>
+          </fieldset>
           <div class="form-row">
             <div class="field"><label for="f-name">Name *</label><input id="f-name" name="name" autocomplete="name" required></div>
             <div class="field"><label for="f-phone">Telefon</label><input id="f-phone" name="telefon" type="tel" autocomplete="tel"></div>
           </div>
           <div class="form-row">
             <div class="field"><label for="f-mail">E-Mail *</label><input id="f-mail" name="email" type="email" autocomplete="email" required></div>
-            <div class="field"><label for="f-plz">PLZ / Ort der Baustelle</label><input id="f-plz" name="ort" autocomplete="postal-code" placeholder="z. B. 86152 Augsburg"></div>
-          </div>
-          <div class="field">
-            <label for="f-type">Art des Projekts</label>
-            <select id="f-type" name="projekt">
-              <option>Kernsanierung</option>
-              <option>Trenn- oder Ständerwand</option>
-              <option>Abgehängte Decke</option>
-              <option>Dachgeschossausbau</option>
-              <option>Brand- oder Schallschutz</option>
-              <option>Spachtelarbeiten</option>
-              <option>Sonstiges</option>
-            </select>
+            <div class="field"><label for="f-plz">Ort der Baustelle</label><input id="f-plz" name="ort" placeholder="z. B. 86152 Augsburg"></div>
           </div>
           <div class="field">
             <label for="f-msg">Ihr Vorhaben *</label>
             <textarea id="f-msg" name="nachricht" required placeholder="Was soll gebaut werden? Ungefähre Fläche in m², gewünschter Zeitraum."></textarea>
           </div>
-          <label class="check" for="f-ok">
-            <input id="f-ok" name="datenschutz" type="checkbox" required>
-            <span>Ich bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage verwendet werden. Details in der <a href="datenschutz.html">Datenschutzerklärung</a>. *</span>
-          </label>
+          <label class="check" for="f-ok"><input id="f-ok" name="datenschutz" type="checkbox" required><span>Ich bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage verwendet werden. Mehr in der <a href="datenschutz.html">Datenschutzerklärung</a>. *</span></label>
           <div><button class="btn" type="submit">Anfrage senden</button></div>
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
         </form>
@@ -348,47 +404,24 @@
 
 <footer class="site-footer on-dark">
   <div class="wrap">
-    <img src="assets/logo/ats-logo-white.png" width="520" height="238" alt="ATS Trockenbau">
-    <span>© <span id="year">2026</span> ATS Trockenbau · Augsburg</span>
-    <nav aria-label="Rechtliches">
-      <a href="impressum.html">Impressum</a>
-      <a href="datenschutz.html">Datenschutz</a>
-    </nav>
+    <div class="foot-col">
+      <img src="assets/logo/ats-logo-white.png" width="520" height="238" alt="ATS Trockenbau">
+      <span>Trockenbau und Kernsanierung in Augsburg und 100 km Umkreis.</span>
+    </div>
+    <div class="foot-col"><b>Seite</b><a href="#leistungen">Leistungen</a><a href="#kernsanierung">Kernsanierung</a><a href="#qualitaet">Oberflächen</a><a href="#ablauf">Ablauf</a></div>
+    <div class="foot-col"><b>Kontakt</b><a href="mailto:info@atstrockenbau.com">info@atstrockenbau.com</a><a href="#kontakt">Projekt anfragen</a></div>
+    <div class="foot-legal">
+      <span>© <span id="year">2026</span> ATS Trockenbau · Inhaber Milos Pekovic</span>
+      <nav aria-label="Rechtliches"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></nav>
+    </div>
   </div>
 </footer>
 
-<script>
-(function () {
-  var y = document.getElementById('year');
-  if (y) y.textContent = String(new Date().getFullYear());
+<div class="dock" aria-label="Schnellkontakt">
+  <a class="btn" href="#kontakt">Projekt anfragen</a>
+  <a class="btn btn--ghost" href="mailto:info@atstrockenbau.com" aria-label="E-Mail schreiben"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6 8.5-6"/></svg></a>
+</div>
 
-  var form = document.getElementById('anfrage');
-  var status = document.getElementById('form-status');
-  if (!form) return;
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var missing = [];
-    if (!form.name.value.trim()) missing.push('Name');
-    if (!/^\S+@\S+\.\S+$/.test(form.email.value.trim())) missing.push('gültige E-Mail');
-    if (!form.nachricht.value.trim()) missing.push('Vorhaben');
-    if (!form.datenschutz.checked) missing.push('Einverständnis zum Datenschutz');
-    if (missing.length) {
-      status.textContent = 'Bitte ergänzen: ' + missing.join(', ') + '.';
-      return;
-    }
-    var to = form.getAttribute('data-mail');
-    if (!to) {
-      status.textContent = 'Testversion: Der Versand ist noch nicht aktiv. Nach der Umstellung auf die echte Domain kommt Ihre Anfrage direkt bei uns an.';
-      return;
-    }
-    var body = 'Name: ' + form.name.value + '\nTelefon: ' + form.telefon.value +
-      '\nE-Mail: ' + form.email.value + '\nOrt: ' + form.ort.value +
-      '\nProjekt: ' + form.projekt.value + '\n\n' + form.nachricht.value;
-    window.location.href = 'mailto:' + to + '?subject=' +
-      encodeURIComponent('Anfrage: ' + form.projekt.value) + '&body=' + encodeURIComponent(body);
-    status.textContent = 'Ihr E-Mail-Programm öffnet sich mit der vorbereiteten Anfrage. Bitte dort absenden.';
-  });
-})();
-</script>
+<script src="assets/app.js" defer></script>
 </body>
 </html>
