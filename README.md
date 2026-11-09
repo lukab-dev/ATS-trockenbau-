@@ -9,16 +9,18 @@ keine Cookies, kein Tracking, Schriften lokal eingebunden (SIL Open Font License
 - `datenschutz.html` – Datenschutzerklärung
 - `assets/` – Stylesheet, Favicon, Schriften
 
-## Vor dem Livegang
-1. Alle Platzhalter `[...]` ersetzen (`grep -n '\[' *.html`).
-2. In `index.html` beim Formular `data-mail="..."` die E-Mail-Adresse eintragen
-   (oder einen Formular-Dienst/Backend anbinden).
-3. Testhinweis (`<div class="testbar">`) entfernen.
-4. `<meta name="robots" content="noindex, nofollow">` aus allen Seiten entfernen
-   und `robots.txt` auf `Allow: /` umstellen.
-5. Rechtstexte prüfen lassen (Anwalt oder Handwerkskammer).
+## Livegang (Stand November 2026)
+- Testhinweis und `noindex` entfernt, `robots.txt` erlaubt Indexierung, `sitemap.xml` vorhanden.
+- Strukturierte Daten (schema.org `GeneralContractor`) und Vorschaubild (`assets/img/og-ats-trockenbau.jpg`) im `<head>` von `index.html`.
+- Domain: atstrockenbau.com über GitHub Pages (Einstellungen → Pages → Custom domain).
 
-## Hosting
-Den Ordner auf einen beliebigen statischen Host laden (z. B. Cloudflare Pages,
-Netlify, oder Webspace eines deutschen Anbieters) und die eigene Domain verbinden.
-Für maximale DSGVO-Sicherheit einen Hoster mit Serverstandort in der EU wählen.
+## DNS für atstrockenbau.com
+| Typ | Name | Wert |
+|---|---|---|
+| A | @ | 185.199.108.153 |
+| A | @ | 185.199.109.153 |
+| A | @ | 185.199.110.153 |
+| A | @ | 185.199.111.153 |
+| CNAME | www | lukab-dev.github.io |
+
+MX-Einträge (Google Mail) und TXT (SPF) bleiben unverändert.
