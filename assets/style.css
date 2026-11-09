@@ -503,6 +503,10 @@ html:not(.js) .story-text { grid-template-rows: 1fr; }
 .check { display: flex; gap: .75rem; align-items: flex-start; font-size: .9rem; color: var(--fg-2); }
 .check input { margin-top: .25rem; width: 1.1rem; height: 1.1rem; accent-color: var(--gold); flex: none; }
 .form-status { min-height: 1.5em; font-size: .95rem; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form { position: relative; }
+.form.is-sent > :not(.form-status) { opacity: .45; pointer-events: none; }
+.form-status.ok { color: var(--gold-text); font-weight: 600; }
 
 /* Fußzeile */
 .site-footer { border-top: 1px solid var(--line); }

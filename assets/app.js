@@ -175,9 +175,33 @@
       if (!form.datenschutz.checked) missing.push('Einverständnis zum Datenschutz');
       if (missing.length) { status.textContent = 'Bitte ergänzen: ' + missing.join(', ') + '.'; return; }
       var to = form.getAttribute('data-mail');
+      var endpoint = form.getAttribute('data-endpoint');
       var projekt = (form.querySelector('input[name="projekt"]:checked') || {}).value || 'Anfrage';
-      var body = 'Projekt: ' + projekt + '\nName: ' + form.name.value + '\nTelefon: ' + form.telefon.value +
-        '\nE-Mail: ' + form.email.value + '\nOrt: ' + form.ort.value + '\n\n' + form.nachricht.value;
+      var data = {
+        projekt: projekt, name: form.name.value.trim(), telefon: form.telefon.value.trim(),
+        email: form.email.value.trim(), ort: form.ort.value.trim(), nachricht: form.nachricht.value.trim(),
+        website: form.website ? form.website.value : ''
+      };
+      if (endpoint) {
+        var btn = form.querySelector('button[type="submit"]');
+        btn.disabled = true; status.className = 'form-status'; status.textContent = 'Wird gesendet …';
+        fetch(endpoint, { method: 'POST', body: new URLSearchParams(data) })
+          .then(function (r) { return r.json(); })
+          .then(function (res) {
+            if (!res || !res.ok) throw new Error('send');
+            form.classList.add('is-sent');
+            status.className = 'form-status ok';
+            status.textContent = 'Danke! Ihre Anfrage ist bei uns angekommen. Wir melden uns innerhalb von zwei Werktagen.';
+          })
+          .catch(function () {
+            btn.disabled = false;
+            status.className = 'form-status';
+            status.textContent = 'Das Senden hat nicht geklappt. Bitte schreiben Sie uns an ' + to + ' oder per WhatsApp.';
+          });
+        return;
+      }
+      var body = 'Projekt: ' + projekt + '\nName: ' + data.name + '\nTelefon: ' + data.telefon +
+        '\nE-Mail: ' + data.email + '\nOrt: ' + data.ort + '\n\n' + data.nachricht;
       window.location.href = 'mailto:' + to + '?subject=' + encodeURIComponent('Anfrage: ' + projekt) + '&body=' + encodeURIComponent(body);
       status.textContent = 'Ihr E-Mail-Programm öffnet sich mit der fertigen Anfrage. Bitte dort auf Senden tippen.';
     });
