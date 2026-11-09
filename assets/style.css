@@ -433,6 +433,9 @@ html:not(.js) .story-text { grid-template-rows: 1fr; }
 .contact-list dd a { text-decoration: none; }
 .contact-list dd a:hover { color: var(--gold-text); }
 .hours { font-variant-numeric: tabular-nums; }
+.contact-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+.btn svg { width: 1.15rem; height: 1.15rem; flex: none; }
+.menu-foot > a:not(.btn) { color: var(--fg-2); text-decoration: none; }
 .form { display: grid; gap: 1.25rem; min-width: 0; padding: clamp(1.25rem, 3vw, 2.5rem); border-radius: var(--r-lg); background: var(--surface); }
 .choice { border: 0; margin: 0; padding: 0; display: grid; gap: .7rem; min-width: 0; }
 .choice legend { padding: 0; margin-bottom: .7rem; font-size: .9rem; font-weight: 600; }
