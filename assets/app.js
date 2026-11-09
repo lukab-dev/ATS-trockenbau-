@@ -134,6 +134,34 @@
     new IntersectionObserver(function (e) { contactVis = e[0].isIntersecting; sync(); }).observe(contact);
   }
 
+  /* Projekt-Galerie: Vollbild */
+  var lb = d.getElementById('lightbox');
+  var shots = Array.prototype.slice.call(d.querySelectorAll('.shot-btn'));
+  if (lb && shots.length && typeof lb.showModal === 'function') {
+    var lbImg = lb.querySelector('img'), lbCap = lb.querySelector('figcaption'), cur = 0, startX = null;
+    var show = function (i) {
+      cur = (i + shots.length) % shots.length;
+      lbImg.src = shots[cur].getAttribute('data-full');
+      lbImg.alt = shots[cur].getAttribute('data-cap');
+      lbCap.textContent = shots[cur].getAttribute('data-cap') + '  ·  ' + (cur + 1) + ' / ' + shots.length;
+    };
+    shots.forEach(function (b, i) { b.addEventListener('click', function () { show(i); lb.showModal(); }); });
+    lb.querySelector('.lb-close').addEventListener('click', function () { lb.close(); });
+    lb.querySelector('.lb-prev').addEventListener('click', function () { show(cur - 1); });
+    lb.querySelector('.lb-next').addEventListener('click', function () { show(cur + 1); });
+    lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
+    lb.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') show(cur + 1);
+      if (e.key === 'ArrowLeft') show(cur - 1);
+    });
+    lb.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', function (e) {
+      if (startX === null) return;
+      var dx = e.changedTouches[0].clientX - startX; startX = null;
+      if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1));
+    });
+  }
+
   /* Anfrageformular */
   var form = d.getElementById('anfrage');
   var status = d.getElementById('form-status');

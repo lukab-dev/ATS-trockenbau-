@@ -25,7 +25,7 @@
       <img src="assets/logo/ats-logo-gold.png" width="520" height="238" alt="ATS Trockenbau">
     </a>
     <nav class="nav" aria-label="Hauptnavigation">
-      <div class="nav-links"><span class="nav-indicator" aria-hidden="true"></span><a href="#leistungen">Leistungen</a><a href="#kernsanierung">Kernsanierung</a><a href="#bewertungen">Bewertungen</a><a href="#ablauf">Ablauf</a><a href="#gebiet">Einsatzgebiet</a><a href="#faq">FAQ</a></div>
+      <div class="nav-links"><span class="nav-indicator" aria-hidden="true"></span><a href="#leistungen">Leistungen</a><a href="#kernsanierung">Kernsanierung</a><a href="#projekte">Projekte</a><a href="#bewertungen">Bewertungen</a><a href="#ablauf">Ablauf</a><a href="#gebiet">Einsatzgebiet</a><a href="#faq">FAQ</a></div>
       <a class="btn btn--small" href="#kontakt">Anfragen</a>
       <button class="menu-btn" type="button" aria-label="Menü" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
     </nav>
@@ -33,7 +33,7 @@
 </header>
 
 <div class="menu on-dark" id="menu" inert>
-  <ul><li><a href="#leistungen" style="--i:0">Leistungen</a></li><li><a href="#kernsanierung" style="--i:1">Kernsanierung</a></li><li><a href="#bewertungen" style="--i:2">Bewertungen</a></li><li><a href="#ablauf" style="--i:3">Ablauf</a></li><li><a href="#gebiet" style="--i:4">Einsatzgebiet</a></li><li><a href="#faq" style="--i:5">FAQ</a></li><li><a href="#kontakt" style="--i:6">Kontakt</a></li></ul>
+  <ul><li><a href="#leistungen" style="--i:0">Leistungen</a></li><li><a href="#kernsanierung" style="--i:1">Kernsanierung</a></li><li><a href="#projekte" style="--i:2">Projekte</a></li><li><a href="#bewertungen" style="--i:3">Bewertungen</a></li><li><a href="#ablauf" style="--i:4">Ablauf</a></li><li><a href="#gebiet" style="--i:5">Einsatzgebiet</a></li><li><a href="#faq" style="--i:6">FAQ</a></li><li><a href="#kontakt" style="--i:7">Kontakt</a></li></ul>
   <div class="menu-foot">
     <a class="btn" href="#kontakt">Projekt anfragen</a>
     <a href="tel:+4917624142472">0176 24142472</a>
@@ -60,9 +60,10 @@
           <li>Oberflächen bis Q4</li>
         </ul>
       </div>
-      <div class="hero-mark">
-        <img src="assets/logo/ats-ant-gold.png" width="600" height="366" alt="">
-      </div>
+      <figure class="hero-photo">
+        <img src="assets/img/hero-bad-930.webp" srcset="assets/img/hero-bad-640.webp 640w, assets/img/hero-bad-930.webp 930w" sizes="(min-width: 62rem) 30rem, 100vw" width="930" height="1162" alt="Fertiges Bad im Dachgeschoss mit Einbauleuchten und Doppelwaschtisch" fetchpriority="high" decoding="async">
+        <figcaption>Badsanierung im Dachgeschoss</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -224,21 +225,25 @@
       </div>
       <div class="phases stagger">
         <div class="phase">
+          <img class="phase-img" src="assets/img/kern-vorher-640.webp" srcset="assets/img/kern-vorher-640.webp 640w, assets/img/kern-vorher-1200.webp 1200w" sizes="(min-width: 56rem) 30vw, 100vw" alt="Bad im Dachgeschoss beim Rückbau: offene Dachschräge, alte Fliesen" loading="lazy" decoding="async" width="640" height="480">
           <span class="phase-num grad">01</span>
           <h3>Raus</h3>
           <ul><li>Kompletter Abbruch bis auf den Rohbau</li><li>Alte Wände, Decken, Böden und Leitungen raus</li><li>Schutt abtransportieren und fachgerecht entsorgen</li></ul>
         </div>
         <div class="phase">
+          <img class="phase-img" src="assets/img/kern-bau-640.webp" srcset="assets/img/kern-bau-640.webp 640w, assets/img/kern-bau-1200.webp 1200w" sizes="(min-width: 56rem) 30vw, 100vw" alt="Dasselbe Bad mit neuer Beplankung aus imprägnierten Platten" loading="lazy" decoding="async" width="640" height="480">
           <span class="phase-num grad">02</span>
           <h3>Neu</h3>
           <ul><li>Neue Elektro- und Sanitärinstallationen mit unseren Partner-Fachbetrieben</li><li>Wände nach neuem Grundriss</li><li>Dämmung, Brand- und Schallschutz</li><li>Decken, Dachschrägen und Böden</li></ul>
         </div>
         <div class="phase">
+          <img class="phase-img" src="assets/img/kern-fertig-640.webp" srcset="assets/img/kern-fertig-640.webp 640w, assets/img/kern-fertig-1125.webp 1125w" sizes="(min-width: 56rem) 30vw, 100vw" alt="Das fertige Bad mit Dusche, Wand-WC und Einbauleuchten" loading="lazy" decoding="async" width="640" height="853">
           <span class="phase-num grad">03</span>
           <h3>Fertig</h3>
           <ul><li>Spachteln und Glätten bis Q4</li><li>Malerarbeiten, auf Wunsch Fassade</li><li>Schlüsselfertige Übergabe</li></ul>
         </div>
       </div>
+      <p class="phase-note reveal">Ein Projekt, drei Phasen: Badsanierung im Dachgeschoss.</p>
       <div class="renov-foot reveal">
         <ul class="chips" aria-label="Geeignet für"><li>Eigentumswohnung</li><li>Einfamilienhaus</li><li>Altbau</li><li>Mietobjekt</li><li>Büro und Praxis</li></ul>
         <a class="btn" href="#kontakt">Kernsanierung anfragen</a>
@@ -246,7 +251,27 @@
     </div>
   </section>
 
-  <section class="section" id="bewertungen">
+  <section class="section" id="projekte">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Projekte</p>
+        <h2 class="h-l">Aus unseren Baustellen.</h2>
+        <p class="lead">Ein Blick auf echte Aufträge, vom Ständerwerk bis zur fertigen Fläche. Mehr Bilder auf <a class="more" href="https://www.instagram.com/atstrockenbau/" target="_blank" rel="noopener">Instagram</a></p>
+      </div>
+      <div class="gallery">
+          <figure class="shot wide"><button type="button" class="shot-btn" data-full="assets/img/p-trennwand-1200.webp" data-cap="Trennwand mit Lichtband im Dachgeschoss" aria-label="Bild vergrößern: Trennwand mit Lichtband im Dachgeschoss"><img class="" src="assets/img/p-trennwand-600.webp" srcset="assets/img/p-trennwand-600.webp 600w, assets/img/p-trennwand-1200.webp 1200w" sizes="(min-width: 62rem) 33vw, 50vw" alt="Trennwand mit Lichtband im Dachgeschoss" loading="lazy" decoding="async" width="600" height="800"></button><figcaption>Trennwand mit Lichtband im Dachgeschoss</figcaption></figure>
+          <figure class="shot "><button type="button" class="shot-btn" data-full="assets/img/p-dach-gkf-1200.webp" data-cap="Dachausbau mit Feuerschutzplatten" aria-label="Bild vergrößern: Dachausbau mit Feuerschutzplatten"><img class="" src="assets/img/p-dach-gkf-600.webp" srcset="assets/img/p-dach-gkf-600.webp 600w, assets/img/p-dach-gkf-1200.webp 1200w" sizes="(min-width: 62rem) 33vw, 50vw" alt="Dachausbau mit Feuerschutzplatten" loading="lazy" decoding="async" width="600" height="800"></button><figcaption>Dachausbau mit Feuerschutzplatten</figcaption></figure>
+          <figure class="shot "><button type="button" class="shot-btn" data-full="assets/img/p-bad-schraege-1200.webp" data-cap="Kleines Bad unter der Dachschräge, fertig" aria-label="Bild vergrößern: Kleines Bad unter der Dachschräge, fertig"><img class="" src="assets/img/p-bad-schraege-600.webp" srcset="assets/img/p-bad-schraege-600.webp 600w, assets/img/p-bad-schraege-1200.webp 1200w" sizes="(min-width: 62rem) 33vw, 50vw" alt="Kleines Bad unter der Dachschräge, fertig" loading="lazy" decoding="async" width="600" height="800"></button><figcaption>Kleines Bad unter der Dachschräge, fertig</figcaption></figure>
+          <figure class="shot "><button type="button" class="shot-btn" data-full="assets/img/p-install-1-1200.webp" data-cap="Installationswand: Unterkonstruktion, mit Laser ausgerichtet" aria-label="Bild vergrößern: Installationswand: Unterkonstruktion, mit Laser ausgerichtet"><img class="" src="assets/img/p-install-1-600.webp" srcset="assets/img/p-install-1-600.webp 600w, assets/img/p-install-1-1200.webp 1200w" sizes="(min-width: 62rem) 33vw, 50vw" alt="Installationswand: Unterkonstruktion, mit Laser ausgerichtet" loading="lazy" decoding="async" width="600" height="800"></button><figcaption>Installationswand: Unterkonstruktion, mit Laser ausgerichtet</figcaption></figure>
+          <figure class="shot "><button type="button" class="shot-btn" data-full="assets/img/p-install-2-1200.webp" data-cap="Dieselbe Wand beplankt, mit Revisionsöffnungen" aria-label="Bild vergrößern: Dieselbe Wand beplankt, mit Revisionsöffnungen"><img class="" src="assets/img/p-install-2-600.webp" srcset="assets/img/p-install-2-600.webp 600w, assets/img/p-install-2-1200.webp 1200w" sizes="(min-width: 62rem) 33vw, 50vw" alt="Dieselbe Wand beplankt, mit Revisionsöffnungen" loading="lazy" decoding="async" width="600" height="800"></button><figcaption>Dieselbe Wand beplankt, mit Revisionsöffnungen</figcaption></figure>
+          <figure class="shot "><button type="button" class="shot-btn" data-full="assets/img/p-dach-beplankt-1200.webp" data-cap="Dachgeschoss beplankt, bereit zum Spachteln" aria-label="Bild vergrößern: Dachgeschoss beplankt, bereit zum Spachteln"><img class="" src="assets/img/p-dach-beplankt-600.webp" srcset="assets/img/p-dach-beplankt-600.webp 600w, assets/img/p-dach-beplankt-1200.webp 1200w" sizes="(min-width: 62rem) 33vw, 50vw" alt="Dachgeschoss beplankt, bereit zum Spachteln" loading="lazy" decoding="async" width="600" height="800"></button><figcaption>Dachgeschoss beplankt, bereit zum Spachteln</figcaption></figure>
+          <figure class="shot "><button type="button" class="shot-btn" data-full="assets/img/p-dach-holz-1200.webp" data-cap="Holzkonstruktion und Beplankung unter dem Dach" aria-label="Bild vergrößern: Holzkonstruktion und Beplankung unter dem Dach"><img class="" src="assets/img/p-dach-holz-600.webp" srcset="assets/img/p-dach-holz-600.webp 600w, assets/img/p-dach-holz-1200.webp 1200w" sizes="(min-width: 62rem) 33vw, 50vw" alt="Holzkonstruktion und Beplankung unter dem Dach" loading="lazy" decoding="async" width="600" height="800"></button><figcaption>Holzkonstruktion und Beplankung unter dem Dach</figcaption></figure>
+          <a class="shot shot-insta on-dark" href="https://www.instagram.com/atstrockenbau/" target="_blank" rel="noopener"><span class="eyebrow">Instagram</span><b>@atstrockenbau</b><span class="more">Mehr Projekte ansehen</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="bewertungen">
     <div class="wrap">
       <div class="rating reveal">
         <div class="rating-score">
@@ -295,7 +320,7 @@
     </div>
   </section>
 
-  <section class="section section--alt" id="qualitaet">
+  <section class="section" id="qualitaet">
     <div class="wrap q-layout">
       <div class="q-copy reveal">
         <div class="section-head" style="margin-bottom:0">
@@ -364,7 +389,7 @@
     </div>
   </section>
 
-  <section class="section" id="ablauf">
+  <section class="section section--alt" id="ablauf">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Ablauf</p>
@@ -380,7 +405,7 @@
     </div>
   </section>
 
-  <section class="section section--alt" id="gebiet">
+  <section class="section" id="gebiet">
     <div class="wrap area">
       <div class="area-copy reveal">
         <div class="section-head">
@@ -405,7 +430,7 @@
     </div>
   </section>
 
-  <section class="section" id="faq">
+  <section class="section section--alt" id="faq">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Häufige Fragen</p>
@@ -440,6 +465,7 @@
             <div><dt>Anschrift</dt><dd>ATS Trockenbau<br>Droste-Hülshoff-Straße 26<br>86157 Augsburg</dd></div>
             <div><dt>Erreichbar</dt><dd class="hours">Mo–Fr 07:00–17:00 Uhr</dd></div>
           </dl>
+          <figure class="van"><img class="" src="assets/img/van-600.webp" srcset="assets/img/van-600.webp 600w, assets/img/van-768.webp 768w" sizes="(min-width: 62rem) 26rem, 100vw" alt="Firmenwagen von ATS Trockenbau mit Logo" loading="lazy" decoding="async" width="600" height="800"></figure>
           <div class="contact-actions">
             <a class="btn" href="tel:+4917624142472"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.6 3.5h2.6l1.4 4-2 1.4a11 11 0 0 0 6.5 6.5l1.4-2 4 1.4v2.6a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/></svg>Anrufen</a>
             <a class="btn btn--ghost" href="https://wa.me/4917624142472?text=Hallo%20ATS%20Trockenbau%2C%20ich%20habe%20eine%20Anfrage%3A%20" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 19.5l1.2-3.6A8 8 0 1 1 8.6 18.6z"/><path d="M9 9.2c.2 1.7 2.1 3.8 4 4.3l1-1 1.6.8c-.2 1-1 1.6-2 1.5-2.7-.3-5.6-3.2-5.8-5.9-.1-1 .5-1.8 1.5-2l.8 1.6z" fill="currentColor" stroke="none"/></svg>WhatsApp</a>
@@ -478,7 +504,7 @@
       <img src="assets/logo/ats-logo-white.png" width="520" height="238" alt="ATS Trockenbau">
       <span>Trockenbau und Kernsanierung in Augsburg und 100 km Umkreis. Gegründet 2023, Erfahrung seit 2014, 4 Mitarbeiter.</span>
     </div>
-    <div class="foot-col"><b>Seite</b><a href="#leistungen">Leistungen</a><a href="#kernsanierung">Kernsanierung</a><a href="#bewertungen">Bewertungen</a><a href="#ablauf">Ablauf</a></div>
+    <div class="foot-col"><b>Seite</b><a href="#leistungen">Leistungen</a><a href="#kernsanierung">Kernsanierung</a><a href="#projekte">Projekte</a><a href="#bewertungen">Bewertungen</a></div>
     <div class="foot-col"><b>Kontakt</b><a href="tel:+4917624142472">0176 24142472</a><a href="mailto:info@atstrockenbau.com">info@atstrockenbau.com</a><a href="https://wa.me/4917624142472?text=Hallo%20ATS%20Trockenbau%2C%20ich%20habe%20eine%20Anfrage%3A%20" target="_blank" rel="noopener">WhatsApp</a><a href="https://www.instagram.com/atstrockenbau/" target="_blank" rel="noopener">Instagram</a><a href="#kontakt">Projekt anfragen</a><a href="https://maps.app.goo.gl/Ezn3jDMWya7vSVKD6" target="_blank" rel="noopener">Google Maps</a></div>
     <div class="foot-legal">
       <span>© <span id="year">2026</span> ATS Trockenbau · Inhaber Milos Pekovic</span>
@@ -492,6 +518,13 @@
   <a class="btn btn--ghost" href="https://wa.me/4917624142472?text=Hallo%20ATS%20Trockenbau%2C%20ich%20habe%20eine%20Anfrage%3A%20" target="_blank" rel="noopener" aria-label="WhatsApp schreiben"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 19.5l1.2-3.6A8 8 0 1 1 8.6 18.6z"/><path d="M9 9.2c.2 1.7 2.1 3.8 4 4.3l1-1 1.6.8c-.2 1-1 1.6-2 1.5-2.7-.3-5.6-3.2-5.8-5.9-.1-1 .5-1.8 1.5-2l.8 1.6z" fill="currentColor" stroke="none"/></svg></a>
   <a class="btn btn--ghost" href="tel:+4917624142472" aria-label="Anrufen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.6 3.5h2.6l1.4 4-2 1.4a11 11 0 0 0 6.5 6.5l1.4-2 4 1.4v2.6a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/></svg></a>
 </div>
+
+<dialog class="lightbox on-dark" id="lightbox" aria-label="Bildansicht">
+  <button class="lb-close" type="button" aria-label="Schließen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button class="lb-nav lb-prev" type="button" aria-label="Vorheriges Bild"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <figure><img alt=""><figcaption></figcaption></figure>
+  <button class="lb-nav lb-next" type="button" aria-label="Nächstes Bild"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+</dialog>
 
 <script src="assets/app.js" defer></script>
 </body>

@@ -204,9 +204,10 @@ html[data-menu] .menu li a { opacity: 1; transform: none; transition-delay: calc
 .hero-facts li { padding: .42rem .9rem; border-radius: 999px; background: rgba(255, 255, 255, .07); color: var(--fg-2); font-size: .9rem; }
 .hero-facts a { color: #dcbc5e; text-decoration: none; font-weight: 600; }
 .hero-facts a:hover { color: #ecd27a; }
-.hero-mark { position: relative; justify-self: center; width: min(78%, 26rem); }
-@media (min-width: 62rem) { .hero-mark { width: min(100%, 28rem); } }
-.hero-mark img { display: block; width: 100%; height: auto; animation: fadeUp 1.4s var(--ease) both .35s, float 8s ease-in-out 1.8s infinite; filter: drop-shadow(0 30px 60px rgba(198, 161, 66, .25)); }
+.hero-photo { position: relative; margin: 0; justify-self: stretch; border-radius: 1.75rem; overflow: hidden; aspect-ratio: 4 / 3; max-width: 100%; box-shadow: 0 40px 80px -40px rgba(198, 161, 66, .45), 0 0 0 1px rgba(255, 255, 255, .06); animation: fadeUp 1.3s var(--ease) both .3s; }
+@media (min-width: 62rem) { .hero-photo { aspect-ratio: 4 / 5; justify-self: end; width: min(100%, 30rem); } }
+.hero-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; }
+.hero-photo figcaption { position: absolute; left: 1rem; bottom: 1rem; padding: .4rem .8rem; border-radius: 999px; background: rgba(12, 12, 11, .6); color: #f2f1ec; font-size: .8rem; -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
 @keyframes float { 50% { transform: translateY(-12px); } }
 .scroll-cue { display: none; }
 @media (min-width: 62rem) {
@@ -324,6 +325,47 @@ html:not(.js) .story-text { grid-template-rows: 1fr; }
 .chips li { padding: .45rem .95rem; border-radius: 999px; background: var(--surface); box-shadow: inset 0 0 0 1px var(--line); font-size: .92rem; }
 .chips li.is-home { box-shadow: inset 0 0 0 1.5px var(--gold); color: var(--gold-text); font-weight: 600; }
 
+/* Kernsanierung Bilder */
+.phase-img { display: block; width: calc(100% + 2rem); max-width: none; margin: -1rem -1rem .5rem; aspect-ratio: 4 / 3; height: auto; object-fit: cover; border-radius: 1rem; }
+.phase-note { margin-top: 1.25rem; font-size: .9rem; color: var(--fg-3); }
+
+/* Projekte */
+.gallery { display: grid; gap: .75rem; grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 62rem) { .gallery { grid-template-columns: repeat(4, 1fr); gap: 1rem; } }
+.shot { position: relative; margin: 0; min-width: 0; border-radius: var(--r-md); overflow: hidden; background: var(--bg-alt); }
+.shot.wide { grid-column: span 2; grid-row: span 2; }
+.shot-btn { display: block; width: 100%; height: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+.shot img { display: block; width: 100%; height: 100%; aspect-ratio: 3 / 4; object-fit: cover; transition: transform .8s var(--ease); }
+.shot-btn:hover img { transform: scale(1.04); }
+.shot figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 2.5rem .9rem .8rem; color: #f2f1ec; font-size: .85rem; line-height: 1.35; background: linear-gradient(transparent, rgba(0, 0, 0, .65)); pointer-events: none; }
+@media (max-width: 47.99rem) { .shot figcaption { font-size: .78rem; padding: 2rem .7rem .6rem; } }
+.lead .more { font-size: inherit; }
+.shot-insta { display: none; }
+@media (min-width: 62rem) {
+  .shot-insta { grid-column: span 2; display: flex; flex-direction: column; justify-content: flex-end; gap: .5rem; padding: 1.5rem; text-decoration: none; background: radial-gradient(120% 80% at 100% 0%, rgba(198, 161, 66, .35), transparent 60%), var(--bg); transition: transform .5s var(--ease); }
+  .shot-insta:hover { transform: translateY(-4px); }
+  .shot-insta b { font: 700 1.5rem/1.1 var(--f-display); letter-spacing: -.02em; }
+}
+
+/* Lightbox */
+.lightbox { width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: rgba(8, 8, 7, .96); color: #f2f1ec; }
+.lightbox[open] { display: grid; grid-template-columns: auto 1fr auto; align-items: center; animation: lbIn .35s var(--ease); }
+.lightbox::backdrop { background: transparent; }
+@keyframes lbIn { from { opacity: 0; } to { opacity: 1; } }
+.lightbox figure { margin: 0; display: grid; gap: .75rem; justify-items: center; padding: calc(4rem + env(safe-area-inset-top, 0px)) .5rem calc(2rem + env(safe-area-inset-bottom, 0px)); min-width: 0; }
+.lightbox img { max-width: 100%; max-height: calc(100dvh - 9rem); width: auto; height: auto; border-radius: .75rem; }
+.lightbox figcaption { font-size: .95rem; color: #c9c6bd; text-align: center; }
+.lb-close, .lb-nav { width: 2.9rem; height: 2.9rem; border-radius: 999px; border: 0; display: grid; place-items: center; background: rgba(255, 255, 255, .1); color: #f2f1ec; cursor: pointer; }
+.lb-close:hover, .lb-nav:hover { background: rgba(255, 255, 255, .18); }
+.lb-close svg, .lb-nav svg { width: 1.2rem; height: 1.2rem; }
+.lb-close { position: absolute; top: calc(1rem + env(safe-area-inset-top, 0px)); right: max(1rem, env(safe-area-inset-right, 0px)); }
+.lb-prev { margin-left: max(.5rem, env(safe-area-inset-left, 0px)); }
+.lb-next { margin-right: max(.5rem, env(safe-area-inset-right, 0px)); }
+
+/* Kontakt: Firmenwagen */
+.van { margin: 0; border-radius: var(--r-lg); overflow: hidden; max-width: 26rem; }
+.van img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 62%; }
+
 /* Bewertungen */
 .rating { display: grid; gap: 2rem; align-items: end; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
 @media (min-width: 62rem) { .rating { grid-template-columns: auto 1fr; gap: 4rem; } }
@@ -342,7 +384,7 @@ html:not(.js) .story-text { grid-template-rows: 1fr; }
 }
 @media (min-width: 44rem) { .reviews { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 66rem) { .reviews { grid-template-columns: repeat(3, 1fr); } }
-.review { margin: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem; padding: 1.75rem; border-radius: var(--r-lg); background: var(--bg-alt); min-width: 0; }
+.review { margin: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem; padding: 1.75rem; border-radius: var(--r-lg); background: var(--surface); min-width: 0; }
 .review blockquote { margin: 0; }
 .review blockquote p { font: 600 clamp(1.1rem, 1.5vw, 1.25rem)/1.4 var(--f-display); letter-spacing: -.012em; }
 .review figcaption { display: grid; gap: .15rem; font-size: .88rem; color: var(--fg-3); }
@@ -378,7 +420,7 @@ html:not(.js) .story-text { grid-template-rows: 1fr; }
 .timeline::before, .timeline::after { content: ""; position: absolute; left: .5rem; top: .3rem; bottom: .3rem; width: 2px; border-radius: 2px; background: var(--line); }
 .timeline::after { background: var(--gold-grad); transform-origin: top; }
 .timeline li { position: relative; padding-left: 2.6rem; display: grid; gap: .4rem; min-width: 0; }
-.timeline li::before { content: ""; position: absolute; left: 0; top: .2rem; width: 1.1rem; height: 1.1rem; border-radius: 50%; background: var(--bg); box-shadow: inset 0 0 0 2px var(--gold); }
+.timeline li::before { content: ""; position: absolute; left: 0; top: .2rem; width: 1.1rem; height: 1.1rem; border-radius: 50%; background: var(--bg-alt); box-shadow: inset 0 0 0 2px var(--gold); }
 .t-num { font: 500 .8rem/1 var(--f-mono); color: var(--gold-text); }
 .timeline h3 { font-size: 1.3rem; letter-spacing: -.02em; }
 .timeline p { color: var(--fg-2); font-size: .98rem; }
@@ -509,8 +551,10 @@ html:not(.js) .story-text { grid-template-rows: 1fr; }
     .map .dot.d3 { animation-range: entry 55% cover 60%; }
     @keyframes ring { from { transform: scale(.6); opacity: 0; } to { transform: none; opacity: 1; } }
     @keyframes pop { from { transform: scale(0); } to { transform: none; } }
-    .hero-mark { animation: drift linear both; animation-timeline: scroll(root); animation-range: 0 90vh; }
-    @keyframes drift { to { transform: translateY(22%) scale(.9); opacity: .25; } }
+    .hero-photo img { animation: zoom linear both; animation-timeline: scroll(root); animation-range: 0 100vh; }
+    @keyframes zoom { from { transform: scale(1); } to { transform: scale(1.12); } }
+    .shot-btn { animation: settle linear both; animation-timeline: view(); animation-range: entry 0% cover 40%; }
+    @keyframes settle { from { transform: scale(1.12); } to { transform: scale(1); } }
   }
 }
 @media (prefers-reduced-motion: reduce) {
