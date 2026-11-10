@@ -1,0 +1,5 @@
+# GitHub Pages (Jekyll): interne Dateien nicht veröffentlichen
+exclude:
+  - CLAUDE.md
+  - README.md
+  - tools/
