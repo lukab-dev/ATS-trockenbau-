@@ -24,6 +24,17 @@ CTA = "Besichtigung anfragen"
 
 ICO_TEL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.6 3.5h2.6l1.4 4-2 1.4a11 11 0 0 0 6.5 6.5l1.4-2 4 1.4v2.6a2 2 0 0 1-2.2 2A17 17 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2z"/></svg>'
 ICO_WA = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 19.5l1.2-3.6A8 8 0 1 1 8.6 18.6z"/><path d="M9 9.2c.2 1.7 2.1 3.8 4 4.3l1-1 1.6.8c-.2 1-1 1.6-2 1.5-2.7-.3-5.6-3.2-5.8-5.9-.1-1 .5-1.8 1.5-2l.8 1.6z" fill="currentColor" stroke="none"/></svg>'
+ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>'
+ICO = {
+    "decke": '<path d="M2 4h20M6 4v5M12 4v5M18 4v5M3 9h18"/><path d="M12 13v2.5M8.5 20h7l-1-3h-5z"/>',
+    "brand": '<path d="M12 21c-3.9 0-6.5-2.6-6.5-6.1 0-3.7 3.1-5.6 3.8-9.4 2 1.6 2.8 3.5 2.8 5.3 1-.8 1.6-2 1.7-3.3 2.4 2 3 4.7 3 7.4 0 3.5-2.4 6.1-4.8 6.1z"/>',
+    "schall": '<path d="M3 12h1.5M7 8.5v7M11 5v14M15 8v8M19 10.5v3M21 12h.5"/>',
+    "vorsatz": '<rect x="3" y="3" width="7" height="18" rx="1.5"/><path d="M14 3v8a3 3 0 0 0 3 3h4M14 21v-3.5"/>',
+    "spachtel": '<path d="M3.5 15.5l7.5-7.5 5 5-7.5 7.5H3.5z"/><path d="M14 6l3-3 4 4-3 3"/>',
+    "boden": '<path d="M12 4L2 8.5l10 4.5 10-4.5z"/><path d="M2 12.5l10 4.5 10-4.5M2 16.5l10 4.5 10-4.5"/>',
+    "maler": '<rect x="3" y="3.5" width="15" height="5" rx="1.5"/><path d="M18 6h2.5v5H11v3"/><rect x="9.5" y="14" width="3" height="7" rx="1"/>',
+    "fassade": '<path d="M3 21h18M5 21V8l7-4.5L19 8v13"/><path d="M9 21v-5h6v5M8.5 10.5h2M13.5 10.5h2"/>',
+}
 STAR = '<svg viewBox="0 0 24 24"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg>'
 
 # Fotos: name -> (kleine Breite, große Breite, Breite, Höhe der kleinen Datei)
@@ -80,8 +91,28 @@ def shot(name):
 
 
 def gallery(names, cols4=False):
-    c = "gallery gallery--4" if cols4 else "gallery"
+    c = "gallery gallery--4 reveal" if cols4 else "gallery reveal"
     return f'<div class="{c}">' + "".join(shot(n) for n in names) + "</div>"
+
+
+def art(main, cap, sub):
+    return (f'<div class="art"><figure class="art-main">{img(main, "(min-width: 62rem) 30rem, 100vw", eager=True)}<figcaption>{cap}</figcaption></figure>'
+            f'<figure class="art-sub">{img(sub, "14rem", "")}</figure>'
+            f'<div class="art-card"><b>5,0 <span class="stars" aria-hidden="true">{STAR * 5}</span></b><span>32 Bewertungen · Google, Trustlocal</span></div></div>')
+
+
+def stats(items):
+    return '<dl class="stats">' + "".join(f"<div><dt>{a}</dt><dd>{b}</dd></div>" for a, b in items) + "</dl>"
+
+
+def cells(items):
+    return '<ul class="cells reveal">' + "".join(
+        f'<li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{ICO[i]}</svg>'
+        f'<h3>{t}</h3><p>{p}</p><span class="spec">{sp}</span></li>' for t, p, sp, i in items) + "</ul>"
+
+
+def bento(names):
+    return '<div class="bento reveal">' + "".join(shot(n) for n in names) + "</div>"
 
 
 def faq_html(items):
@@ -108,11 +139,11 @@ def steps(items, cols=False):
 
 
 def review(q, who, where):
-    return f'<figure class="review"><blockquote><p>„{q}“</p></blockquote><figcaption><b>{who}</b><span>{where}</span></figcaption></figure>'
+    return f'<figure class="review"><span class="stars" aria-hidden="true">{STAR * 5}</span><blockquote><p>„{q}“</p></blockquote><figcaption><b>{who}</b><span>{where}</span></figcaption></figure>'
 
 
 def quote(q, who, where):
-    return (f'<section class="section section--tint"><div class="wrap"><figure class="quote"><p class="eyebrow">Kundenstimme</p>'
+    return (f'<section class="section section--tint"><div class="wrap"><figure class="quote"><p class="eyebrow">Kundenstimme</p><span class="stars" aria-hidden="true">{STAR * 5}</span>'
             f'<blockquote><p>„{q}“</p></blockquote><figcaption><b>{who}</b> · {where} · '
             f'<a class="link" href="index.html#bewertungen">Alle Bewertungen</a></figcaption></figure></div></section>')
 
@@ -219,10 +250,10 @@ def contact(preselect):
 
 
 def footer():
-    return f'''<footer class="site-footer">
+    return f'''<footer class="site-footer on-dark grain">
   <div class="wrap">
     <div class="foot-col">
-      <img src="assets/logo/ats-logo-black.png" width="520" height="238" alt="ATS Trockenbau">
+      <img src="assets/logo/ats-logo-gold.png" width="520" height="238" alt="ATS Trockenbau">
       <span>Trockenbau, Dachausbau und Kernsanierung in Augsburg und 100 km Umkreis. Gegründet 2023, Erfahrung seit 2014, 4 Mitarbeiter.</span>
     </div>
     <div class="foot-col"><b>Leistungen</b><a href="trockenbau.html">Trockenbau</a><a href="dachausbau.html">Dachausbau</a><a href="kernsanierung.html">Kernsanierung</a><a href="index.html#leistungen">Alle Leistungen</a></div>
@@ -233,6 +264,7 @@ def footer():
       <nav aria-label="Rechtliches"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></nav>
     </div>
   </div>
+  <div class="foot-mark" aria-hidden="true"><img src="assets/logo/ats-ant-gold.png" width="600" height="366" alt="">ATS Trockenbau</div>
 </footer>'''
 
 
@@ -274,7 +306,7 @@ def page(file, title, desc, body, ld=(), current=None, legal=False):
 <title>{escape(title)}</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 {d}<link rel="canonical" href="{url}">
-{og}{lds}<meta name="theme-color" content="#f4f3ef">
+{og}{lds}<meta name="theme-color" content="#121211">
 <link rel="icon" href="assets/favicon-64.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
@@ -314,14 +346,14 @@ ABLAUF = [
     ("Abnahme", "Gemeinsame Begehung und Übergabe. Kleine Aufträge rechnen wir danach ab, größere in Abschlägen."),
 ]
 MORE = [
-    ("Abgehängte Decken", "Glatte Decken unter Altbau- oder Betondecken, mit Platz für Leitungen, Lüftung und Einbauleuchten.", "CD-Profil · Direktabhänger · Nonius"),
-    ("Brandschutz", "Brandwände, Decken, Schächte und Stahlträgerbekleidungen bis F90 und darüber. Dazu Abschottungen für Kabel und Rohre, geschult bei ZAPP-ZIMMERMANN.", "F30 · F60 · F90 und höher"),
-    ("Schall- und Akustikdecken", "Ruhe zwischen Räumen und bessere Sprachverständlichkeit in Büro, Praxis und Gastronomie.", "Lochplatten · Mineralfaser"),
-    ("Vorsatzschalen und Installationswände", "Leitungen verschwinden hinter der Wand, alte Mauern werden gerade. Ideal für Bad und Küche.", "GKBI imprägniert für Feuchträume"),
-    ("Spachtel- und Oberflächenarbeiten", "Fugen, Kanten und Flächen streichfertig, von der Grundverspachtelung bis Q4.", "Q1 · Q2 · Q3 · Q4"),
-    ("Böden und Trockenestrich", "Neue Böden und schnell belegbarer Trockenestrich ohne Trocknungszeit. Gut für Holzbalkendecken im Altbau.", "Unterböden · Trockenestrich · Beläge"),
-    ("Maler- und Glättarbeiten", "Streichen, Spachteln und Glätten, damit die Räume nach dem Umbau fertig sind.", "Innenanstrich · Q3/Q4-Flächen"),
-    ("Fassade", "Auch außen aus einer Hand: Arbeiten an der Fassade im Rahmen einer Sanierung.", "Sanierung · Anstrich"),
+    ("Abgehängte Decken", "Glatte Decken unter Altbau- oder Betondecken, mit Platz für Leitungen, Lüftung und Einbauleuchten.", "CD-Profil · Direktabhänger · Nonius", "decke"),
+    ("Brandschutz", "Brandwände, Decken, Schächte und Stahlträgerbekleidungen bis F90 und darüber. Dazu Abschottungen für Kabel und Rohre, geschult bei ZAPP-ZIMMERMANN.", "F30 · F60 · F90 und höher", "brand"),
+    ("Schall- und Akustikdecken", "Ruhe zwischen Räumen und bessere Sprachverständlichkeit in Büro, Praxis und Gastronomie.", "Lochplatten · Mineralfaser", "schall"),
+    ("Vorsatzschalen und Installationswände", "Leitungen verschwinden hinter der Wand, alte Mauern werden gerade. Ideal für Bad und Küche.", "GKBI imprägniert für Feuchträume", "vorsatz"),
+    ("Spachtel- und Oberflächenarbeiten", "Fugen, Kanten und Flächen streichfertig, von der Grundverspachtelung bis Q4.", "Q1 · Q2 · Q3 · Q4", "spachtel"),
+    ("Böden und Trockenestrich", "Neue Böden und schnell belegbarer Trockenestrich ohne Trocknungszeit. Gut für Holzbalkendecken im Altbau.", "Unterböden · Trockenestrich · Beläge", "boden"),
+    ("Maler- und Glättarbeiten", "Streichen, Spachteln und Glätten, damit die Räume nach dem Umbau fertig sind.", "Innenanstrich · Q3/Q4-Flächen", "maler"),
+    ("Fassade", "Auch außen aus einer Hand: Arbeiten an der Fassade im Rahmen einer Sanierung.", "Sanierung · Anstrich", "fassade"),
 ]
 REVIEWS = [
     ("Das Trockenbau-Team hat bei uns hervorragende Arbeit geleistet.", "Gabriel J.", "Google, Okt. 2026"),
@@ -333,83 +365,99 @@ REVIEWS = [
 ]
 
 
-def tile(href, name, title, text):
+def tile(i, href, name, title, text):
     return (f'<a class="tile" href="{href}">{img(name, "(min-width: 48rem) 33vw, 100vw", "")}'
-            f'<h3>{title}</h3><p>{text}</p><span class="go">Mehr erfahren</span></a>')
+            f'<span class="idx">{i:02d}</span><span class="go">{ARROW}</span>'
+            f'<h3>{title}</h3><p>{text}</p><span class="more">Mehr erfahren</span></a>')
+
+
+MARQUEE = ["Trennwände", "Abgehängte Decken", "Dachausbau", "Brandschutz F90", "Kernsanierung", "Spachteln bis Q4"]
+
+
+def marquee():
+    row = "".join(f"<span>{w}</span>" for w in MARQUEE)
+    return f'<div class="marquee" aria-hidden="true"><div>{row}{row}</div></div>'
 
 
 def home():
     body = f'''<main id="top">
 
-  <section class="hero">
+  <section class="hero on-dark grain">
     <div class="wrap">
-      <div class="hero-copy">
-        <p class="eyebrow">ATS Trockenbau · Augsburg</p>
-        <h1 class="h-xl">Trockenbau, <span class="mark">der sitzt.</span></h1>
-        <p class="lead">Trockenbau, Dachausbau und Kernsanierung, schlüsselfertig aus einer Hand. Für Privat, Gewerbe und Hausverwaltungen in Augsburg und 100 km Umkreis.</p>
-        {cta_actions()}
-        <ul class="facts"><li><b>5,0 von 5</b> bei 32 Bewertungen</li><li>Erfahrung seit 2014</li><li>Besichtigung kostenlos</li></ul>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">ATS Trockenbau · Augsburg</p>
+          <h1 class="h-xl">Trockenbau, <span class="mark">der sitzt.</span></h1>
+          <p class="lead">Trockenbau, Dachausbau und Kernsanierung, schlüsselfertig aus einer Hand. Für Privat, Gewerbe und Hausverwaltungen in Augsburg und 100 km Umkreis.</p>
+          {cta_actions()}
+        </div>
+        {art("hero-bad", "Badsanierung im Dachgeschoss", "kern-bau")}
       </div>
-      <figure class="hero-photo">{img("hero-bad", "(min-width: 60rem) 32rem, 100vw", eager=True)}<figcaption>Badsanierung im Dachgeschoss</figcaption></figure>
+      {stats([("Seit <em>2014</em>", "Erfahrung im Trockenbau"), ("<em>5,0</em> von 5", "bei 32 Bewertungen"), ("<em>100</em> km", "Umkreis um Augsburg"), ("<em>0</em> €", "kostet die Besichtigung")])}
     </div>
   </section>
 
+  {marquee()}
+
   <section class="section" id="leistungen">
     <div class="wrap">
-      <div class="head">
+      <div class="head reveal">
         <p class="eyebrow">Leistungen</p>
         <h2 class="h-l">Drei Dinge machen wir am häufigsten.</h2>
       </div>
-      <div class="trio">
-        {tile("trockenbau.html", "p-trennwand", "Trockenbau", "Trennwände, Decken, Vorsatzschalen und Brandschutz. Gespachtelt bis Q4.")}
-        {tile("dachausbau.html", "p-dach-gkf", "Dachausbau", "Dämmung, Dampfbremse und Verkleidung. Aus dem Speicher wird Wohnraum.")}
-        {tile("kernsanierung.html", "kern-fertig", "Kernsanierung", "Vom Abbruch bis zur schlüsselfertigen Übergabe, mit einem Ansprechpartner.")}
+      <div class="trio reveal">
+        {tile(1, "trockenbau.html", "p-trennwand", "Trockenbau", "Trennwände, Decken, Vorsatzschalen und Brandschutz. Gespachtelt bis Q4.")}
+        {tile(2, "dachausbau.html", "p-dach-gkf", "Dachausbau", "Dämmung, Dampfbremse und Verkleidung. Aus dem Speicher wird Wohnraum.")}
+        {tile(3, "kernsanierung.html", "kern-fertig", "Kernsanierung", "Vom Abbruch bis zur schlüsselfertigen Übergabe, mit einem Ansprechpartner.")}
       </div>
     </div>
   </section>
 
   <section class="section section--tint">
-    <div class="wrap split">
-      <div class="head">
+    <div class="wrap">
+      <div class="head reveal">
         <p class="eyebrow">Außerdem</p>
         <h2 class="h-l">Alles, was trocken gebaut wird.</h2>
         <p class="lead">Vom einzelnen Durchbruch im Altbau bis zum kompletten Büroausbau. Mit geprüften Systemen der bekannten Plattenhersteller.</p>
       </div>
-      {rows(MORE, one=True)}
+      {cells(MORE)}
     </div>
   </section>
 
-  <section class="section" id="projekte">
+  <section class="section section--dark on-dark grain" id="projekte">
     <div class="wrap">
-      <div class="head">
+      <div class="head reveal">
         <p class="eyebrow">Projekte</p>
         <h2 class="h-l">Aus unseren Baustellen.</h2>
         <p class="lead">Echte Aufträge, vom Ständerwerk bis zur fertigen Fläche. Zum Vergrößern antippen.</p>
       </div>
-      {gallery(["p-trennwand", "p-bad-schraege", "p-dach-gkf", "p-install-1", "p-install-2", "p-dach-beplankt"])}
+      {bento(["p-trennwand", "p-bad-schraege", "p-dach-gkf", "p-install-2", "p-dach-beplankt"])}
       <p class="note">Mehr Bilder zeigen wir auf <a class="link link--arrow" href="{INSTA}" target="_blank" rel="noopener">Instagram @atstrockenbau</a></p>
     </div>
   </section>
 
-  <section class="section section--tint" id="bewertungen">
+  <section class="section" id="bewertungen">
     <div class="wrap">
-      <div class="head head--row">
+      <div class="head reveal">
         <p class="eyebrow">Bewertungen</p>
         <h2 class="h-l">Was Kunden sagen.</h2>
-        <div class="rating">
-          <span class="rating-num">5,0</span>
-          <div><span class="stars" aria-hidden="true">{STAR * 5}</span><p>32 Bewertungen auf Google, MyHammer und Trustlocal. Top Score 2025 und 2026 auf Trustlocal.</p></div>
-        </div>
       </div>
-      <div class="reviews">{"".join(review(*r) for r in REVIEWS)}</div>
-      <p class="note"><a class="link link--arrow" href="{MAPS}" target="_blank" rel="noopener">Alle Bewertungen auf Google</a> &nbsp;·&nbsp; <a class="link link--arrow" href="{TRUST}" target="_blank" rel="noopener">Auf Trustlocal ansehen</a></p>
+      <div class="rev">
+        <div class="score on-dark">
+          <span class="score-num">5,0</span>
+          <span class="stars" aria-hidden="true">{STAR * 5}</span>
+          <p>32 Bewertungen auf Google, MyHammer und Trustlocal. Top Score 2025 und 2026 auf Trustlocal.</p>
+          <ul><li><a class="link link--arrow" href="{MAPS}" target="_blank" rel="noopener">Alle Bewertungen auf Google</a></li><li><a class="link link--arrow" href="{TRUST}" target="_blank" rel="noopener">Auf Trustlocal ansehen</a></li></ul>
+        </div>
+        <div class="reviews reveal">{"".join(review(*r) for r in REVIEWS)}</div>
+      </div>
       <p class="small">Auszüge aus öffentlichen Bewertungen, gekürzt, Namen abgekürzt. Gesamtwertung laut Trustlocal, Stand November 2026. Wir prüfen nicht selbst, ob jede Bewertung von einem Kunden stammt, der die Leistung genutzt hat.</p>
     </div>
   </section>
 
-  <section class="section" id="ablauf">
+  <section class="section section--tint" id="ablauf">
     <div class="wrap">
-      <div class="head">
+      <div class="head reveal">
         <p class="eyebrow">Ablauf</p>
         <h2 class="h-l">Von der Anfrage bis zur Abnahme.</h2>
       </div>
@@ -417,7 +465,7 @@ def home():
     </div>
   </section>
 
-  <section class="section section--tint" id="gebiet">
+  <section class="section" id="gebiet">
     <div class="wrap area">
       <div>
         <div class="head">
@@ -433,7 +481,7 @@ def home():
 
   <section class="section" id="faq">
     <div class="wrap split">
-      <div class="head">
+      <div class="head reveal">
         <p class="eyebrow">Häufige Fragen</p>
         <h2 class="h-l">Gut zu wissen.</h2>
         <p class="lead">Fragen zu einer bestimmten Leistung beantworten wir auf den Seiten <a class="link" href="trockenbau.html#faq">Trockenbau</a>, <a class="link" href="dachausbau.html#faq">Dachausbau</a> und <a class="link" href="kernsanierung.html#faq">Kernsanierung</a>.</p>
@@ -451,18 +499,19 @@ def home():
 
 
 # ------------------------------------------------------------------ Leistungsseiten
-def service_hero(name, h1, lead, photo, caption, facts):
-    f = "".join(f"<li>{x}</li>" for x in facts)
-    return f'''<section class="hero">
+def service_hero(name, h1, lead, photo, caption, sub, st):
+    return f'''<section class="hero on-dark grain">
     <div class="wrap">
-      <div class="hero-copy">
-        <ol class="crumbs" aria-label="Sie sind hier"><li><a href="index.html">Startseite</a></li><li aria-current="page">{name}</li></ol>
-        <h1 class="h-xl">{h1}</h1>
-        <p class="lead">{lead}</p>
-        {cta_actions()}
-        <ul class="facts">{f}</ul>
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <ol class="crumbs" aria-label="Sie sind hier"><li><a href="index.html">Startseite</a></li><li aria-current="page">{name}</li></ol>
+          <h1 class="h-xl">{h1}</h1>
+          <p class="lead">{lead}</p>
+          {cta_actions()}
+        </div>
+        {art(photo, caption, sub)}
       </div>
-      <figure class="hero-photo">{img(photo, "(min-width: 60rem) 32rem, 100vw", eager=True)}<figcaption>{caption}</figcaption></figure>
+      {stats(st)}
     </div>
   </section>'''
 
@@ -470,7 +519,7 @@ def service_hero(name, h1, lead, photo, caption, facts):
 def faq_section(items, name):
     return f'''<section class="section" id="faq">
     <div class="wrap split">
-      <div class="head">
+      <div class="head reveal">
         <p class="eyebrow">Häufige Fragen</p>
         <h2 class="h-l">Fragen zu {name}.</h2>
         <p class="lead">Ihre Frage ist nicht dabei? Rufen Sie an unter <a class="link" href="tel:{TEL}">{TEL_TXT}</a>.</p>
@@ -549,11 +598,11 @@ def trockenbau():
     desc = "Trockenbau in Augsburg vom Fachbetrieb: Trennwände, abgehängte Decken, Vorsatzschalen, Brandschutz bis F90 und Spachtelarbeiten Q1 bis Q4. Kostenlose Besichtigung in Augsburg und 100 km Umkreis."
     body = f'''<main id="top">
 
-  {service_hero("Trockenbau", "Trockenbau in Augsburg.", "Neue Wände, glatte Decken und saubere Oberflächen, ohne Nassarbeiten und ohne lange Trocknungszeit. Für Wohnung, Haus, Büro und Praxis.", "p-trennwand", "Trennwand mit Lichtband", ["Oberflächen bis Q4", "Brandschutz bis F90", "Besichtigung kostenlos"])}
+  {service_hero("Trockenbau", "Trockenbau <span class=\"mark\">in Augsburg.</span>", "Neue Wände, glatte Decken und saubere Oberflächen, ohne Nassarbeiten und ohne lange Trocknungszeit. Für Wohnung, Haus, Büro und Praxis.", "p-trennwand", "Trennwand mit Lichtband", "p-install-1", [("<em>Q1</em> bis <em>Q4</em>", "Oberflächen nach Wunsch"), ("Bis <em>F90</em>", "Brandschutz und höher"), ("<em>62,5</em> cm", "Ständerraster, mit Laser ausgerichtet"), ("<em>0</em> €", "kostet die Besichtigung")])}
 
   <section class="section section--tint">
     <div class="wrap split">
-      <div class="head">
+      <div class="head reveal">
         <p class="eyebrow">Leistungsumfang</p>
         <h2 class="h-l">Was wir im Trockenbau machen.</h2>
         <p class="lead">Mit geprüften Systemen der bekannten Plattenhersteller. Brandschutz-Abschottungen geschult bei ZAPP-ZIMMERMANN.</p>
@@ -564,7 +613,7 @@ def trockenbau():
 
   <section class="section">
     <div class="wrap">
-      <div class="head">
+      <div class="head reveal">
         <p class="eyebrow">Fotos von der Baustelle</p>
         <h2 class="h-l">So sieht das bei uns aus.</h2>
       </div>
@@ -588,7 +637,7 @@ def trockenbau():
 
   <section class="section" id="qualitaet">
     <div class="wrap">
-      <div class="head">
+      <div class="head reveal">
         <p class="eyebrow">Oberflächen Q1 bis Q4</p>
         <h2 class="h-l">Wie glatt soll es werden?</h2>
         <p class="lead">Die Qualitätsstufen legen fest, wie eben eine Gipsplattenwand gespachtelt wird. So sehen die vier Stufen bei seitlichem Licht aus.</p>
@@ -640,11 +689,11 @@ def dachausbau():
     desc = "Dachausbau in Augsburg: Dämmung, Dampfbremse nach DIN 4108-7 und Verkleidung von Dachschrägen, auf Wunsch mit Bad. Aus dem Speicher wird Wohnraum. Kostenlose Besichtigung in Augsburg und 100 km Umkreis."
     body = f'''<main id="top">
 
-  {service_hero("Dachausbau", "Dachausbau in Augsburg.", "Aus dem Speicher wird Wohnraum. Wir dämmen, dichten ab und verkleiden Schrägen und Kehlbalken, auf Wunsch bis zum fertigen Zimmer oder Bad.", "p-dach-gkf", "Dachausbau mit Feuerschutzplatten", ["Luftdicht nach DIN 4108-7", "Auf Wunsch mit Bad", "Besichtigung kostenlos"])}
+  {service_hero("Dachausbau", "Dachausbau <span class=\"mark\">in Augsburg.</span>", "Aus dem Speicher wird Wohnraum. Wir dämmen, dichten ab und verkleiden Schrägen und Kehlbalken, auf Wunsch bis zum fertigen Zimmer oder Bad.", "p-dach-gkf", "Dachausbau mit Feuerschutzplatten", "p-dach-holz", [("DIN <em>4108-7</em>", "luftdicht verklebte Dampfbremse"), ("<em>5</em> Schichten", "von der Dämmung bis zur Farbe"), ("Mit <em>Bad</em>", "auf Wunsch unter der Schräge"), ("<em>0</em> €", "kostet die Besichtigung")])}
 
   <section class="section section--tint">
     <div class="wrap split">
-      <div class="head">
+      <div class="head reveal">
         <p class="eyebrow">Leistungsumfang</p>
         <h2 class="h-l">Was zum Dachausbau gehört.</h2>
         <p class="lead">Sie bekommen alles aus einer Hand, von der Dämmung bis zur gestrichenen Fläche.</p>
@@ -655,7 +704,7 @@ def dachausbau():
 
   <section class="section">
     <div class="wrap">
-      <div class="head">
+      <div class="head reveal">
         <p class="eyebrow">Fotos von der Baustelle</p>
         <h2 class="h-l">Vom Dachstuhl zum fertigen Raum.</h2>
       </div>
@@ -665,7 +714,7 @@ def dachausbau():
 
   <section class="section section--tint">
     <div class="wrap split">
-      <div class="head">
+      <div class="head reveal">
         <p class="eyebrow">Aufbau der Dachschräge</p>
         <h2 class="h-l">Fünf Schichten, eine Reihenfolge.</h2>
         <p class="lead">Ob der Raum später warm, trocken und ruhig ist, entscheidet sich hinter der Platte.</p>
@@ -716,11 +765,11 @@ def kernsanierung():
     desc = "Kernsanierung in Augsburg, schlüsselfertig aus einer Hand: Abbruch, neue Installationen mit Partner-Fachbetrieben, Wände, Decken, Böden und Malerarbeiten. Ein Ansprechpartner, kostenlose Besichtigung."
     body = f'''<main id="top">
 
-  {service_hero("Kernsanierung", "Kernsanierung in Augsburg.", "Bei einer Kernsanierung bleibt nur der Rohbau stehen. Danach bauen wir alles neu auf, schlüsselfertig und mit einem Ansprechpartner für das ganze Projekt.", "hero-bad", "Badsanierung im Dachgeschoss", ["Schlüsselfertig", "Ein Ansprechpartner", "Besichtigung kostenlos"])}
+  {service_hero("Kernsanierung", "Kern&shy;sanierung <span class=\"mark\">in Augsburg.</span>", "Bei einer Kernsanierung bleibt nur der Rohbau stehen. Danach bauen wir alles neu auf, schlüsselfertig und mit einem Ansprechpartner für das ganze Projekt.", "hero-bad", "Badsanierung im Dachgeschoss", "kern-vorher", [("<em>1</em> Ansprechpartner", "für das ganze Projekt"), ("<em>3</em> Phasen", "raus, neu, fertig"), ("Schlüssel&shy;fertig", "bis zur Übergabe"), ("<em>0</em> €", "kostet die Besichtigung")])}
 
   <section class="section section--tint">
     <div class="wrap">
-      <div class="head">
+      <div class="head reveal">
         <p class="eyebrow">Ein Projekt, drei Phasen</p>
         <h2 class="h-l">Vom Rohbau zum Zuhause.</h2>
         <p class="lead">Dreimal dasselbe Bad im Dachgeschoss: beim Rückbau, im Ausbau und nach der Übergabe.</p>
@@ -731,7 +780,7 @@ def kernsanierung():
 
   <section class="section">
     <div class="wrap split">
-      <div class="head">
+      <div class="head reveal">
         <p class="eyebrow">Für wen</p>
         <h2 class="h-l">Wo wir kernsanieren.</h2>
         <p class="lead">Vom einzelnen Bad bis zum ganzen Haus, für Privat, Gewerbe und Hausverwaltungen.</p>
@@ -742,7 +791,7 @@ def kernsanierung():
 
   <section class="section section--tint">
     <div class="wrap">
-      <div class="head">
+      <div class="head reveal">
         <p class="eyebrow">Fotos von der Baustelle</p>
         <h2 class="h-l">Weitere Baustellen.</h2>
       </div>
@@ -752,7 +801,7 @@ def kernsanierung():
 
   <section class="section">
     <div class="wrap">
-      <div class="head">
+      <div class="head reveal">
         <p class="eyebrow">Ablauf</p>
         <h2 class="h-l">Von der Anfrage bis zur Abnahme.</h2>
       </div>
