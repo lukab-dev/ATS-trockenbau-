@@ -1,0 +1,10 @@
+<svg viewBox="0 0 400 345" role="img" aria-label="Schematische Karte: Orte im Umkreis von 50 und 100 Kilometern um Augsburg">
+          <circle class="ring-out" cx="200" cy="180" r="150"/>
+          <circle class="ring" cx="200" cy="180" r="75"/>
+          <text x="200" y="99" text-anchor="middle">50 km</text>
+          <text x="200" y="24" text-anchor="middle">100 km</text>
+          <g><circle class="dot d2" cx="257" cy="116" r="3.5"/><text x="265" y="120">Ingolstadt</text></g><g><circle class="dot d2" cx="187" cy="122" r="3.5"/><text x="180" y="126" text-anchor="end">Donauwörth</text></g><g><circle class="dot d2" cx="155" cy="146" r="3.5"/><text x="148" y="150" text-anchor="end">Dillingen</text></g><g><circle class="dot d1" cx="240" cy="148" r="3.5"/><text x="248" y="152">Schrobenhausen</text></g><g><circle class="dot d3" cx="100" cy="176" r="3.5"/><text x="93" y="180" text-anchor="end">Ulm</text></g><g><circle class="dot d3" cx="294" cy="176" r="3.5"/><text x="302" y="180">Freising</text></g><g><circle class="dot d1" cx="259" cy="198" r="3.5"/><text x="267" y="202">Dachau</text></g><g><circle class="dot d2" cx="275" cy="218" r="3.5"/><text x="283" y="222">München</text></g><g><circle class="dot d1" cx="197" cy="234" r="3.5"/><text x="190" y="238" text-anchor="end">Landsberg</text></g><g><circle class="dot d2" cx="249" cy="241" r="3.5"/><text x="257" y="245">Starnberg</text></g><g><circle class="dot d3" cx="120" cy="243" r="3.5"/><text x="113" y="247" text-anchor="end">Memmingen</text></g><g><circle class="dot d2" cx="169" cy="261" r="3.5"/><text x="162" y="265" text-anchor="end">Kaufbeuren</text></g><g><circle class="dot d3" cx="227" cy="268" r="3.5"/><text x="235" y="272">Weilheim</text></g><g><circle class="dot d3" cx="134" cy="287" r="3.5"/><text x="127" y="291" text-anchor="end">Kempten</text></g>
+          <circle class="pulse" cx="200" cy="180" r="7"/>
+          <circle class="home" cx="200" cy="180" r="7"/>
+          <text class="home-text" x="200" y="204" text-anchor="middle">Augsburg</text>
+        </svg>
