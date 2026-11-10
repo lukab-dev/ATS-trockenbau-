@@ -409,8 +409,7 @@ def home():
     <div class="wrap">
       <div class="hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">ATS Trockenbau · Augsburg</p>
-          <h1 class="h-xl">Trockenbau, <span class="mark">der sitzt.</span></h1>
+          <h1 class="h-xl"><span class="eyebrow h1-kicker">Trockenbau &amp; Kernsanierung in Augsburg</span>Trockenbau, <span class="mark">der sitzt.</span></h1>
           <p class="lead">Trockenbau, Dachausbau und Kernsanierung, schlüsselfertig aus einer Hand. Für Privat, Gewerbe und Hausverwaltungen in Augsburg und 100 km Umkreis.</p>
           {cta_actions()}
         </div>
@@ -515,7 +514,7 @@ def home():
 
 </main>'''
     page("index.html", "Trockenbau & Kernsanierung in Augsburg | ATS Trockenbau",
-         "ATS Trockenbau in Augsburg: Trockenbau, Dachausbau, Kernsanierung schlüsselfertig, abgehängte Decken, Brandschutz bis F90, Spachtelarbeiten bis Q4 und Malerarbeiten. Für Privat und Gewerbe in Augsburg und im Umkreis von 100 km.",
+         "Trockenbau und Kernsanierung in Augsburg: Wände, Decken, Dachausbau, Brandschutz bis F90. Schlüsselfertig, kostenlose Besichtigung, 100 km Umkreis.",
          body, ld=[BUSINESS_LD, faq_ld(FAQ_HOME)], current="index.html")
 
 
@@ -614,7 +613,7 @@ def trockenbau():
     ]
     q_html = "".join(f'<li>{q_swatch(i, sc, j, scr)}<h3>{t}</h3><p>{p}</p><p class="fit"><b>Geeignet für:</b> {fit}</p></li>'
                      for i, sc, j, scr, t, p, fit in q)
-    desc = "Trockenbau in Augsburg vom Fachbetrieb: Trennwände, abgehängte Decken, Vorsatzschalen, Brandschutz bis F90 und Spachtelarbeiten Q1 bis Q4. Kostenlose Besichtigung in Augsburg und 100 km Umkreis."
+    desc = "Trockenbau in Augsburg: Trennwände, abgehängte Decken, Vorsatzschalen, Brandschutz bis F90 und Spachteln bis Q4. Kostenlose Besichtigung vor Ort."
     body = f'''<main id="top">
 
   {service_hero("Trockenbau", "Trockenbau <span class=\"mark\">in Augsburg.</span>", "Neue Wände, glatte Decken und saubere Oberflächen, ohne Nassarbeiten und ohne lange Trocknungszeit. Für Wohnung, Haus, Büro und Praxis.", "p-trennwand", "Trennwand mit Lichtband", "p-install-1", [("<em>Q1</em> bis <em>Q4</em>", "Oberflächen nach Wunsch"), ("Bis <em>F90</em>", "Brandschutz und höher"), ("<em>62,5</em> cm", "Ständerraster, mit Laser ausgerichtet"), ("<em>0</em> €", "kostet die Besichtigung")])}
@@ -694,7 +693,7 @@ def dachausbau():
         ("Beplanken", "Gipsplatten verschrauben, im Bad imprägniert, bei Brandschutz als Feuerschutzplatte."),
         ("Spachteln und streichen", "Fugen und Flächen in der gewünschten Qualitätsstufe, auf Wunsch fertig gestrichen."),
     ]
-    desc = "Dachausbau in Augsburg: Dämmung, Dampfbremse nach DIN 4108-7 und Verkleidung von Dachschrägen, auf Wunsch mit Bad. Aus dem Speicher wird Wohnraum. Kostenlose Besichtigung in Augsburg und 100 km Umkreis."
+    desc = "Dachausbau in Augsburg: Dämmung, Dampfbremse und verkleidete Dachschrägen, auf Wunsch mit Bad. Aus dem Speicher wird Wohnraum. Besichtigung kostenlos."
     body = f'''<main id="top">
 
   {service_hero("Dachausbau", "Dachausbau <span class=\"mark\">in Augsburg.</span>", "Aus dem Speicher wird Wohnraum. Wir dämmen, dichten ab und verkleiden Schrägen und Kehlbalken, auf Wunsch bis zum fertigen Zimmer oder Bad.", "p-dach-gkf", "Dachausbau mit Feuerschutzplatten", "p-dach-holz", [("DIN <em>4108-7</em>", "luftdicht verklebte Dampfbremse"), ("<em>5</em> Schichten", "von der Dämmung bis zur Farbe"), ("Mit <em>Bad</em>", "auf Wunsch unter der Schräge"), ("<em>0</em> €", "kostet die Besichtigung")])}
@@ -769,7 +768,7 @@ def kernsanierung():
         ("Böden", "Neuer Bodenaufbau, zum Beispiel mit Trockenestrich, der ohne Trocknungszeit belegt werden kann."),
         ("Oberflächen", "Spachteln und Glätten bis Q4, Malerarbeiten und die schlüsselfertige Übergabe."),
     ]
-    desc = "Kernsanierung in Augsburg, schlüsselfertig aus einer Hand: Abbruch, neue Installationen mit Partner-Fachbetrieben, Wände, Decken, Böden und Malerarbeiten. Ein Ansprechpartner, kostenlose Besichtigung."
+    desc = "Kernsanierung in Augsburg, schlüsselfertig: Abbruch, Wände, Decken, Böden, Malerarbeiten, Elektro und Sanitär mit Partnern. Ein Ansprechpartner."
     body = f'''<main id="top">
 
   {service_hero("Kernsanierung", "Kern&shy;sanierung <span class=\"mark\">in Augsburg.</span>", "Bei einer Kernsanierung bleibt nur der Rohbau stehen. Danach bauen wir alles neu auf, schlüsselfertig und mit einem Ansprechpartner für das ganze Projekt.", "hero-bad", "Badsanierung im Dachgeschoss", "kern-vorher", [("<em>1</em> Kontakt", "ein Ansprechpartner für alles"), ("<em>3</em> Phasen", "raus, neu, fertig"), ("Schlüssel&shy;fertig", "bis zur Übergabe"), ("<em>0</em> €", "kostet die Besichtigung")])}

@@ -71,6 +71,7 @@ a { color: inherit; }
 .lead { font-size: clamp(1.08rem, 1.5vw, 1.25rem); color: var(--fg-2); max-width: 36em; text-wrap: pretty; }
 .eyebrow { display: flex; align-items: center; gap: .75rem; font: 500 .78rem/1.4 var(--f-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--gold-text); }
 .eyebrow::before { content: ""; width: 1.9rem; height: .7rem; flex: none; background: linear-gradient(135deg, transparent 44%, var(--gold) 44% 56%, transparent 56%) left center / .7rem .7rem no-repeat, linear-gradient(var(--gold), var(--gold)) left center / 100% 1.5px no-repeat; }
+h1 > .h1-kicker { margin-bottom: 1.5rem; }
 .spec { font: 500 .78rem/1.5 var(--f-mono); color: var(--fg-3); letter-spacing: .01em; }
 
 /* ---------- Aktionen: eine Hauptaktion, eine Nebenaktion, Textlinks ---------- */
