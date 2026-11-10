@@ -1,0 +1,42 @@
+<svg class="wall" viewBox="0 0 600 440" role="img" aria-label="Zeichnung einer Trockenbauwand, die Schritt für Schritt entsteht: Ständerwerk, Dämmung, Beplankung, Spachteln, fertige Fläche">
+  <defs>
+    <pattern id="hatch" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="10" height="10" fill="var(--il-concrete)"/><line x1="0" y1="0" x2="0" y2="10" stroke="var(--il-hatch)" stroke-width="2"/></pattern>
+    <linearGradient id="steel" x1="0" x2="1"><stop offset="0" stop-color="var(--il-steel-2)"/><stop offset=".45" stop-color="var(--il-steel-1)"/><stop offset="1" stop-color="var(--il-steel-2)"/></linearGradient>
+    <linearGradient id="steel-h" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="var(--il-steel-1)"/><stop offset="1" stop-color="var(--il-steel-2)"/></linearGradient>
+    <pattern id="wool" width="28" height="18" patternUnits="userSpaceOnUse"><rect width="28" height="18" fill="var(--il-wool)"/><path d="M0 9 C7 2, 14 16, 21 9 S28 4, 28 9" fill="none" stroke="var(--il-wool-line)" stroke-width="1.2" opacity=".8"/></pattern>
+  </defs>
+  <rect x="0" y="0" width="600" height="34" fill="url(#hatch)"/>
+  <rect x="0" y="396" width="600" height="44" fill="url(#hatch)"/>
+  <g>
+    <rect class="wool" x="60" y="48" width="115" height="334" fill="url(#wool)" style="--i:0"/>
+    <rect class="wool" x="185" y="48" width="115" height="334" fill="url(#wool)" style="--i:1"/>
+    <rect class="wool" x="310" y="48" width="115" height="334" fill="url(#wool)" style="--i:2"/>
+    <rect class="wool" x="435" y="48" width="115" height="334" fill="url(#wool)" style="--i:3"/>
+  </g>
+  <g>
+    <rect class="fr fr-h" x="40" y="34" width="530" height="10" fill="url(#steel-h)" style="--i:0"/>
+    <rect class="fr fr-h" x="40" y="386" width="530" height="10" fill="url(#steel-h)" style="--i:0"/>
+    <rect class="fr" x="50" y="44" width="10" height="342" fill="url(#steel)" style="--i:1"/><rect class="fr" x="175" y="44" width="10" height="342" fill="url(#steel)" style="--i:2"/><rect class="fr" x="300" y="44" width="10" height="342" fill="url(#steel)" style="--i:3"/><rect class="fr" x="425" y="44" width="10" height="342" fill="url(#steel)" style="--i:4"/><rect class="fr" x="550" y="44" width="10" height="342" fill="url(#steel)" style="--i:5"/>
+  </g>
+  <g class="dim">
+    <path d="M55 80 H180 M55 74 V86 M180 74 V86" stroke="#dcbc5e" stroke-width="1" fill="none"/>
+    <text class="lbl" x="117.5" y="70" text-anchor="middle">62,5 cm</text>
+  </g>
+  <g>
+    <rect class="board" x="50" y="44" width="130" height="342" fill="var(--il-board)" stroke="var(--il-board-edge)" style="--i:0"/>
+    <rect class="board" x="180" y="44" width="125" height="342" fill="var(--il-board)" stroke="var(--il-board-edge)" style="--i:1"/>
+    <polygon class="board" points="305,44 470,44 410,386 305,386" fill="var(--il-board)" stroke="var(--il-board-edge)" style="--i:2"/>
+  </g>
+  <g><circle class="screw" cx="55" cy="66" r="2.4" fill="var(--il-screw)" style="--i:0"/><circle class="screw" cx="55" cy="126" r="2.4" fill="var(--il-screw)" style="--i:1"/><circle class="screw" cx="55" cy="186" r="2.4" fill="var(--il-screw)" style="--i:2"/><circle class="screw" cx="55" cy="246" r="2.4" fill="var(--il-screw)" style="--i:3"/><circle class="screw" cx="55" cy="306" r="2.4" fill="var(--il-screw)" style="--i:4"/><circle class="screw" cx="55" cy="366" r="2.4" fill="var(--il-screw)" style="--i:5"/><circle class="screw" cx="180" cy="66" r="2.4" fill="var(--il-screw)" style="--i:6"/><circle class="screw" cx="180" cy="126" r="2.4" fill="var(--il-screw)" style="--i:7"/><circle class="screw" cx="180" cy="186" r="2.4" fill="var(--il-screw)" style="--i:8"/><circle class="screw" cx="180" cy="246" r="2.4" fill="var(--il-screw)" style="--i:9"/><circle class="screw" cx="180" cy="306" r="2.4" fill="var(--il-screw)" style="--i:10"/><circle class="screw" cx="180" cy="366" r="2.4" fill="var(--il-screw)" style="--i:11"/><circle class="screw" cx="305" cy="66" r="2.4" fill="var(--il-screw)" style="--i:12"/><circle class="screw" cx="305" cy="126" r="2.4" fill="var(--il-screw)" style="--i:13"/><circle class="screw" cx="305" cy="186" r="2.4" fill="var(--il-screw)" style="--i:14"/><circle class="screw" cx="305" cy="246" r="2.4" fill="var(--il-screw)" style="--i:15"/><circle class="screw" cx="305" cy="306" r="2.4" fill="var(--il-screw)" style="--i:16"/><circle class="screw" cx="305" cy="366" r="2.4" fill="var(--il-screw)" style="--i:17"/><circle class="screw" cx="430" cy="66" r="2.4" fill="var(--il-screw)" style="--i:18"/><circle class="screw" cx="430" cy="126" r="2.4" fill="var(--il-screw)" style="--i:19"/><circle class="screw" cx="430" cy="186" r="2.4" fill="var(--il-screw)" style="--i:20"/></g>
+  <rect class="band" x="168" y="44" width="24" height="342" fill="var(--il-paint)" opacity=".7"/>
+  <rect class="band" x="293" y="44" width="24" height="342" fill="var(--il-paint)" opacity=".7"/>
+  <line class="joint" x1="180" y1="44" x2="180" y2="386" stroke="#c6a142" stroke-width="3"/>
+  <line class="joint" x1="305" y1="44" x2="305" y2="386" stroke="#c6a142" stroke-width="3"/>
+  <polygon class="paint" points="50,44 470,44 410,386 50,386" fill="var(--il-paint)"/>
+  <g class="finish">
+    <rect x="112" y="206" width="26" height="26" rx="4" fill="#ffffff" stroke="#d4d0c6"/>
+    <rect x="120" y="213" width="10" height="12" rx="2" fill="#ece9e2" stroke="#d4d0c6"/>
+    <rect x="70" y="340" width="74" height="26" rx="13" fill="#c6a142"/>
+    <text class="q4" x="107" y="358" text-anchor="middle">Q4</text>
+  </g>
+</svg>
