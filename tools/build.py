@@ -139,7 +139,7 @@ def steps(items, cols=False):
 
 
 def review(q, who, where):
-    return f'<figure class="review"><span class="stars" aria-hidden="true">{STAR * 5}</span><blockquote><p>„{q}“</p></blockquote><figcaption><b>{who}</b><span>{where}</span></figcaption></figure>'
+    return f'<figure class="review"><blockquote><p>„{q}“</p></blockquote><figcaption><b>{who}</b><span>{where}</span></figcaption></figure>'
 
 
 def quote(q, who, where):
@@ -250,7 +250,7 @@ def contact(preselect):
 
 
 def footer():
-    return f'''<footer class="site-footer on-dark grain">
+    return f'''<footer class="site-footer on-dark">
   <div class="wrap">
     <div class="foot-col">
       <img src="assets/logo/ats-logo-gold.png" width="520" height="238" alt="ATS Trockenbau">
@@ -367,7 +367,7 @@ REVIEWS = [
 
 def tile(i, href, name, title, text):
     return (f'<a class="tile" href="{href}">{img(name, "(min-width: 48rem) 33vw, 100vw", "")}'
-            f'<span class="idx">{i:02d}</span><span class="go">{ARROW}</span>'
+            f'<span class="go">{ARROW}</span>'
             f'<h3>{title}</h3><p>{text}</p><span class="more">Mehr erfahren</span></a>')
 
 
@@ -383,6 +383,7 @@ def home():
     body = f'''<main id="top">
 
   <section class="hero on-dark grain">
+    <span class="dim-note" aria-hidden="true"><span>62,5</span></span>
     <div class="wrap">
       <div class="hero-grid">
         <div class="hero-copy">
@@ -396,8 +397,6 @@ def home():
       {stats([("Seit <em>2014</em>", "Erfahrung im Trockenbau"), ("<em>5,0</em> von 5", "bei 32 Bewertungen"), ("<em>100</em> km", "Umkreis um Augsburg"), ("<em>0</em> €", "kostet die Besichtigung")])}
     </div>
   </section>
-
-  {marquee()}
 
   <section class="section" id="leistungen">
     <div class="wrap">
@@ -424,7 +423,7 @@ def home():
     </div>
   </section>
 
-  <section class="section section--dark on-dark grain" id="projekte">
+  <section class="section on-dark" id="projekte">
     <div class="wrap">
       <div class="head reveal">
         <p class="eyebrow">Projekte</p>
@@ -501,6 +500,7 @@ def home():
 # ------------------------------------------------------------------ Leistungsseiten
 def service_hero(name, h1, lead, photo, caption, sub, st):
     return f'''<section class="hero on-dark grain">
+    <span class="dim-note" aria-hidden="true"><span>62,5</span></span>
     <div class="wrap">
       <div class="hero-grid">
         <div class="hero-copy">
@@ -765,7 +765,7 @@ def kernsanierung():
     desc = "Kernsanierung in Augsburg, schlüsselfertig aus einer Hand: Abbruch, neue Installationen mit Partner-Fachbetrieben, Wände, Decken, Böden und Malerarbeiten. Ein Ansprechpartner, kostenlose Besichtigung."
     body = f'''<main id="top">
 
-  {service_hero("Kernsanierung", "Kern&shy;sanierung <span class=\"mark\">in Augsburg.</span>", "Bei einer Kernsanierung bleibt nur der Rohbau stehen. Danach bauen wir alles neu auf, schlüsselfertig und mit einem Ansprechpartner für das ganze Projekt.", "hero-bad", "Badsanierung im Dachgeschoss", "kern-vorher", [("<em>1</em> Ansprechpartner", "für das ganze Projekt"), ("<em>3</em> Phasen", "raus, neu, fertig"), ("Schlüssel&shy;fertig", "bis zur Übergabe"), ("<em>0</em> €", "kostet die Besichtigung")])}
+  {service_hero("Kernsanierung", "Kern&shy;sanierung <span class=\"mark\">in Augsburg.</span>", "Bei einer Kernsanierung bleibt nur der Rohbau stehen. Danach bauen wir alles neu auf, schlüsselfertig und mit einem Ansprechpartner für das ganze Projekt.", "hero-bad", "Badsanierung im Dachgeschoss", "kern-vorher", [("<em>1</em> Kontakt", "ein Ansprechpartner für alles"), ("<em>3</em> Phasen", "raus, neu, fertig"), ("Schlüssel&shy;fertig", "bis zur Übergabe"), ("<em>0</em> €", "kostet die Besichtigung")])}
 
   <section class="section section--tint">
     <div class="wrap">
