@@ -335,54 +335,56 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 @media (min-width: 62rem) { .build-stage .wrap { grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); gap: 4rem; align-items: center; } }
 .build-copy { display: grid; gap: 1.1rem; align-content: center; min-width: 0; }
 .story { list-style: none; margin: 0; padding: 0; display: grid; gap: .35rem; }
-.story-item { display: grid; grid-template-columns: 2.1rem 1fr; column-gap: .5rem; padding-block: .45rem; transition: opacity .5s var(--ease); }
+.story-item { display: grid; grid-template-columns: 1.75rem 1fr; column-gap: .9rem; padding-block: .45rem; transition: opacity .5s var(--ease); }
 .story.is-playing .story-item:not(.is-active) { opacity: .35; }
-.story-num { font: 500 .8rem/1.9 var(--f-mono); color: var(--gold-text); }
+.story-num { display: grid; place-items: center; width: 1.75rem; height: 1.75rem; margin-top: .1rem; border-radius: 50%; border: 1.5px solid var(--fg); font: 600 .82rem/1 var(--f-mono); color: var(--fg); transition: background .4s, color .4s, border-color .4s; }
+.story-item.is-active .story-num, .story.is-done .story-item:hover .story-num { background: var(--gold); border-color: var(--gold); color: var(--gold-ink); }
 .story-item h3 { font-size: clamp(1.1rem, 1.6vw, 1.3rem); letter-spacing: -.015em; line-height: 1.4; }
 .story-item p { grid-column: 2; color: var(--fg-2); font-size: .98rem; }
 .build-progress { height: 2px; background: var(--line); overflow: hidden; }
 .build-progress i { display: block; height: 100%; background: var(--gold); transform-origin: left; transform: scaleX(var(--p, 1)); transition: transform 1s var(--ease); }
-.build-visual { min-width: 0; }
+.build-visual { min-width: 0; margin: 0; }
 .build-copy h2 { font-size: clamp(2rem, 3.6vw, 3rem); }
 @media (max-width: 61.99rem) { .build-copy { display: contents; } .build-progress, .build-visual { order: 1; } .story { order: 2; } }
 .build-visual svg { width: 100%; height: auto; max-height: 70svh; }
-/* Erklär-Zeichnungen (Wand, Dachschräge, Kernsanierung): ein Linienstil, Schritt für Schritt */
-.xp { --xl: #d6d3c9; --xd: #77746b; --xb: #1c1b19; --xp: #efede6; overflow: hidden; }
-.xp .hl { stroke: #45433d; stroke-width: 1.4; }
-.xp .ln { fill: none; stroke: var(--xl); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; transition: stroke .6s; }
-.xp .dm { stroke: var(--xd); stroke-width: 1; }
-.xp .da { stroke-dasharray: 6 5; }
-.xp .wo { stroke: #a39a7c; stroke-width: 1.2; }
-.xp .bd { fill: var(--xb); }
-.xp .mb { stroke-width: 2.5; stroke-dasharray: 16 5; }
-.xp .tp { fill: var(--gold); }
-.xp .sc { fill: var(--xd); }
-.xp .jf { fill: #8f8c82; }
-.xp .pt { fill: var(--xp); }
-.xp .lt { fill: var(--gold); }
-.xp .dk { stroke: #8a877e; } .xp .dkf { fill: #8a877e; }
-.xp text { font: 500 12px var(--f-mono); fill: var(--xl); }
-.xp .mk .ln, .xp .mk text { stroke: var(--gold-hi); } .xp .mk text { stroke: none; fill: var(--gold-hi); font-size: 11px; }
-.xp .nt { fill: var(--xd); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
-.xp .bg circle { fill: var(--night); stroke: var(--xl); stroke-width: 1.5; transition: fill .4s, stroke .4s; }
-.xp .bg text { transition: fill .4s; }
-.js .xp [data-s] { opacity: 0; transition: opacity .7s var(--ease); }
-.js .xp [data-s] .dr { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.2s var(--ease), stroke .6s; }
+/* Erklär-Zeichnungen (Wand, Dachschräge, Kernsanierung): gefüllte Materialien, beschriftete Marken, Schritt für Schritt */
+.xp { overflow: hidden; border-radius: var(--r-lg); background: #191917; }
+.xp .ed { fill: none; stroke: #5d5b54; stroke-width: 1.2; }
+.xp text { font: 500 12px var(--f-mono); }
+.xp .mk path { fill: none; stroke: var(--gold-hi); stroke-width: 1.3; } .xp .mk text { fill: var(--gold-hi); font-size: 12.5px; }
+.xp .nt { fill: #8a877e; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
+.xp .ld { stroke: #f3f2ed; stroke-width: 1.2; } .xp .ldd { fill: #f3f2ed; }
+.xp .cb, .xp .cc { fill: #141412; stroke: #f3f2ed; stroke-width: 1.3; transition: fill .4s, stroke .4s; }
+.xp .cc { stroke: none; fill: transparent; }
+.xp .cn { fill: #f3f2ed; font: 600 13.5px var(--f-mono); transition: fill .4s; }
+.xp .ct { fill: #f3f2ed; font: 600 13px var(--f-body); transition: fill .4s; }
+@media (max-width: 61.99rem) { .xp .cb, .xp .ct { display: none; } .xp .cc { fill: #141412; stroke: #f3f2ed; stroke-width: 2; r: 21px; } .xp .cn { font-size: 23px; transform: translateY(3.5px); } }
+.js .xp .ly, .js .xp .bg { opacity: 0; transition: opacity .6s var(--ease), clip-path 1.2s var(--ease); }
+.js .xp .ly.up { clip-path: inset(100% 0 0 0); } .js .xp .ly.dn { clip-path: inset(0 0 100% 0); } .js .xp .ly.rt { clip-path: inset(0 100% 0 0); }
 .xp [data-old] { transition: opacity .7s var(--ease); }
 html:not(.js) .xp [data-old], .xp.s2 [data-old] { opacity: 0; }
-.xp.s1 [data-s="1"] { opacity: 1; } .xp.s1 [data-s="1"] .dr { stroke-dashoffset: 0; }
-.xp.a1 [data-s="1"] .ln { stroke: var(--gold-hi); } .xp.a1 .bg[data-s="1"] circle { fill: var(--gold); stroke: var(--gold); } .xp.a1 .bg[data-s="1"] text { fill: var(--gold-ink); }
-.xp.s2 [data-s="2"] { opacity: 1; } .xp.s2 [data-s="2"] .dr { stroke-dashoffset: 0; }
-.xp.a2 [data-s="2"] .ln { stroke: var(--gold-hi); } .xp.a2 .bg[data-s="2"] circle { fill: var(--gold); stroke: var(--gold); } .xp.a2 .bg[data-s="2"] text { fill: var(--gold-ink); }
-.xp.s3 [data-s="3"] { opacity: 1; } .xp.s3 [data-s="3"] .dr { stroke-dashoffset: 0; }
-.xp.a3 [data-s="3"] .ln { stroke: var(--gold-hi); } .xp.a3 .bg[data-s="3"] circle { fill: var(--gold); stroke: var(--gold); } .xp.a3 .bg[data-s="3"] text { fill: var(--gold-ink); }
-.xp.s4 [data-s="4"] { opacity: 1; } .xp.s4 [data-s="4"] .dr { stroke-dashoffset: 0; }
-.xp.a4 [data-s="4"] .ln { stroke: var(--gold-hi); } .xp.a4 .bg[data-s="4"] circle { fill: var(--gold); stroke: var(--gold); } .xp.a4 .bg[data-s="4"] text { fill: var(--gold-ink); }
-.xp.s5 [data-s="5"] { opacity: 1; } .xp.s5 [data-s="5"] .dr { stroke-dashoffset: 0; }
-.xp.a5 [data-s="5"] .ln { stroke: var(--gold-hi); } .xp.a5 .bg[data-s="5"] circle { fill: var(--gold); stroke: var(--gold); } .xp.a5 .bg[data-s="5"] text { fill: var(--gold-ink); }
-.xp.a1 [data-old] { opacity: 1; } .xp.a1 [data-old] .ln { stroke: var(--gold); stroke-width: 2; stroke-dasharray: 5 5; }
-.xp.s5 .mk { opacity: 0; transition: opacity .5s; }
-.story.is-done .story-item { cursor: default; }
+.xp .ob { opacity: 0 !important; }
+.js .xp.s1 [data-s="1"] { opacity: 1; clip-path: inset(0); }
+.js .xp.s2 [data-s="2"] { opacity: 1; clip-path: inset(0); }
+.js .xp.s3 [data-s="3"] { opacity: 1; clip-path: inset(0); }
+.js .xp.s4 [data-s="4"] { opacity: 1; clip-path: inset(0); }
+.js .xp.s5 [data-s="5"] { opacity: 1; clip-path: inset(0); }
+.js .xp.hl.s1 .ly[data-s="1"] { opacity: .22; }
+.js .xp.hl.s2 .ly[data-s="2"] { opacity: .22; }
+.js .xp.hl.s3 .ly[data-s="3"] { opacity: .22; }
+.js .xp.hl.s4 .ly[data-s="4"] { opacity: .22; }
+.js .xp.hl.s5 .ly[data-s="5"] { opacity: .22; }
+.js .xp.hl.a1 .ly[data-s="1"] { opacity: 1; } .xp.a1 .bg[data-s="1"] .cb, .xp.a1 .bg[data-s="1"] .cc { fill: var(--gold); stroke: var(--gold); } .xp.a1 .bg[data-s="1"] .cn, .xp.a1 .bg[data-s="1"] .ct { fill: var(--gold-ink); }
+.js .xp.hl.a2 .ly[data-s="2"] { opacity: 1; } .xp.a2 .bg[data-s="2"] .cb, .xp.a2 .bg[data-s="2"] .cc { fill: var(--gold); stroke: var(--gold); } .xp.a2 .bg[data-s="2"] .cn, .xp.a2 .bg[data-s="2"] .ct { fill: var(--gold-ink); }
+.js .xp.hl.a3 .ly[data-s="3"] { opacity: 1; } .xp.a3 .bg[data-s="3"] .cb, .xp.a3 .bg[data-s="3"] .cc { fill: var(--gold); stroke: var(--gold); } .xp.a3 .bg[data-s="3"] .cn, .xp.a3 .bg[data-s="3"] .ct { fill: var(--gold-ink); }
+.js .xp.hl.a4 .ly[data-s="4"] { opacity: 1; } .xp.a4 .bg[data-s="4"] .cb, .xp.a4 .bg[data-s="4"] .cc { fill: var(--gold); stroke: var(--gold); } .xp.a4 .bg[data-s="4"] .cn, .xp.a4 .bg[data-s="4"] .ct { fill: var(--gold-ink); }
+.js .xp.hl.a5 .ly[data-s="5"] { opacity: 1; } .xp.a5 .bg[data-s="5"] .cb, .xp.a5 .bg[data-s="5"] .cc { fill: var(--gold); stroke: var(--gold); } .xp.a5 .bg[data-s="5"] .cn, .xp.a5 .bg[data-s="5"] .ct { fill: var(--gold-ink); }
+.xp.a1 [data-old] { opacity: 1; } .xp.a1 [data-old] * { stroke: var(--gold-hi); stroke-width: 1.6; stroke-dasharray: 5 4; fill-opacity: .55; }
+.xp.a1 .ob { opacity: 1 !important; }
+.build-visual { display: grid; gap: .9rem; }
+.build-note { color: var(--fg-2); font-size: .98rem; max-width: 40em; }
+.build-note b { color: var(--fg); font-weight: 600; }
+.story.is-done .story-item { cursor: pointer; }
 @media (hover: hover) { .story.is-done:hover .story-item:not(:hover) { opacity: .45; } }
 
 /* Trockenbau: Q1–Q4 nebeneinander */

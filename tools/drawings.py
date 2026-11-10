@@ -1,107 +1,132 @@
 """Erklär-Zeichnungen der Leistungsseiten: Wand, Dachschräge, Kernsanierung.
 
-Ein Stil für alle drei: feine Linien wie im Werkplan, flache Flächen, nummerierte Marken,
-die zur Schrittliste daneben gehören. Jede Gruppe mit data-s="n" erscheint mit Schritt n.
+Ein Stil für alle drei: flache, gefüllte Materialien (Stahl, Mineralwolle, Gipsplatte, Holz) und
+beschriftete Marken, die zur Schrittliste daneben gehören. Jede Gruppe mit data-s="n" erscheint
+mit Schritt n. Der Endzustand ist ein Schnittbild, in dem alle Schichten sichtbar bleiben.
 """
 import math
 
 W, H = 640, 440
+STEEL, STEEL_E = "#b3bbbf", "#7f878b"
+BOARD, BOARD_E = "#cbc8bf", "#9d9a90"
+FILL, PAINT = "#e3e0d7", "#f3f1ea"
+WOOD, WOOD_E = "#b98d5f", "#8a6540"
+CONC = "#2b2a27"
 
 
 def _wrap(label, body):
-    return (f'<svg class="xp" viewBox="0 0 {W} {H}" role="img" aria-label="{label}">'
-            '<defs><pattern id="xh" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">'
-            '<line x1="0" y1="0" x2="0" y2="8" class="hl"/></pattern></defs>' + body + "</svg>")
+    defs = ('<defs>'
+            '<pattern id="xh" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">'
+            f'<rect width="9" height="9" fill="{CONC}"/><line x1="0" y1="0" x2="0" y2="9" stroke="#3d3c37" stroke-width="2"/></pattern>'
+            '<pattern id="xw" width="22" height="12" patternUnits="userSpaceOnUse">'
+            '<rect width="22" height="12" fill="#c2a55a"/><path d="M0 6c4-5 7-5 11 0s7 5 11 0" fill="none" stroke="#a48840" stroke-width="1.3"/></pattern>'
+            '<pattern id="xg" width="7" height="40" patternUnits="userSpaceOnUse">'
+            f'<rect width="7" height="40" fill="{WOOD}"/><path d="M3.5 0c1 12-1 26 0 40" fill="none" stroke="{WOOD_E}" stroke-width=".8" opacity=".55"/></pattern>'
+            '</defs>')
+    return f'<svg class="xp" viewBox="0 0 {W} {H}" role="img" aria-label="{label}">{defs}{body}</svg>'
 
 
-def _badge(n, x, y):
-    return (f'<g class="bg" data-s="{n}"><circle cx="{x:.1f}" cy="{y:.1f}" r="12"/>'
-            f'<text x="{x:.1f}" y="{y + 4.2:.1f}" text-anchor="middle">{n}</text></g>')
+def _chip(n, x, y, label, to=None, cls=""):
+    w = 34 + len(label) * 7.6 + 16
+    lead = ""
+    if to:
+        lead = f'<line class="ld" x1="{x:.1f}" y1="{y:.1f}" x2="{to[0]:.1f}" y2="{to[1]:.1f}"/><circle class="ldd" cx="{to[0]:.1f}" cy="{to[1]:.1f}" r="3.2"/>'
+    return (f'<g class="bg{" " + cls if cls else ""}" data-s="{n}">{lead}'
+            f'<rect class="cb" x="{x - 14:.1f}" y="{y - 14:.1f}" width="{w:.1f}" height="28" rx="14"/>'
+            f'<circle class="cc" cx="{x:.1f}" cy="{y:.1f}" r="14"/>'
+            f'<text class="cn" x="{x:.1f}" y="{y + 5:.1f}" text-anchor="middle">{n}</text>'
+            f'<text class="ct" x="{x + 22:.1f}" y="{y + 4.5:.1f}">{label}</text></g>')
 
 
-def _zig(x0, x1, y0, y1, step, vertical=True):
-    pts, i = [], 0
-    if vertical:
-        y = y0
-        while y <= y1 + .01:
-            pts.append(f"{x0 if i % 2 == 0 else x1:.1f},{y:.1f}"); y += step; i += 1
-    else:
-        x = x0
-        while x <= x1 + .01:
-            pts.append(f"{x:.1f},{y0 if i % 2 == 0 else y1:.1f}"); x += step; i += 1
-    return f'<polyline class="ln dr wo" pathLength="1" points="{" ".join(pts)}"/>'
-
-
-def _g(n, inner):
-    return f'<g data-s="{n}">{inner}</g>'
+def _ly(n, how, inner):
+    return f'<g class="ly {how}" data-s="{n}">{inner}</g>'
 
 
 def wall():
-    studs = [50, 185, 320, 455, 582]
-    base = ('<rect x="20" y="24" width="600" height="26" fill="url(#xh)"/><rect x="20" y="390" width="600" height="26" fill="url(#xh)"/>'
-            '<line class="ln" x1="20" y1="50" x2="620" y2="50"/><line class="ln" x1="20" y1="390" x2="620" y2="390"/>')
-    s1 = ('<rect class="ln dr" pathLength="1" x="50" y="50" width="540" height="8"/><rect class="ln dr" pathLength="1" x="50" y="382" width="540" height="8"/>'
-          + "".join(f'<rect class="ln dr" pathLength="1" x="{x}" y="58" width="8" height="324"/>' for x in studs)
-          + '<g class="mk"><path class="ln" d="M54 96H189M50 100l8-8M185 100l8-8"/><text x="121.5" y="88" text-anchor="middle">62,5 cm</text></g>')
-    s2 = "".join(_zig(studs[i] + 18, studs[i + 1] - 10, 68, 374, 15.3) for i in range(4))
-    cut = lambda y: 480 - 40 * (y - 50) / 340
-    screws = [(x, y) for x in (54, 189, 314, 326, 459) for y in range(80, 380, 56) if x < cut(y) - 8]
-    s3 = ('<rect class="ln dr bd" pathLength="1" x="50" y="50" width="270" height="340"/>'
-          '<polygon class="ln dr bd" pathLength="1" points="320,50 480,50 440,390 320,390"/>'
-          + "".join(f'<circle class="sc" cx="{x}" cy="{y}" r="2"/>' for x, y in screws))
-    s4 = ('<rect class="jf" x="306" y="51" width="28" height="338"/>'
-          + "".join(f'<circle class="jf" cx="{x}" cy="{y}" r="4.5"/>' for x, y in screws if x not in (314, 326)))
-    s5 = ('<polygon class="pt" points="50,50 480,50 440,390 50,390"/>'
-          '<rect class="ln dk" x="150" y="296" width="24" height="24" rx="3"/><circle class="dkf" cx="158" cy="308" r="1.6"/><circle class="dkf" cx="166" cy="308" r="1.6"/>')
-    body = (base + _g(1, s1) + _g(2, s2) + _g(3, s3) + _g(4, s4) + _g(5, s5)
-            + _badge(1, 586, 150) + _badge(2, 522, 230) + _badge(3, 400, 120) + _badge(4, 320, 250) + _badge(5, 140, 200))
-    return _wrap("Zeichnung einer Trockenbauwand, die in fünf Schritten entsteht: Ständerwerk, Dämmung, Beplankung, Spachteln, fertige Fläche", body)
+    studs = [40 + i * 110.4 for i in range(6)]
+    base = ('<rect x="10" y="20" width="620" height="32" fill="url(#xh)"/><rect x="10" y="388" width="620" height="32" fill="url(#xh)"/>'
+            '<path class="ed" d="M10 52H630M10 388H630"/>')
+    st = f'fill="{STEEL}" stroke="{STEEL_E}" stroke-width=".8"'
+    s1 = (f'<rect x="40" y="52" width="560" height="7" {st}/><rect x="40" y="381" width="560" height="7" {st}/>'
+          + "".join(f'<rect x="{x:.1f}" y="59" width="8" height="322" {st}/><line x1="{x + 2.5:.1f}" y1="60" x2="{x + 2.5:.1f}" y2="380" stroke="#dfe4e6" stroke-width="1"/>' for x in studs)
+          + f'<g class="mk"><path d="M{studs[4] + 4:.1f} 112H{studs[5] + 4:.1f}M{studs[4]:.1f} 116l8-8M{studs[5]:.1f} 116l8-8"/>'
+            f'<text x="{(studs[4] + studs[5]) / 2 + 4:.1f}" y="103" text-anchor="middle">62,5 cm</text></g>')
+    s2 = "".join(f'<rect x="{studs[i] + 8:.1f}" y="59" width="102.4" height="322" fill="url(#xw)"/>' for i in range(4))
+    cut = lambda y: 400 - 20 * (y - 52) / 336
+    screws = [(x, y) for x in (44, 154.4, 259.3, 270.3, 375.2) for y in range(84, 380, 50) if x < cut(y) - 6]
+    bd = f'fill="{BOARD}" stroke="{BOARD_E}" stroke-width="1"'
+    s3 = (f'<rect x="40" y="52" width="224.8" height="336" {bd}/><polygon points="264.8,52 400,52 380,388 264.8,388" {bd}/>'
+          + "".join(f'<circle cx="{x}" cy="{y}" r="2.1" fill="#6f6c64"/>' for x, y in screws))
+    s4 = (f'<rect x="249.8" y="52.5" width="30" height="335" fill="{FILL}"/><line x1="264.8" y1="53" x2="264.8" y2="387" stroke="#cfccc2" stroke-width="1" stroke-dasharray="2 5"/>'
+          + "".join(f'<circle cx="{x}" cy="{y}" r="5.5" fill="{FILL}"/>' for x, y in screws if x < 160))
+    s5 = (f'<polygon points="40,52 236,52 216,388 40,388" fill="{PAINT}"/><path d="M236 52L216 388" stroke="#bfbcb2" stroke-width="1.2"/>'
+          '<rect x="104" y="318" width="26" height="26" rx="4" fill="#fbfaf6" stroke="#c9c6bd"/><circle cx="112.5" cy="331" r="1.8" fill="#9d9a90"/><circle cx="121.5" cy="331" r="1.8" fill="#9d9a90"/>')
+    body = (base + _ly(1, "up", s1) + _ly(2, "dn", s2) + _ly(3, "rt", s3) + _ly(4, "dn", s4) + _ly(5, "rt", s5)
+            + _chip(1, 502, 250, "Ständerwerk") + _chip(2, 396, 320, "Dämmung") + _chip(3, 288, 130, "Beplankung")
+            + _chip(4, 264.8, 232, "Spachteln") + _chip(5, 66, 180, "Fertige Fläche"))
+    return _wrap("Schnittbild einer Trockenbauwand mit fünf Schichten von rechts nach links: Ständerwerk, Dämmung, Beplankung, gespachtelte Fuge, fertige Fläche", body)
 
 
 def roof():
-    a = math.radians(-18); cx, cy = 320, 220; dy0 = 40
+    a = math.radians(-18); c, s = math.cos(a), math.sin(a); cx, cy, dy0 = 320, 205, 30
 
     def rot(x, y):
         dx, dy = x - cx, y - cy
-        return cx + dx * math.cos(a) - dy * math.sin(a), cy + dx * math.sin(a) + dy * math.cos(a) + dy0
+        return cx + dx * c - dy * s, cy + dx * s + dy * c + dy0
 
-    rafters = [-210, -10, 190, 390, 590, 790]
-    tiles = "".join(f'<path class="ln dm" d="M{x} 120q22-15 44 0"/>' for x in range(-124, 800, 44))
-    base = (tiles + '<line class="ln dm" x1="-120" y1="127" x2="800" y2="127"/><line class="ln dm da" x1="-120" y1="134" x2="800" y2="134"/>'
-            + "".join(f'<rect class="ln bd" x="{x}" y="138" width="36" height="100"/><path class="ln dm" d="M{x} 138l36 100M{x + 36} 138l-36 100"/>' for x in rafters))
-    s1 = "".join(_zig(rafters[i] + 44, rafters[i + 1] - 8, 148, 228, 13.2, vertical=False) for i in range(5))
-    s2 = '<line class="ln mb" x1="-120" y1="243" x2="800" y2="243"/><rect class="tp" x="292" y="239.5" width="30" height="7"/>'
-    s3 = "".join(f'<rect class="ln dr bd" pathLength="1" x="{x}" y="248" width="34" height="14"/>' for x in range(-110, 800, 125))
-    s4 = '<rect class="ln dr bd" pathLength="1" x="-120" y="264" width="920" height="14"/><line class="ln" x1="332" y1="264" x2="332" y2="278"/>'
-    s5 = '<rect class="pt" x="-120" y="279.5" width="920" height="5"/>'
-    body = ('<text class="nt" x="28" y="44">außen</text><text class="nt" x="612" y="412" text-anchor="end">innen</text>'
-            f'<g transform="translate(0 {dy0}) rotate(-18 {cx} {cy})">' + base + _g(1, s1) + _g(2, s2) + _g(3, s3) + _g(4, s4) + _g(5, s5) + "</g>"
-            + "".join(_badge(n, *rot(x, y)) for n, x, y in ((1, 308, 188), (2, 120, 243), (3, 282, 255), (4, 450, 271), (5, 575, 282))))
-    return _wrap("Schnitt durch eine Dachschräge, die in fünf Schritten ausgebaut wird: Dämmung, Dampfbremse, Unterkonstruktion, Beplankung, fertige Oberfläche", body)
+    def at(xf, ly):  # Punkt auf Schicht-Höhe ly, der im Bild bei x = xf liegt
+        return rot(cx + (xf - cx + (ly - cy) * s) / c, ly)
+
+    rafters = [-240, -30, 180, 390, 600, 810]
+    tiles = "".join(f'<path d="M{x} 112q24-20 50 0v6h-50z" fill="#45433e" stroke="#5d5b54" stroke-width="1"/>' for x in range(-150, 860, 48))
+    base = (tiles + '<rect x="-150" y="118" width="1000" height="5" fill="#5d5b54"/><line x1="-150" y1="127" x2="850" y2="127" stroke="#8a877e" stroke-width="1.2" stroke-dasharray="7 5"/>'
+            + "".join(f'<rect x="{x}" y="130" width="40" height="108" fill="url(#xg)" stroke="{WOOD_E}" stroke-width="1"/>' for x in rafters))
+    s1 = "".join(f'<rect x="{rafters[i] + 40}" y="134" width="170" height="104" fill="url(#xw)"/>' for i in range(5))
+    s2 = ('<rect x="-150" y="239.5" width="1000" height="4.5" fill="#7fb0bd"/><rect x="250" y="238" width="36" height="7.5" rx="1" fill="#d7eef3"/>'
+          '<rect x="640" y="238" width="36" height="7.5" rx="1" fill="#d7eef3"/>')
+    s3 = "".join(f'<rect x="{x}" y="246" width="42" height="18" fill="#cfa77a" stroke="{WOOD_E}" stroke-width="1"/>' for x in range(-110, 860, 125))
+    s4 = (f'<rect x="-150" y="265.5" width="1000" height="16" fill="{BOARD}" stroke="{BOARD_E}" stroke-width="1"/>'
+          f'<line x1="268" y1="265.5" x2="268" y2="281.5" stroke="{BOARD_E}" stroke-width="1.2"/>')
+    s5 = f'<rect x="-150" y="282" width="1000" height="6.5" fill="{PAINT}"/>'
+    chips = _chip(1, *rot(196, 186), "Dämmung")
+    for n, xf, ycp, ly, label in ((5, 478, 322, 285, "Oberfläche"), (4, 436, 352, 273.5, "Beplankung"),
+                                   (2, 356, 382, 241.7, "Dampfbremse"), (3, 0, 412, 255, "Unterkonstruktion")):
+        if n == 3:  # auf eine Latte zeigen
+            xf = rot(-110 + 125 * 3 + 21, 255)[0]
+        chips += _chip(n, xf, ycp, label, to=at(xf, ly))
+    body = ('<text class="nt" x="24" y="38">außen</text><text class="nt" x="616" y="424" text-anchor="end">innen</text>'
+            f'<g transform="translate(0 {dy0}) rotate(-18 {cx} {cy})">' + base + _ly(1, "dn", s1) + _ly(2, "rt", s2)
+            + _ly(3, "rt", s3) + _ly(4, "rt", s4) + _ly(5, "rt", s5) + "</g>" + chips)
+    return _wrap("Schnitt durch eine ausgebaute Dachschräge von außen nach innen: Dachziegel, Sparren mit Dämmung, Dampfbremse, Unterkonstruktion, Beplankung, fertige Oberfläche", body)
 
 
 def reno():
-    base = ('<path fill="url(#xh)" fill-rule="evenodd" d="M30 30H610V410H30ZM70 66H570V372H70Z"/>'
-            '<rect class="ln" x="30" y="30" width="580" height="380"/><rect class="ln" x="70" y="66" width="500" height="306"/>')
-    old = ('<g data-old><rect class="ln" x="236" y="66" width="12" height="306"/><line class="ln" x1="70" y1="364" x2="570" y2="364"/>'
-           '<rect class="ln" x="462" y="296" width="78" height="52"/><path class="ln" d="M475 296v52M488 296v52M501 296v52M514 296v52M527 296v52M470 348v16M532 348v16"/>'
-           '<path class="ln" d="M340 66v32"/><circle class="ln" cx="340" cy="108" r="10"/>'
-           '<path class="ln" d="M70 250h34v26h-34M104 263h14v101"/></g>')
-    s2 = ('<polyline class="ln dr" pathLength="1" points="80,372 80,250 100,250"/><polyline class="ln dr" pathLength="1" points="87,372 87,258 100,258"/>'
-          '<polyline class="ln dr" pathLength="1" points="95,372 95,330 100,330"/>'
-          '<polyline class="ln dr" pathLength="1" points="100,78 540,78 540,300"/>'
-          '<path class="ln dr" pathLength="1" d="M180 78v16M300 78v16M480 78v16"/><rect class="ln" x="532" y="300" width="16" height="16"/>')
-    s3 = ('<rect class="ln dr bd" pathLength="1" x="70" y="96" width="500" height="6"/>'
-          '<path class="ln dm" d="M130 66v30M230 66v30M330 66v30M430 66v30M530 66v30"/>'
-          '<rect class="ln dr bd" pathLength="1" x="102" y="102" width="8" height="262"/>'
-          '<rect class="ln dr bd" pathLength="1" x="376" y="102" width="10" height="262"/>'
-          '<path class="ln dm" d="M376 150h10M376 210h10M376 270h10M376 330h10"/>')
-    s4 = (_zig(110, 376, 356, 364, 9, vertical=False) + _zig(386, 570, 356, 364, 9, vertical=False)
-          + '<rect class="jf" x="110" y="350" width="266" height="4"/><rect class="jf" x="386" y="350" width="184" height="4"/>')
-    s5 = ('<rect class="pt" x="110" y="102" width="266" height="248"/><rect class="pt" x="386" y="102" width="184" height="248"/>'
-          '<circle class="lt" cx="180" cy="105" r="4"/><circle class="lt" cx="300" cy="105" r="4"/><circle class="lt" cx="480" cy="105" r="4"/>'
-          '<rect class="ln dk" x="532" y="300" width="16" height="16" rx="2"/>'
-          '<path class="ln dk" d="M110 250h36v10h-36M128 260v14"/>')
-    body = (base + old + _g(2, s2) + _g(3, s3) + _g(4, s4) + _g(5, s5)
-            + _badge(1, 242, 190) + _badge(2, 540, 180) + _badge(3, 381, 230) + _badge(4, 250, 357) + _badge(5, 470, 230))
-    return _wrap("Schnitt durch einen Raum, der in fünf Schritten kernsaniert wird: Rückbau, Installationen, Wände und Decken, Böden, fertige Oberflächen", body)
+    base = ('<path fill="url(#xh)" fill-rule="evenodd" d="M20 20H620V420H20ZM64 60H576V376H64Z"/>'
+            '<path class="ed" d="M20 20H620V420H20ZM64 60H576V376H64Z"/>')
+    o = 'fill="#57554f" stroke="#7d7a72" stroke-width="1"'
+    old = (f'<g data-old><rect x="250" y="60" width="14" height="316" {o}/><rect x="64" y="367" width="512" height="9" fill="#6d5c47" stroke="#8a7760" stroke-width="1"/>'
+           f'<rect x="470" y="296" width="82" height="56" rx="3" {o}/><path d="M484 296v56M497 296v56M510 296v56M523 296v56M536 296v56" stroke="#7d7a72" stroke-width="1" fill="none"/>'
+           f'<rect x="478" y="352" width="5" height="15" {o}/><rect x="539" y="352" width="5" height="15" {o}/>'
+           f'<rect x="348" y="60" width="4" height="30" {o}/><circle cx="350" cy="100" r="11" {o}/>'
+           f'<rect x="64" y="250" width="38" height="13" rx="2" {o}/><rect x="80" y="263" width="5" height="104" {o}/></g>')
+    wt, el = 'fill="none" stroke="#7fb0bd" stroke-width="3.2" stroke-linejoin="round"', 'fill="none" stroke="#e08a4a" stroke-width="2.4" stroke-linejoin="round"'
+    s2 = (f'<path d="M76 376V242H100" {wt}/><path d="M87 376V256H100" {wt}/><path d="M98 376V332" fill="none" stroke="#9d9a90" stroke-width="5"/>'
+          f'<path d="M104 80H520M383 80V300M180 80V98M300 80V98M480 80V98" {el}/>'
+          '<circle cx="383" cy="80" r="4.5" fill="#e08a4a"/><rect x="379" y="294" width="8" height="12" fill="#e08a4a"/>')
+    bd = f'fill="{BOARD}" stroke="{BOARD_E}" stroke-width=".8"'
+    s3 = ("".join(f'<rect x="{x}" y="60" width="2.4" height="40" fill="{STEEL}"/>' for x in (130, 230, 330, 430, 530))
+          + f'<rect x="64" y="100" width="512" height="7" {bd}/><rect x="104" y="107" width="8" height="269" {bd}/>'
+          + f'<rect x="375" y="107" width="5" height="269" {bd}/><rect x="386" y="107" width="5" height="269" {bd}/>'
+          + "".join(f'<rect x="380" y="{y}" width="6" height="3" fill="{STEEL}"/>' for y in (107, 180, 250, 373)))
+    s4 = "".join(f'<rect x="{x}" y="366" width="{w}" height="10" fill="url(#xw)"/><rect x="{x}" y="358" width="{w}" height="8" fill="#8f8c82"/>'
+                 f'<rect x="{x}" y="353" width="{w}" height="5" fill="{WOOD}"/>' for x, w in ((112, 263), (391, 185)))
+    s5 = (f'<rect x="112" y="107" width="263" height="246" fill="{PAINT}"/><rect x="391" y="107" width="185" height="246" fill="{PAINT}"/>'
+          + "".join(f'<polygon points="{x - 7},107 {x + 7},107 {x + 58},353 {x - 58},353" fill="#f0d98a" opacity=".2"/>'
+                    f'<rect x="{x - 8}" y="105" width="16" height="5" rx="2" fill="#dcbc5e"/>' for x in (180, 300, 480))
+          + '<rect x="391" y="292" width="5" height="16" rx="1" fill="#9d9a90"/>'
+          '<rect x="112" y="240" width="40" height="10" rx="2" fill="#fbfaf6" stroke="#bdb9ae"/><rect x="118" y="250" width="5" height="14" fill="#bdb9ae"/>'
+          '<rect x="112" y="150" width="4" height="60" fill="#c5dfe6"/>')
+    body = (base + old + _ly(2, "rt", s2) + _ly(3, "dn", s3) + _ly(4, "rt", s4) + _ly(5, "dn", s5)
+            + _chip(1, 257, 200, "Rückbau", cls="ob") + _chip(2, 200, 150, "Installationen", to=(200, 80))
+            + _chip(3, 383, 215, "Wände und Decken") + _chip(4, 190, 364, "Böden") + _chip(5, 440, 270, "Oberflächen"))
+    return _wrap("Schnitt durch zwei kernsanierte Räume: neue Leitungen in Decke und Wand, neue Wände und abgehängte Decke, neuer Bodenaufbau, fertige Oberflächen", body)

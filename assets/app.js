@@ -33,11 +33,12 @@
     if (!xp || !story) return;
     var items = Array.prototype.slice.call(story.querySelectorAll('.story-item'));
     var total = items.length;
-    var mark = function (n) { for (var i = 1; i <= total; i++) xp.classList.toggle('a' + i, i === n); };
+    var mark = function (n) { for (var i = 1; i <= total; i++) xp.classList.toggle('a' + i, i === n); xp.classList.toggle('hl', n > 0); };
     var setStep = function (n) {
       for (var i = 1; i <= total; i++) xp.classList.toggle('s' + i, i <= n);
       mark(n);
       items.forEach(function (it, i) { it.classList.toggle('is-active', i === n - 1); });
+      if (n === 0 || n === total) xp.classList.remove('hl');
       build.style.setProperty('--p', (n / total).toFixed(2));
     };
     var finish = function () {
@@ -45,7 +46,12 @@
       items.forEach(function (it, i) {
         it.classList.remove('is-active');
         it.addEventListener('mouseenter', function () { mark(i + 1); });
-        it.addEventListener('mouseleave', function () { mark(0); });
+        it.addEventListener('mouseleave', function () { var k = items.findIndex(function (o) { return o.classList.contains('is-active'); }); mark(k + 1); });
+        it.addEventListener('click', function () {
+          var on = !it.classList.contains('is-active');
+          items.forEach(function (o) { o.classList.remove('is-active'); });
+          it.classList.toggle('is-active', on); mark(on ? i + 1 : 0);
+        });
       });
     };
     if (reduce || !('IntersectionObserver' in window)) { setStep(total); mark(0); return; }

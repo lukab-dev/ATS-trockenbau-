@@ -119,8 +119,8 @@ def bento(names):
     return '<div class="bento">' + "".join(shot(n) for n in names) + "</div>"
 
 
-def build_section(eyebrow, title, story, svg):
-    items = "".join(f'<li class="story-item"><span class="story-num">{i:02d}</span><h3>{t}</h3><p>{p}</p></li>'
+def build_section(eyebrow, title, story, svg, note):
+    items = "".join(f'<li class="story-item"><span class="story-num">{i}</span><h3>{t}</h3><p>{p}</p></li>'
                     for i, (t, p) in enumerate(story, 1))
     return f'''<section class="build on-dark" aria-labelledby="build-title">
     <div class="build-stage">
@@ -131,7 +131,7 @@ def build_section(eyebrow, title, story, svg):
           <ol class="story">{items}</ol>
           <div class="build-progress" aria-hidden="true"><i></i></div>
         </div>
-        <div class="build-visual">{svg}</div>
+        <figure class="build-visual">{svg}<figcaption class="build-note">{note}</figcaption></figure>
       </div>
     </div>
   </section>'''
@@ -640,7 +640,8 @@ def trockenbau():
     </div>
   </section>
 
-  {build_section("So entsteht eine Wand", "In fünf Schritten zur fertigen Fläche.", story, drawings.wall())}
+  {build_section("So entsteht eine Wand", "In fünf Schritten zur fertigen Fläche.", story, drawings.wall(),
+                  "<b>Was Sie am Ende sehen, ist nur die Oberfläche.</b> Wie gerade, ruhig und sicher die Wand ist, entscheiden die Schichten dahinter.")}
 
   <section class="section" id="qualitaet">
     <div class="wrap">
@@ -719,7 +720,8 @@ def dachausbau():
     </div>
   </section>
 
-  {build_section("Aufbau der Dachschräge", "Fünf Schichten, eine Reihenfolge.", aufbau, drawings.roof())}
+  {build_section("Aufbau der Dachschräge", "Fünf Schichten, eine Reihenfolge.", aufbau, drawings.roof(),
+                  "<b>Jede Schicht hat eine Aufgabe:</b> Die Dämmung hält die Wärme, die Dampfbremse hält Feuchte fern, die Unterkonstruktion macht die Fläche gerade.")}
 
   {quote("Super Arbeit, auch die kniffligere Seite mit 2 Dachschrägen wurde korrekt abgehängt.", "Matthias T.", "Badezimmerdecke, Google, Nov. 2025")}
 
@@ -772,7 +774,8 @@ def kernsanierung():
 
   {service_hero("Kernsanierung", "Kern&shy;sanierung <span class=\"mark\">in Augsburg.</span>", "Bei einer Kernsanierung bleibt nur der Rohbau stehen. Danach bauen wir alles neu auf, schlüsselfertig und mit einem Ansprechpartner für das ganze Projekt.", "hero-bad", "Badsanierung im Dachgeschoss", "kern-vorher", [("<em>1</em> Kontakt", "ein Ansprechpartner für alles"), ("<em>3</em> Phasen", "raus, neu, fertig"), ("Schlüssel&shy;fertig", "bis zur Übergabe"), ("<em>0</em> €", "kostet die Besichtigung")])}
 
-  {build_section("So läuft eine Kernsanierung", "Einmal alles neu, in fünf Schritten.", schritte, drawings.reno())}
+  {build_section("So läuft eine Kernsanierung", "Einmal alles neu, in fünf Schritten.", schritte, drawings.reno(),
+                  "<b>Die Reihenfolge zählt:</b> Erst wenn alle Leitungen liegen, werden Wände und Decken geschlossen. Deshalb plant bei uns ein Ansprechpartner alle Gewerke.")}
 
   <section class="section section--tint">
     <div class="wrap">
