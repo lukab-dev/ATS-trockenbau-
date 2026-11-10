@@ -91,7 +91,7 @@ def shot(name):
 
 
 def gallery(names, cols4=False):
-    c = "gallery gallery--4 reveal" if cols4 else "gallery reveal"
+    c = "gallery gallery--4" if cols4 else "gallery"
     return f'<div class="{c}">' + "".join(shot(n) for n in names) + "</div>"
 
 
@@ -106,13 +106,13 @@ def stats(items):
 
 
 def cells(items):
-    return '<ul class="cells reveal">' + "".join(
+    return '<ul class="cells">' + "".join(
         f'<li><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{ICO[i]}</svg>'
         f'<h3>{t}</h3><p>{p}</p><span class="spec">{sp}</span></li>' for t, p, sp, i in items) + "</ul>"
 
 
 def bento(names):
-    return '<div class="bento reveal">' + "".join(shot(n) for n in names) + "</div>"
+    return '<div class="bento">' + "".join(shot(n) for n in names) + "</div>"
 
 
 def faq_html(items):
@@ -400,11 +400,11 @@ def home():
 
   <section class="section" id="leistungen">
     <div class="wrap">
-      <div class="head reveal">
+      <div class="head">
         <p class="eyebrow">Leistungen</p>
         <h2 class="h-l">Drei Dinge machen wir am häufigsten.</h2>
       </div>
-      <div class="trio reveal">
+      <div class="trio">
         {tile(1, "trockenbau.html", "p-trennwand", "Trockenbau", "Trennwände, Decken, Vorsatzschalen und Brandschutz. Gespachtelt bis Q4.")}
         {tile(2, "dachausbau.html", "p-dach-gkf", "Dachausbau", "Dämmung, Dampfbremse und Verkleidung. Aus dem Speicher wird Wohnraum.")}
         {tile(3, "kernsanierung.html", "kern-fertig", "Kernsanierung", "Vom Abbruch bis zur schlüsselfertigen Übergabe, mit einem Ansprechpartner.")}
@@ -414,7 +414,7 @@ def home():
 
   <section class="section section--tint">
     <div class="wrap">
-      <div class="head reveal">
+      <div class="head">
         <p class="eyebrow">Außerdem</p>
         <h2 class="h-l">Alles, was trocken gebaut wird.</h2>
         <p class="lead">Vom einzelnen Durchbruch im Altbau bis zum kompletten Büroausbau. Mit geprüften Systemen der bekannten Plattenhersteller.</p>
@@ -425,7 +425,7 @@ def home():
 
   <section class="section on-dark" id="projekte">
     <div class="wrap">
-      <div class="head reveal">
+      <div class="head">
         <p class="eyebrow">Projekte</p>
         <h2 class="h-l">Aus unseren Baustellen.</h2>
         <p class="lead">Echte Aufträge, vom Ständerwerk bis zur fertigen Fläche. Zum Vergrößern antippen.</p>
@@ -437,7 +437,7 @@ def home():
 
   <section class="section" id="bewertungen">
     <div class="wrap">
-      <div class="head reveal">
+      <div class="head">
         <p class="eyebrow">Bewertungen</p>
         <h2 class="h-l">Was Kunden sagen.</h2>
       </div>
@@ -448,7 +448,7 @@ def home():
           <p>32 Bewertungen auf Google, MyHammer und Trustlocal. Top Score 2025 und 2026 auf Trustlocal.</p>
           <ul><li><a class="link link--arrow" href="{MAPS}" target="_blank" rel="noopener">Alle Bewertungen auf Google</a></li><li><a class="link link--arrow" href="{TRUST}" target="_blank" rel="noopener">Auf Trustlocal ansehen</a></li></ul>
         </div>
-        <div class="reviews reveal">{"".join(review(*r) for r in REVIEWS)}</div>
+        <div class="reviews">{"".join(review(*r) for r in REVIEWS)}</div>
       </div>
       <p class="small">Auszüge aus öffentlichen Bewertungen, gekürzt, Namen abgekürzt. Gesamtwertung laut Trustlocal, Stand November 2026. Wir prüfen nicht selbst, ob jede Bewertung von einem Kunden stammt, der die Leistung genutzt hat.</p>
     </div>
@@ -456,7 +456,7 @@ def home():
 
   <section class="section section--tint" id="ablauf">
     <div class="wrap">
-      <div class="head reveal">
+      <div class="head">
         <p class="eyebrow">Ablauf</p>
         <h2 class="h-l">Von der Anfrage bis zur Abnahme.</h2>
       </div>
@@ -480,7 +480,7 @@ def home():
 
   <section class="section" id="faq">
     <div class="wrap split">
-      <div class="head reveal">
+      <div class="head">
         <p class="eyebrow">Häufige Fragen</p>
         <h2 class="h-l">Gut zu wissen.</h2>
         <p class="lead">Fragen zu einer bestimmten Leistung beantworten wir auf den Seiten <a class="link" href="trockenbau.html#faq">Trockenbau</a>, <a class="link" href="dachausbau.html#faq">Dachausbau</a> und <a class="link" href="kernsanierung.html#faq">Kernsanierung</a>.</p>
@@ -519,7 +519,7 @@ def service_hero(name, h1, lead, photo, caption, sub, st):
 def faq_section(items, name):
     return f'''<section class="section" id="faq">
     <div class="wrap split">
-      <div class="head reveal">
+      <div class="head">
         <p class="eyebrow">Häufige Fragen</p>
         <h2 class="h-l">Fragen zu {name}.</h2>
         <p class="lead">Ihre Frage ist nicht dabei? Rufen Sie an unter <a class="link" href="tel:{TEL}">{TEL_TXT}</a>.</p>
@@ -585,8 +585,7 @@ def trockenbau():
         ("Fertig", "Eine glatte Fläche, bereit für Farbe, Tapete oder Fliesen. Übergabe besenrein."),
     ]
     story_html = "".join(
-        f'<li class="story-item{" is-active" if i == 0 else ""}"><span class="story-num">{i + 1:02d}</span><h3>{t}</h3>'
-        f'<div class="story-text"><p>{p}</p></div></li>' for i, (t, p) in enumerate(story))
+        f'<li class="story-item"><span class="story-num">{i + 1:02d}</span><h3>{t}</h3><p>{p}</p></li>' for i, (t, p) in enumerate(story))
     q = [
         (1, "5.0", ".95", True, "Q1 · Grundverspachtelung", "Fugen gefüllt, Schraubköpfe überspachtelt. Beides bleibt im Licht sichtbar.", "Fliesen, weitere Verkleidung"),
         (2, "2.6", ".45", False, "Q2 · Standard", "Fugen nachgespachtelt und stufenlos an die Plattenfläche angeglichen.", "Raufaser, grobe Tapeten, matte Farbe"),
@@ -602,7 +601,7 @@ def trockenbau():
 
   <section class="section section--tint">
     <div class="wrap split">
-      <div class="head reveal">
+      <div class="head">
         <p class="eyebrow">Leistungsumfang</p>
         <h2 class="h-l">Was wir im Trockenbau machen.</h2>
         <p class="lead">Mit geprüften Systemen der bekannten Plattenhersteller. Brandschutz-Abschottungen geschult bei ZAPP-ZIMMERMANN.</p>
@@ -613,7 +612,7 @@ def trockenbau():
 
   <section class="section">
     <div class="wrap">
-      <div class="head reveal">
+      <div class="head">
         <p class="eyebrow">Fotos von der Baustelle</p>
         <h2 class="h-l">So sieht das bei uns aus.</h2>
       </div>
@@ -637,7 +636,7 @@ def trockenbau():
 
   <section class="section" id="qualitaet">
     <div class="wrap">
-      <div class="head reveal">
+      <div class="head">
         <p class="eyebrow">Oberflächen Q1 bis Q4</p>
         <h2 class="h-l">Wie glatt soll es werden?</h2>
         <p class="lead">Die Qualitätsstufen legen fest, wie eben eine Gipsplattenwand gespachtelt wird. So sehen die vier Stufen bei seitlichem Licht aus.</p>
@@ -693,7 +692,7 @@ def dachausbau():
 
   <section class="section section--tint">
     <div class="wrap split">
-      <div class="head reveal">
+      <div class="head">
         <p class="eyebrow">Leistungsumfang</p>
         <h2 class="h-l">Was zum Dachausbau gehört.</h2>
         <p class="lead">Sie bekommen alles aus einer Hand, von der Dämmung bis zur gestrichenen Fläche.</p>
@@ -704,7 +703,7 @@ def dachausbau():
 
   <section class="section">
     <div class="wrap">
-      <div class="head reveal">
+      <div class="head">
         <p class="eyebrow">Fotos von der Baustelle</p>
         <h2 class="h-l">Vom Dachstuhl zum fertigen Raum.</h2>
       </div>
@@ -714,7 +713,7 @@ def dachausbau():
 
   <section class="section section--tint">
     <div class="wrap split">
-      <div class="head reveal">
+      <div class="head">
         <p class="eyebrow">Aufbau der Dachschräge</p>
         <h2 class="h-l">Fünf Schichten, eine Reihenfolge.</h2>
         <p class="lead">Ob der Raum später warm, trocken und ruhig ist, entscheidet sich hinter der Platte.</p>
@@ -769,7 +768,7 @@ def kernsanierung():
 
   <section class="section section--tint">
     <div class="wrap">
-      <div class="head reveal">
+      <div class="head">
         <p class="eyebrow">Ein Projekt, drei Phasen</p>
         <h2 class="h-l">Vom Rohbau zum Zuhause.</h2>
         <p class="lead">Dreimal dasselbe Bad im Dachgeschoss: beim Rückbau, im Ausbau und nach der Übergabe.</p>
@@ -780,7 +779,7 @@ def kernsanierung():
 
   <section class="section">
     <div class="wrap split">
-      <div class="head reveal">
+      <div class="head">
         <p class="eyebrow">Für wen</p>
         <h2 class="h-l">Wo wir kernsanieren.</h2>
         <p class="lead">Vom einzelnen Bad bis zum ganzen Haus, für Privat, Gewerbe und Hausverwaltungen.</p>
@@ -791,7 +790,7 @@ def kernsanierung():
 
   <section class="section section--tint">
     <div class="wrap">
-      <div class="head reveal">
+      <div class="head">
         <p class="eyebrow">Fotos von der Baustelle</p>
         <h2 class="h-l">Weitere Baustellen.</h2>
       </div>
@@ -801,7 +800,7 @@ def kernsanierung():
 
   <section class="section">
     <div class="wrap">
-      <div class="head reveal">
+      <div class="head">
         <p class="eyebrow">Ablauf</p>
         <h2 class="h-l">Von der Anfrage bis zur Abnahme.</h2>
       </div>

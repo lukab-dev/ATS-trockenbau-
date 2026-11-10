@@ -316,9 +316,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .map .ring-out { fill: none; stroke: var(--fg-3); stroke-width: 1; stroke-dasharray: 4 5; }
 .map .dot { fill: var(--fg); }
 .map .home { fill: var(--gold); }
-.map .pulse { fill: none; stroke: var(--gold); stroke-width: 1.5; transform-box: fill-box; transform-origin: center; animation: pulse 2.6s var(--ease) infinite; }
+.map .pulse { fill: none; stroke: var(--gold); stroke-width: 1.5; opacity: .5; transform-box: fill-box; transform-origin: center; transform: scale(1.9); }
 .map .home-text { fill: var(--fg); font: 600 12.5px var(--f-mono); }
-@keyframes pulse { from { transform: scale(1); opacity: .9; } to { transform: scale(3.4); opacity: 0; } }
 
 /* FAQ */
 .faq { border-top: 1px solid var(--line); }
@@ -332,35 +331,21 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .faq .answer { padding: 0 2.5rem 1.4rem 0; color: var(--fg-2); max-width: 44rem; }
 
 /* Trockenbau: Wand-Aufbau (dunkle Bühne) */
-.build { position: relative; }
-.js .build { height: calc(100svh + 5 * 36svh); }
-.build-stage { display: flex; align-items: center; }
-.js .build-stage { position: sticky; top: 0; height: 100svh; overflow: hidden; }
-.build-stage .wrap { display: grid; gap: 1.25rem; height: 100%; padding-block: calc(var(--nav-h) + 2.25rem) 1.75rem; grid-template-rows: auto minmax(0, 1fr); }
-@media (min-width: 62rem) { .build-stage .wrap { grid-template-columns: .82fr 1.18fr; grid-template-rows: none; gap: 4rem; align-items: center; } }
+.build-stage .wrap { display: grid; gap: 2rem; padding-block: clamp(3.5rem, 8vw, 6.5rem); }
+@media (min-width: 62rem) { .build-stage .wrap { grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); gap: 4rem; align-items: center; } }
 .build-copy { display: grid; gap: 1.1rem; align-content: center; min-width: 0; }
-.build-copy h2 { font-size: clamp(1.75rem, 3.6vw, 3rem); }
 .story { list-style: none; margin: 0; padding: 0; display: grid; gap: .35rem; }
-.story-item { display: grid; grid-template-columns: 2.1rem 1fr; column-gap: .5rem; padding-block: .45rem; opacity: .3; transition: opacity .5s var(--ease); }
-.story-item.is-active { opacity: 1; }
+.story-item { display: grid; grid-template-columns: 2.1rem 1fr; column-gap: .5rem; padding-block: .45rem; transition: opacity .5s var(--ease); }
+.story.is-playing .story-item:not(.is-active) { opacity: .35; }
 .story-num { font: 500 .8rem/1.9 var(--f-mono); color: var(--gold-text); }
 .story-item h3 { font-size: clamp(1.1rem, 1.6vw, 1.3rem); letter-spacing: -.015em; line-height: 1.4; }
-.story-text { grid-column: 2; display: grid; grid-template-rows: 0fr; transition: grid-template-rows .55s var(--ease); }
-.story-text > p { overflow: hidden; color: var(--fg-2); font-size: .98rem; }
-.story-item.is-active .story-text { grid-template-rows: 1fr; }
-html:not(.js) .story-item { opacity: 1; }
-html:not(.js) .story-text { grid-template-rows: 1fr; }
-.build-progress { height: 2px; border-radius: 2px; background: var(--line); overflow: hidden; }
-.build-progress i { display: block; height: 100%; background: var(--gold); transform-origin: left; transform: scaleX(var(--p, 1)); }
-.build-visual { min-width: 0; min-height: 0; height: 100%; display: grid; place-items: center; }
-.build-visual svg { width: 100%; height: 100%; max-height: 68svh; }
-@media (max-width: 61.99rem) {
-  .js .story { grid-template-areas: "one"; }
-  .js .story-item { grid-area: one; opacity: 0; transform: translateY(10px); transition: opacity .45s var(--ease), transform .5s var(--ease); }
-  .js .story-item.is-active { opacity: 1; transform: none; }
-  .js .story-text { grid-template-rows: 1fr; }
-  .build-copy h2 { font-size: clamp(1.5rem, 6.5vw, 2rem); }
-}
+.story-item p { grid-column: 2; color: var(--fg-2); font-size: .98rem; }
+.build-progress { height: 2px; background: var(--line); overflow: hidden; }
+.build-progress i { display: block; height: 100%; background: var(--gold); transform-origin: left; transform: scaleX(var(--p, 1)); transition: transform 1s var(--ease); }
+.build-visual { min-width: 0; }
+.build-copy h2 { font-size: clamp(2rem, 3.6vw, 3rem); }
+@media (max-width: 61.99rem) { .build-copy { display: contents; } .build-progress, .build-visual { order: 1; } .story { order: 2; } }
+.build-visual svg { width: 100%; height: auto; max-height: 70svh; }
 .js .wall .fr { transform-box: fill-box; transform-origin: 50% 100%; transform: scaleY(0); transition: transform .9s var(--ease); transition-delay: calc(var(--i, 0) * 70ms); }
 .js .wall .fr-h { transform-origin: 0 50%; transform: scaleX(0); }
 .js .wall.s1 .fr { transform: none; }
@@ -457,13 +442,6 @@ html:not(.js) .story-text { grid-template-rows: 1fr; }
 .foot-mark img { height: .78em; width: auto; opacity: .9; margin-bottom: .1em; }
 @media (max-width: 59.99rem) { .has-dock .foot-mark { padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px)); } }
 
-/* ---------- Einblenden beim Scrollen (nur wo der Browser es kann; sonst alles sofort sichtbar) ---------- */
-@media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    .reveal > * { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 42%; }
-  }
-}
-
 /* ---------- Mobile Schnellkontakt: drei beschriftete Aktionen ---------- */
 .dock {
   position: fixed; z-index: 30; left: 0; right: 0; bottom: 0;
@@ -505,9 +483,4 @@ html:not(.js) .story-text { grid-template-rows: 1fr; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 
   html { scroll-behavior: auto; }
-  .js .build { height: auto; }
-  .js .build-stage { position: static; height: auto; }
-  .story-item, .js .story-item { opacity: 1 !important; transform: none !important; grid-area: auto !important; }
-  .story-text, .js .story-text { grid-template-rows: 1fr !important; }
-  .build-visual svg { max-height: 60svh; }
 }

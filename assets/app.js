@@ -26,39 +26,35 @@
     window.matchMedia('(min-width: 60rem)').addEventListener('change', function (e) { if (e.matches) setMenu(false); });
   }
 
-  /* Wand-Geschichte: Schritt aus Scrollposition */
+  /* Wand-Aufbau: spielt einmal ab, sobald die Zeichnung im Bild ist (kein Festhalten beim Scrollen) */
   var build = d.querySelector('.build');
-  var stage = d.querySelector('.build-stage');
   var wall = d.querySelector('.wall');
+  var story = d.querySelector('.story');
   var items = Array.prototype.slice.call(d.querySelectorAll('.story-item'));
-  var last = -1;
   function setStep(n) {
-    if (n === last) return;
-    last = n;
     for (var i = 1; i <= 5; i++) wall.classList.toggle('s' + i, i <= n);
-    var act = Math.max(n, 1) - 1;
-    items.forEach(function (it, i) { it.classList.toggle('is-active', i === act); });
+    items.forEach(function (it, i) { it.classList.toggle('is-active', i === n - 1); });
+    build.style.setProperty('--p', (n / 5).toFixed(2));
   }
-  if (build && stage && wall) {
-    if (reduce) {
+  if (build && wall && story) {
+    if (reduce || !('IntersectionObserver' in window)) {
       setStep(5);
-      items.forEach(function (it) { it.classList.add('is-active'); });
     } else {
-      var ticking = false;
-      var update = function () {
-        ticking = false;
-        var r = build.getBoundingClientRect();
-        var top = 0;
-        var total = Math.max(1, build.offsetHeight - stage.offsetHeight);
-        var p = Math.min(1, Math.max(0, (top - r.top) / total));
-        build.style.setProperty('--p', p.toFixed(4));
-        var n = r.top < window.innerHeight * 0.55 ? Math.min(5, Math.floor(p * 5) + 1) : 0;
-        if (r.bottom < 0) n = 5;
-        setStep(n);
-      };
-      window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
-      window.addEventListener('resize', update);
-      update();
+      setStep(0);
+      var played = false;
+      var io = new IntersectionObserver(function (e) {
+        if (played || !e[0].isIntersecting) return;
+        played = true; io.disconnect();
+        story.classList.add('is-playing');
+        var n = 0;
+        var tick = function () {
+          n++; setStep(n);
+          if (n < 5) setTimeout(tick, 1500);
+          else setTimeout(function () { story.classList.remove('is-playing'); }, 1800);
+        };
+        tick();
+      }, { threshold: 0.5 });
+      io.observe(d.querySelector('.build-visual'));
     }
   }
 
