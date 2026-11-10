@@ -7,6 +7,10 @@ Die erzeugten .html-Dateien werden mit eingecheckt; GitHub Pages braucht keinen 
 """
 import json
 import pathlib
+import sys
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import drawings  # noqa: E402
 from html import escape
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -113,6 +117,24 @@ def cells(items):
 
 def bento(names):
     return '<div class="bento">' + "".join(shot(n) for n in names) + "</div>"
+
+
+def build_section(eyebrow, title, story, svg):
+    items = "".join(f'<li class="story-item"><span class="story-num">{i:02d}</span><h3>{t}</h3><p>{p}</p></li>'
+                    for i, (t, p) in enumerate(story, 1))
+    return f'''<section class="build on-dark" aria-labelledby="build-title">
+    <div class="build-stage">
+      <div class="wrap">
+        <div class="build-copy">
+          <p class="eyebrow">{eyebrow}</p>
+          <h2 id="build-title">{title}</h2>
+          <ol class="story">{items}</ol>
+          <div class="build-progress" aria-hidden="true"><i></i></div>
+        </div>
+        <div class="build-visual">{svg}</div>
+      </div>
+    </div>
+  </section>'''
 
 
 def faq_html(items):
@@ -584,8 +606,6 @@ def trockenbau():
         ("Spachteln", "Fugen und Schraubköpfe werden gespachtelt und geschliffen, in der Qualitätsstufe, die Sie brauchen."),
         ("Fertig", "Eine glatte Fläche, bereit für Farbe, Tapete oder Fliesen. Übergabe besenrein."),
     ]
-    story_html = "".join(
-        f'<li class="story-item"><span class="story-num">{i + 1:02d}</span><h3>{t}</h3><p>{p}</p></li>' for i, (t, p) in enumerate(story))
     q = [
         (1, "5.0", ".95", True, "Q1 · Grundverspachtelung", "Fugen gefüllt, Schraubköpfe überspachtelt. Beides bleibt im Licht sichtbar.", "Fliesen, weitere Verkleidung"),
         (2, "2.6", ".45", False, "Q2 · Standard", "Fugen nachgespachtelt und stufenlos an die Plattenfläche angeglichen.", "Raufaser, grobe Tapeten, matte Farbe"),
@@ -620,19 +640,7 @@ def trockenbau():
     </div>
   </section>
 
-  <section class="build on-dark" aria-labelledby="build-title">
-    <div class="build-stage">
-      <div class="wrap">
-        <div class="build-copy">
-          <p class="eyebrow">So entsteht eine Wand</p>
-          <h2 id="build-title">In fünf Schritten zur fertigen Fläche.</h2>
-          <ol class="story">{story_html}</ol>
-          <div class="build-progress" aria-hidden="true"><i></i></div>
-        </div>
-        <div class="build-visual">{(PART / "wall.svg").read_text(encoding="utf-8")}</div>
-      </div>
-    </div>
-  </section>
+  {build_section("So entsteht eine Wand", "In fünf Schritten zur fertigen Fläche.", story, drawings.wall())}
 
   <section class="section" id="qualitaet">
     <div class="wrap">
@@ -679,7 +687,7 @@ def dachausbau():
         ("Dachbodendämmung", "Dämmung der obersten Geschossdecke, wenn der Speicher unbewohnt bleibt.", "Oberste Geschossdecke"),
     ]
     aufbau = [
-        ("Dämmen", "Mineralwolle zwischen die Sparren, lückenlos bis in die Ecken."),
+        ("Dämmen", "Mineralwolle zwischen die Sparren, lückenlos bis in die Ecken. Ob der Raum später warm und ruhig ist, entscheidet sich hier."),
         ("Abdichten", "Dampfbremse verlegen und an Wänden, Fenstern und Durchdringungen luftdicht verkleben."),
         ("Ausrichten", "Unterkonstruktion aus Latten oder Profilen. Hier werden krumme Sparren ausgeglichen."),
         ("Beplanken", "Gipsplatten verschrauben, im Bad imprägniert, bei Brandschutz als Feuerschutzplatte."),
@@ -711,16 +719,7 @@ def dachausbau():
     </div>
   </section>
 
-  <section class="section section--tint">
-    <div class="wrap split">
-      <div class="head">
-        <p class="eyebrow">Aufbau der Dachschräge</p>
-        <h2 class="h-l">Fünf Schichten, eine Reihenfolge.</h2>
-        <p class="lead">Ob der Raum später warm, trocken und ruhig ist, entscheidet sich hinter der Platte.</p>
-      </div>
-      {steps(aufbau)}
-    </div>
-  </section>
+  {build_section("Aufbau der Dachschräge", "Fünf Schichten, eine Reihenfolge.", aufbau, drawings.roof())}
 
   {quote("Super Arbeit, auch die kniffligere Seite mit 2 Dachschrägen wurde korrekt abgehängt.", "Matthias T.", "Badezimmerdecke, Google, Nov. 2025")}
 
@@ -761,10 +760,19 @@ def kernsanierung():
         ("Mietobjekte und Hausverwaltungen", "Wohnungen zwischen zwei Mietern zügig wieder vermietbar machen, mit festem Ansprechpartner."),
         ("Büro und Praxis", "Umbau nach neuem Raumkonzept, inklusive Brand- und Schallschutz sowie Akustikdecken."),
     ]
+    schritte = [
+        ("Rückbau", "Alte Wände, Decken, Böden und Leitungen kommen raus, bis nur der Rohbau steht. Den Schutt entsorgen wir fachgerecht."),
+        ("Installationen", "Neue Elektro- und Sanitärleitungen, verlegt von unseren Partner-Fachbetrieben und abgestimmt durch uns."),
+        ("Wände und Decken", "Wände nach neuem Grundriss, Vorsatzschalen vor den Leitungen und abgehängte Decken. Mit Dämmung, Brand- und Schallschutz."),
+        ("Böden", "Neuer Bodenaufbau, zum Beispiel mit Trockenestrich, der ohne Trocknungszeit belegt werden kann."),
+        ("Oberflächen", "Spachteln und Glätten bis Q4, Malerarbeiten und die schlüsselfertige Übergabe."),
+    ]
     desc = "Kernsanierung in Augsburg, schlüsselfertig aus einer Hand: Abbruch, neue Installationen mit Partner-Fachbetrieben, Wände, Decken, Böden und Malerarbeiten. Ein Ansprechpartner, kostenlose Besichtigung."
     body = f'''<main id="top">
 
   {service_hero("Kernsanierung", "Kern&shy;sanierung <span class=\"mark\">in Augsburg.</span>", "Bei einer Kernsanierung bleibt nur der Rohbau stehen. Danach bauen wir alles neu auf, schlüsselfertig und mit einem Ansprechpartner für das ganze Projekt.", "hero-bad", "Badsanierung im Dachgeschoss", "kern-vorher", [("<em>1</em> Kontakt", "ein Ansprechpartner für alles"), ("<em>3</em> Phasen", "raus, neu, fertig"), ("Schlüssel&shy;fertig", "bis zur Übergabe"), ("<em>0</em> €", "kostet die Besichtigung")])}
+
+  {build_section("So läuft eine Kernsanierung", "Einmal alles neu, in fünf Schritten.", schritte, drawings.reno())}
 
   <section class="section section--tint">
     <div class="wrap">
@@ -795,16 +803,6 @@ def kernsanierung():
         <h2 class="h-l">Weitere Baustellen.</h2>
       </div>
       {gallery(["p-bad-schraege", "p-install-1", "p-install-2", "p-dach-beplankt"], cols4=True)}
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap">
-      <div class="head">
-        <p class="eyebrow">Ablauf</p>
-        <h2 class="h-l">Von der Anfrage bis zur Abnahme.</h2>
-      </div>
-      {steps(ABLAUF, cols=True)}
     </div>
   </section>
 

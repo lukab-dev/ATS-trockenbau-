@@ -346,31 +346,44 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .build-copy h2 { font-size: clamp(2rem, 3.6vw, 3rem); }
 @media (max-width: 61.99rem) { .build-copy { display: contents; } .build-progress, .build-visual { order: 1; } .story { order: 2; } }
 .build-visual svg { width: 100%; height: auto; max-height: 70svh; }
-.js .wall .fr { transform-box: fill-box; transform-origin: 50% 100%; transform: scaleY(0); transition: transform .9s var(--ease); transition-delay: calc(var(--i, 0) * 70ms); }
-.js .wall .fr-h { transform-origin: 0 50%; transform: scaleX(0); }
-.js .wall.s1 .fr { transform: none; }
-.wall .dim { transition: opacity .5s; }
-.js .wall .dim { opacity: 0; }
-.js .wall.s1 .dim { opacity: 1; transition-delay: .6s; }
-.js .wall.s3 .dim { opacity: 0; transition-delay: 0s; }
-.js .wall .wool { opacity: 0; transform: translateY(-16px); transition: opacity .7s var(--ease), transform .9s var(--ease); transition-delay: calc(var(--i) * 90ms); }
-.js .wall.s2 .wool { opacity: 1; transform: none; }
-.js .wall .board { opacity: 0; transform: translateX(70px); transition: opacity .6s var(--ease), transform 1s var(--ease); transition-delay: calc(var(--i) * 130ms); }
-.js .wall.s3 .board { opacity: 1; transform: none; }
-.js .wall .screw { opacity: 0; transition: opacity .3s, fill .6s; transition-delay: calc(450ms + var(--i) * 18ms); }
-.js .wall.s3 .screw { opacity: 1; }
-.wall.s4 .screw { fill: var(--il-paint); }
-.wall .joint { stroke-dasharray: 342; stroke-dashoffset: 0; transition: stroke-dashoffset 1.1s var(--ease); }
-.js .wall .joint { stroke-dashoffset: 342; }
-.js .wall.s4 .joint { stroke-dashoffset: 0; }
-.js .wall .band { opacity: 0; transition: opacity .8s .5s; }
-.js .wall.s4 .band { opacity: 1; }
-.js .wall .paint { opacity: 0; clip-path: inset(0 100% 0 0); transition: clip-path 1.3s var(--ease), opacity .4s; }
-.js .wall.s5 .paint { opacity: 1; clip-path: inset(0 0 0 0); }
-.js .wall .finish { opacity: 0; transform: translateY(6px); transition: opacity .6s var(--ease) .8s, transform .6s var(--ease) .8s; }
-.js .wall.s5 .finish { opacity: 1; transform: none; }
-.wall .lbl { font: 500 11px var(--f-mono); fill: #dcbc5e; }
-.wall .q4 { font: 700 13px var(--f-display); fill: var(--gold-ink); }
+/* Erklär-Zeichnungen (Wand, Dachschräge, Kernsanierung): ein Linienstil, Schritt für Schritt */
+.xp { --xl: #d6d3c9; --xd: #77746b; --xb: #1c1b19; --xp: #efede6; overflow: hidden; }
+.xp .hl { stroke: #45433d; stroke-width: 1.4; }
+.xp .ln { fill: none; stroke: var(--xl); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; transition: stroke .6s; }
+.xp .dm { stroke: var(--xd); stroke-width: 1; }
+.xp .da { stroke-dasharray: 6 5; }
+.xp .wo { stroke: #a39a7c; stroke-width: 1.2; }
+.xp .bd { fill: var(--xb); }
+.xp .mb { stroke-width: 2.5; stroke-dasharray: 16 5; }
+.xp .tp { fill: var(--gold); }
+.xp .sc { fill: var(--xd); }
+.xp .jf { fill: #8f8c82; }
+.xp .pt { fill: var(--xp); }
+.xp .lt { fill: var(--gold); }
+.xp .dk { stroke: #8a877e; } .xp .dkf { fill: #8a877e; }
+.xp text { font: 500 12px var(--f-mono); fill: var(--xl); }
+.xp .mk .ln, .xp .mk text { stroke: var(--gold-hi); } .xp .mk text { stroke: none; fill: var(--gold-hi); font-size: 11px; }
+.xp .nt { fill: var(--xd); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+.xp .bg circle { fill: var(--night); stroke: var(--xl); stroke-width: 1.5; transition: fill .4s, stroke .4s; }
+.xp .bg text { transition: fill .4s; }
+.js .xp [data-s] { opacity: 0; transition: opacity .7s var(--ease); }
+.js .xp [data-s] .dr { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.2s var(--ease), stroke .6s; }
+.xp [data-old] { transition: opacity .7s var(--ease); }
+html:not(.js) .xp [data-old], .xp.s2 [data-old] { opacity: 0; }
+.xp.s1 [data-s="1"] { opacity: 1; } .xp.s1 [data-s="1"] .dr { stroke-dashoffset: 0; }
+.xp.a1 [data-s="1"] .ln { stroke: var(--gold-hi); } .xp.a1 .bg[data-s="1"] circle { fill: var(--gold); stroke: var(--gold); } .xp.a1 .bg[data-s="1"] text { fill: var(--gold-ink); }
+.xp.s2 [data-s="2"] { opacity: 1; } .xp.s2 [data-s="2"] .dr { stroke-dashoffset: 0; }
+.xp.a2 [data-s="2"] .ln { stroke: var(--gold-hi); } .xp.a2 .bg[data-s="2"] circle { fill: var(--gold); stroke: var(--gold); } .xp.a2 .bg[data-s="2"] text { fill: var(--gold-ink); }
+.xp.s3 [data-s="3"] { opacity: 1; } .xp.s3 [data-s="3"] .dr { stroke-dashoffset: 0; }
+.xp.a3 [data-s="3"] .ln { stroke: var(--gold-hi); } .xp.a3 .bg[data-s="3"] circle { fill: var(--gold); stroke: var(--gold); } .xp.a3 .bg[data-s="3"] text { fill: var(--gold-ink); }
+.xp.s4 [data-s="4"] { opacity: 1; } .xp.s4 [data-s="4"] .dr { stroke-dashoffset: 0; }
+.xp.a4 [data-s="4"] .ln { stroke: var(--gold-hi); } .xp.a4 .bg[data-s="4"] circle { fill: var(--gold); stroke: var(--gold); } .xp.a4 .bg[data-s="4"] text { fill: var(--gold-ink); }
+.xp.s5 [data-s="5"] { opacity: 1; } .xp.s5 [data-s="5"] .dr { stroke-dashoffset: 0; }
+.xp.a5 [data-s="5"] .ln { stroke: var(--gold-hi); } .xp.a5 .bg[data-s="5"] circle { fill: var(--gold); stroke: var(--gold); } .xp.a5 .bg[data-s="5"] text { fill: var(--gold-ink); }
+.xp.a1 [data-old] { opacity: 1; } .xp.a1 [data-old] .ln { stroke: var(--gold); stroke-width: 2; stroke-dasharray: 5 5; }
+.xp.s5 .mk { opacity: 0; transition: opacity .5s; }
+.story.is-done .story-item { cursor: default; }
+@media (hover: hover) { .story.is-done:hover .story-item:not(:hover) { opacity: .45; } }
 
 /* Trockenbau: Q1–Q4 nebeneinander */
 .qgrid { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem 1rem; }

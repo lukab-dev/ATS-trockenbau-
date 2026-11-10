@@ -26,37 +26,43 @@
     window.matchMedia('(min-width: 60rem)').addEventListener('change', function (e) { if (e.matches) setMenu(false); });
   }
 
-  /* Wand-Aufbau: spielt einmal ab, sobald die Zeichnung im Bild ist (kein Festhalten beim Scrollen) */
-  var build = d.querySelector('.build');
-  var wall = d.querySelector('.wall');
-  var story = d.querySelector('.story');
-  var items = Array.prototype.slice.call(d.querySelectorAll('.story-item'));
-  function setStep(n) {
-    for (var i = 1; i <= 5; i++) wall.classList.toggle('s' + i, i <= n);
-    items.forEach(function (it, i) { it.classList.toggle('is-active', i === n - 1); });
-    build.style.setProperty('--p', (n / 5).toFixed(2));
-  }
-  if (build && wall && story) {
-    if (reduce || !('IntersectionObserver' in window)) {
-      setStep(5);
-    } else {
-      setStep(0);
-      var played = false;
-      var io = new IntersectionObserver(function (e) {
-        if (played || !e[0].isIntersecting) return;
-        played = true; io.disconnect();
-        story.classList.add('is-playing');
-        var n = 0;
-        var tick = function () {
-          n++; setStep(n);
-          if (n < 5) setTimeout(tick, 1500);
-          else setTimeout(function () { story.classList.remove('is-playing'); }, 1800);
-        };
-        tick();
-      }, { threshold: 0.5 });
-      io.observe(d.querySelector('.build-visual'));
-    }
-  }
+  /* Erklär-Zeichnungen: spielen einmal ab, sobald sie im Bild sind; danach hebt die Schrittliste den passenden Teil hervor */
+  d.querySelectorAll('.build').forEach(function (build) {
+    var xp = build.querySelector('.xp');
+    var story = build.querySelector('.story');
+    if (!xp || !story) return;
+    var items = Array.prototype.slice.call(story.querySelectorAll('.story-item'));
+    var total = items.length;
+    var mark = function (n) { for (var i = 1; i <= total; i++) xp.classList.toggle('a' + i, i === n); };
+    var setStep = function (n) {
+      for (var i = 1; i <= total; i++) xp.classList.toggle('s' + i, i <= n);
+      mark(n);
+      items.forEach(function (it, i) { it.classList.toggle('is-active', i === n - 1); });
+      build.style.setProperty('--p', (n / total).toFixed(2));
+    };
+    var finish = function () {
+      story.classList.remove('is-playing'); story.classList.add('is-done'); mark(0);
+      items.forEach(function (it, i) {
+        it.classList.remove('is-active');
+        it.addEventListener('mouseenter', function () { mark(i + 1); });
+        it.addEventListener('mouseleave', function () { mark(0); });
+      });
+    };
+    if (reduce || !('IntersectionObserver' in window)) { setStep(total); mark(0); return; }
+    setStep(0);
+    var io = new IntersectionObserver(function (e) {
+      if (!e[0].isIntersecting) return;
+      io.disconnect();
+      story.classList.add('is-playing');
+      var n = 0;
+      var tick = function () {
+        n++; setStep(n);
+        setTimeout(n < total ? tick : finish, n < total ? 1600 : 2000);
+      };
+      tick();
+    }, { threshold: 0.5 });
+    io.observe(build.querySelector('.build-visual'));
+  });
 
   /* Mobile Aktionsleiste: sichtbar zwischen Hero und Kontakt */
   var dock = d.querySelector('.dock');
