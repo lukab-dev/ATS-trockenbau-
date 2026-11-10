@@ -54,6 +54,20 @@ IMG = {
     "p-install-2": (600, 1200, 600, 800),
     "p-dach-beplankt": (600, 1200, 600, 800),
     "p-dach-holz": (600, 1200, 600, 800),
+    "t-flur-decke": (600, 1200, 600, 800),
+    "t-trennwand-tuer": (600, 1200, 600, 800),
+    "t-staenderwerk": (600, 1200, 600, 800),
+    "t-keller-verkleidung": (600, 1200, 600, 800),
+    "d-dampfbremse": (600, 1200, 600, 800),
+    "d-dachfenster": (600, 1200, 600, 800),
+    "d-lattung": (600, 1200, 600, 800),
+    "d-gespachtelt": (600, 1148, 600, 800),
+    "d-balken": (600, 1149, 600, 800),
+    "d-fenster-gespachtelt": (600, 1200, 600, 800),
+    "k-wc-umbau": (600, 1200, 600, 800),
+    "k-wc-fertig": (600, 1125, 600, 800),
+    "k-bad-platten": (600, 1200, 600, 800),
+    "k-bad-gespachtelt": (600, 1200, 600, 800),
     "van": (600, 768, 600, 484),
 }
 REAL_W = {"hero-bad": 900}  # tatsächliche Pixelbreite der großen Datei, falls abweichend
@@ -69,6 +83,20 @@ CAP = {
     "p-install-2": "Dieselbe Wand beplankt, mit Revisionsöffnungen",
     "p-dach-beplankt": "Dachgeschoss beplankt, bereit zum Spachteln",
     "p-dach-holz": "Holzkonstruktion und Beplankung unter dem Dach",
+    "t-flur-decke": "Abkofferung an der Flurdecke, beplankt",
+    "t-trennwand-tuer": "Trennwand mit Türöffnung und Lichtband",
+    "t-staenderwerk": "Ständerwerk aus Metallprofilen am Treppenaufgang",
+    "t-keller-verkleidung": "Verkleidungen mit Revisionsklappen im Untergeschoss",
+    "d-dampfbremse": "Dachgeschoss mit Dampfbremse an den Sparren",
+    "d-dachfenster": "Dachfenster-Laibung vor dem Beplanken",
+    "d-lattung": "Lattung über der Dampfbremse, bereit für die Platten",
+    "d-gespachtelt": "Dachgeschoss nach dem Spachteln, Boden abgedeckt",
+    "d-balken": "Dachschräge beplankt, die Holzbalken bleiben sichtbar",
+    "d-fenster-gespachtelt": "Dachfenster-Laibung beplankt und gespachtelt",
+    "k-wc-umbau": "Kleines Bad im Umbau: neue Leitungen, Vorwand für das Wand-WC",
+    "k-wc-fertig": "Fertiges WC mit Wand-WC und Aufsatzbecken",
+    "k-bad-platten": "Bad unter der Schräge, mit imprägnierten Platten beplankt",
+    "k-bad-gespachtelt": "Bad im Dachgeschoss nach dem Spachteln",
 }
 
 NAV = [("trockenbau.html", "Trockenbau"), ("dachausbau.html", "Dachausbau"),
@@ -635,7 +663,7 @@ def trockenbau():
         <p class="eyebrow">Fotos von der Baustelle</p>
         <h2 class="h-l">So sieht das bei uns aus.</h2>
       </div>
-      {gallery(["p-install-1", "p-install-2", "p-trennwand", "p-dach-beplankt"], cols4=True)}
+      {gallery(["p-install-1", "p-install-2", "p-trennwand", "t-trennwand-tuer", "t-staenderwerk", "t-flur-decke", "t-keller-verkleidung", "p-dach-beplankt"], cols4=True)}
     </div>
   </section>
 
@@ -715,7 +743,7 @@ def dachausbau():
         <p class="eyebrow">Fotos von der Baustelle</p>
         <h2 class="h-l">Vom Dachstuhl zum fertigen Raum.</h2>
       </div>
-      {gallery(["p-dach-holz", "p-dach-gkf", "p-dach-beplankt", "p-trennwand", "p-bad-schraege", "hero-bad"])}
+      {gallery(["d-dampfbremse", "d-lattung", "d-dachfenster", "p-dach-holz", "p-dach-gkf", "d-balken", "p-dach-beplankt", "d-gespachtelt", "d-fenster-gespachtelt", "p-trennwand", "p-bad-schraege", "hero-bad"])}
     </div>
   </section>
 
@@ -804,7 +832,7 @@ def kernsanierung():
         <p class="eyebrow">Fotos von der Baustelle</p>
         <h2 class="h-l">Weitere Baustellen.</h2>
       </div>
-      {gallery(["p-bad-schraege", "p-install-1", "p-install-2", "p-dach-beplankt"], cols4=True)}
+      {gallery(["k-wc-umbau", "k-wc-fertig", "k-bad-platten", "k-bad-gespachtelt", "p-bad-schraege", "p-install-1", "p-install-2", "p-dach-beplankt"], cols4=True)}
     </div>
   </section>
 

@@ -1,3 +1,5 @@
 __pycache__/
 *.pyc
 fotos-neu/
+.DS_Store
+.claude/

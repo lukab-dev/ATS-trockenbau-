@@ -22,6 +22,10 @@ der Inhaber Serbisch (informell, „ti“).
 - Rohfotos liegen in **`fotos-neu/`** (steht in `.gitignore`, wird **nicht** veröffentlicht).
 - Auswahl: scharf, hell, aufgeräumt, echte eigene Baustellen. Vorher/Nachher aus gleichem Blickwinkel
   sind am wertvollsten (passen als Paar auf die Leistungsseiten).
+- **Skript:** `tools/photos.py` erledigt Schritte 1–4. Neue Fotos dort in `PICKS` eintragen
+  (Name, Datei, Ausschnitt-Mitte), `python3 tools/photos.py <name>` ausführen, Ergebnis ansehen.
+  Tonwerte nur auf der Helligkeit strecken: `autocontrast(preserve_tone=True)` verstärkt in Pillow 10
+  einen Gelbstich.
 - Bearbeitung mit Pillow (`pip install pillow`, für Begradigen optional `opencv-python-headless`):
   1. EXIF-Drehung anwenden, **alle Metadaten entfernen** (GPS!).
   2. Begradigen: stürzende Linien/Schiefstand korrigieren (senkrechte Kanten senkrecht), danach zuschneiden.
