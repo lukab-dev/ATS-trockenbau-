@@ -129,7 +129,7 @@ def gallery(names, cols4=False):
 
 def art(main, cap, sub):
     return (f'<div class="art"><figure class="art-main">{img(main, "(min-width: 62rem) 30rem, 100vw", eager=True)}<figcaption>{cap}</figcaption></figure>'
-            f'<figure class="art-sub">{img(sub, "14rem", "")}</figure>'
+            f'<figure class="art-sub">{img(sub, "14rem")}</figure>'
             f'<div class="art-card"><b>5,0 <span class="stars" aria-hidden="true">{STAR * 5}</span></b><span>32 Bewertungen · Google, Trustlocal</span></div></div>')
 
 
@@ -416,7 +416,7 @@ REVIEWS = [
 
 
 def tile(i, href, name, title, text):
-    return (f'<a class="tile" href="{href}">{img(name, "(min-width: 48rem) 33vw, 100vw", "")}'
+    return (f'<a class="tile" href="{href}">{img(name, "(min-width: 48rem) 33vw, 100vw")}'
             f'<span class="go">{ARROW}</span>'
             f'<h3>{title}</h3><p>{text}</p><span class="more">Mehr erfahren</span></a>')
 
@@ -587,7 +587,7 @@ CROSS = {
 
 def cross(current):
     cards = "".join(
-        f'<a href="{h}">{img(n, "6.5rem", "")}<span><b>{t}</b><span>{d}</span></span></a>'
+        f'<a href="{h}">{img(n, "6.5rem")}<span><b>{t}</b><span>{d}</span></span></a>'
         for h, (n, t, d) in CROSS.items() if h != current)
     return f'''<section class="section section--tint">
     <div class="wrap">
